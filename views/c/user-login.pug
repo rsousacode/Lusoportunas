@@ -19,7 +19,7 @@ html(lang='en')
         .login-box
             .login-box-body
                 h3.login-box-msg Entrar
-                form(action='/entrar', method='post')
+                form(role='form', autocomplete='off', action="/", method="post")
                     .form-group.has-feedback
                         input.form-control.sty1(type='email', name="username", placeholder='Email')
                     .form-group.has-feedback
@@ -31,7 +31,7 @@ html(lang='en')
                                     i.fa.fa-lock
                                     |  Esqueceu-se da password?
                         .col-xs-4.m-t-1
-                            button.btn.btn-primary.btn-block.btn-flat(type='submit') Entrar
+                            button.btn.btn-primary.btn-block.btn-flat(type='submit', value="Entrar") Entrar
                 .m-t-2
                     | Não tem uma conta?
                     a.text-center(href='/register')="  Registar"

@@ -1,10 +1,6 @@
-
 html, body {
     height: 100%
 }
-
-
-
 
 .layout-boxed html, .layout-boxed body {
     height: 100%
@@ -20,7 +16,7 @@ body {
 }
 
 .wrapper {
-    height: 1%;
+    height: 100%;
     position: relative;
     /*overflow-x: hidden;
 	overflow-y: auto*/
@@ -415,7 +411,7 @@ b {
 }
 
 .main-header .blue-bg .navbar-nav > li > a {
-    color: #343434;
+    color: #005aab;
 }
 
 .main-header .navbar-nav > li > a.sidebar-toggle {
@@ -1492,7 +1488,7 @@ ul.list-inline li {
 }
 
 .navbar-nav > .notifications-menu > .dropdown-menu > li.header, .navbar-nav > .messages-menu > .dropdown-menu > li.header, .navbar-nav > .tasks-menu > .dropdown-menu > li.header {
-    background-color: rgba(249, 255, 253, 0.04);
+    background-color: #ebebeb;
     padding: 10px;
     border-bottom: 1px solid #f4f4f4;
     color: #2c2c2c;
@@ -1501,7 +1497,7 @@ ul.list-inline li {
 
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer, .navbar-nav > .messages-menu > .dropdown-menu > li.footer, .navbar-nav > .tasks-menu > .dropdown-menu > li.footer {
     text-align: center !important;
-    background-color: #ffffff;
+    background-color: #ebebeb;
     padding: 10px;
     border-bottom: 1px solid #eeeeee;
 }
@@ -6373,18 +6369,6 @@ iframe {
     width: auto !important;
     height: auto !important
 }
-
-
-.bg-lus-gradient {
-    background: #fbfffb !important;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0.3, #fbfffb), color-stop(1, #b5b5b5)) !important;
-    background: -ms-linear-gradient(bottom, #47a9e3, #71cbff) !important;
-    /*background: -moz-linear-gradient(center bottom, #3c8dbc 0, #67a8ce 100%) !important;*/
-    background: -o-linear-gradient(#79bfe8, #52beff) !important;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67a8ce', endColorstr='#3c8dbc', GradientType=0) !important;
-    color: #fff
-}
-
 
 .bg-teal-gradient {
     background: #39cccc !important;

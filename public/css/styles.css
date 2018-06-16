@@ -1,6 +1,20 @@
 
 body {
+}
 
+/* General sizing */
+ul.dropdown-lr {
+    width: 300px;
+}
+
+/* mobile fix */
+@media (max-width: 768px) {
+    .dropdown-lr h3 {
+        color: #eee;
+    }
+    .dropdown-lr label {
+        color: #eee;
+    }
 }
 
 .card {
@@ -449,19 +463,6 @@ SUPER BLANK SPACE
 /*Tablets */
 @media (min-width: 550px) {
 
-    nav li,
-    nav li:nth-child(even),
-    nav li:nth-child(odd) {
-        display: inline-block;
-        width: auto;
-        float: none;
-        padding: 0;
-    }
-
-    nav a {
-        padding: 0em 1em;
-
-    }
 
     .heading {
         background: url(../img/tiger-3.jpg) no-repeat;
@@ -493,13 +494,6 @@ BLANK SPACE
         font-size: 1.9em;
     }
 
-    nav li,
-    nav li:nth-child(even),
-    nav li:nth-child(odd) {
-        display: inline-block;
-        width: auto;
-        padding: 0;
-    }
 
     .heading {
         background: url(../img/tigre-2.jpg) center top;

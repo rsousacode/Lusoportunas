@@ -70,6 +70,45 @@ router.route("/form")
         res.render('c/form');
     });
 
+router.route("/")
+
+    .all(function (req, res, next) {
+
+        lusDB.User.findById("5b0731f2d8e9f333624b8257").exec()   //find a doccument by Id
+            .then(user => {
+                if (!user) {
+                    res.sendStatus(404);
+                    return;
+                }
+                res.locals.user = user;
+                next();
+
+            }).catch(next)
+
+    })
+
+    .get(function (req, res) {
+
+        if (req.app.get("env") === "development") {
+
+
+            req.logIn(res.locals.user, function (err) {
+                if (err) {
+                    return next(err);
+                }
+                return res.redirect('/painel');
+            });
+            return;
+        }
+
+        res.render("c/index", {
+            title: "Lusoportunas - Conecta-te com o teu sucesso! ",
+            ruser : req.user
+
+            });
+
+
+    });
 
 router.route("/entrar")
 
@@ -109,6 +148,11 @@ router.route("/entrar")
     });
 
 router.post("/entrar", passport.authenticate('local', {
+    successRedirect: '/painel',
+    failureRedirect: '/'
+}));
+
+router.post("/", passport.authenticate('local', {
     successRedirect: '/painel',
     failureRedirect: '/'
 }));

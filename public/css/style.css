@@ -1,13 +1,4 @@
-/* --------------------------------------
-=========================================
-Adminkit - Multipurpose bootstrap 4.0 admin templates
-Version: 1.0
-Designed By: UXLiner
-=========================================
 
-/*----------------------------------------------------
-	SITE MAIN STRUCTURE
-------------------------------------------------------*/
 body {
     font-family: 'Poppins', sans-serif;
     color: #656565;
@@ -15,6 +6,22 @@ body {
     margin: 0;
     font-size: 14px;
 }
+
+/* General sizing */
+ul.dropdown-lr {
+    width: 300px;
+}
+
+/* mobile fix */
+@media (max-width: 768px) {
+    .dropdown-lr h3 {
+        color: #eee;
+    }
+    .dropdown-lr label {
+        color: #eee;
+    }
+}
+
 a, a:hover {
     text-decoration: none;
     transition: all 0.3s ease-out 0s;
