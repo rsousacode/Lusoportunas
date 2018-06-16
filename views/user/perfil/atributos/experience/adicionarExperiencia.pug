@@ -1,0 +1,28 @@
+extends ../../../../layout
+
+block content
+    .container.py-5
+        .row
+            .col-md-12
+                h2.text-center.mb-1
+                .row
+                    .col-md-9.mx-auto
+                        .card.border-secondary
+                            .card-header
+                                h3.mb-0.my-2 Adicionar Experiência
+                            .card-body
+                                form.form(role='form', autocomplete='off', method="post")
+                                    .form-group
+                                        label(for='cargo') Cargo desempenhado
+                                        input#inputName.form-control(type='text', name="cargo", value="")
+                                    .form-group
+                                        label(for='location') Empresa
+                                        input#2inputName.form-control(type='text', name="company", value="")
+                                    .form-group
+                                        label(for='location') Localização
+                                        input#2inpu3tName.form-control(type='text', name="location", value="")
+                                    .form-group
+                                        label(for='description') Descrição
+                                        input#2in2pu3tName.form-control(type='text', name="description", value="")
+                                    .form-group
+                                        button.btn.btn-success.btn-lg.float-right(type='submit') Guardar

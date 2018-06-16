@@ -1,0 +1,22 @@
+extends ../../layout
+
+block content
+    table.table.table-striped
+        thead
+            tr
+                th Nome
+                th Oferta
+                th Empresa
+                th Industria
+                th Função
+                th Localidade
+                th Data de registo
+        tbody
+                tr
+                    td= job.name
+                    td= job.body
+                    td= job.company
+                    td= job.industry
+                    td= job.jobFunction
+                    td= job.address
+                    td= job.date

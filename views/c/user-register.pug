@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        title=title
+        meta(name='viewport', content='width=device-width, minimum-scale=1, maximum-scale=1')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700', rel='stylesheet')
+        link(rel='stylesheet', href='dist/css/style.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
+        link(rel='stylesheet', href='dist/css/et-line-font/et-line-font.css')
+        link(rel='stylesheet', href='dist/css/themify-icons/themify-icons.css')
+        link(rel='stylesheet', href='dist/plugins/hmenu/ace-responsive-menu.css')
+        //if lt IE 9
+          script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+          script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    body.hold-transition.login-page
+        .login-box
+            .login-box-body
+                h3.login-box-msg Sign Up
+                form(action='index.html', method='post')
+                    .form-group.has-feedback
+                        input.form-control.sty1(type='email', placeholder='Name')
+                    .form-group.has-feedback
+                        input.form-control.sty1(type='email', placeholder='Email')
+                    .form-group.has-feedback
+                        input.form-control.sty1(type='password', placeholder='Password')
+                    .form-group.has-feedback
+                        input.form-control.sty1(type='password', placeholder='Conform Password')
+                    div
+                        .col-xs-8
+                            .checkbox.icheck
+                                label
+                                    input(type='checkbox')
+                                    |                I agree to all Terms
+                        // /.col
+                        .col-xs-4.m-t-1
+                            button.btn.btn-primary.btn-block.btn-flat(type='submit') Sign UP
+                        // /.col
+                .m-t-2
+                    | Already have an account?
+                    a.text-center(href='pages-login.html') Sign In
+            // /.login-box-body
+        // /.login-box
+        // jQuery 3
+        script(src='dist/js/jquery.min.js')
+        // v4.0.0-alpha.6
+        script(src='dist/bootstrap/js/bootstrap.min.js')
+        // template
+        script(src='dist/js/niche.js')

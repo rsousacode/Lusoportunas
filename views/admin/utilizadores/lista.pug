@@ -1,0 +1,56 @@
+extends ../../layout
+
+block content
+    script.
+        $(document).ready(function () {
+            $('#userstable').DataTable();
+        });
+    .container.container-fluid
+        .container
+            .row
+                .col-md-9
+                    .row.m-lg-8
+                        h2 Utilizadores
+                        form(method="get")
+                            #custom-search-input
+                                .input-group.col-lg-12
+                                    input.form-control.input-lg(type='text', placeholder='Buscar', name="name")
+                                    span.input-group-btn
+                                        button.btn.btn-info.btn-lg(type='submit')
+                                            i.fa.fa-search
+                .col-md-3
+                    .row.m-lg-0
+                        a(href="/admin/utilizadores/adicionar")
+                            span.input-group-btn
+                                button.btn.btn-info.btn-lg
+                                    i.fa.fa-save
+
+
+        table#userstable.table.table-striped
+            thead
+                tr
+                    th(scope="col")
+                    th(scope="col") Email
+                    th(scope="col")
+                    th(scope="col") Título
+                    th(scope="col") Nome
+                    th(scope="col") Tipo de Utilizador
+                    th(scope="col") Distrito
+                    th(scope="col") ID
+                    th(scope="col") Criado em
+            tbody
+                each ruser in users
+                    -let getMonth = ruser.date.getMonth() +1
+                    tr
+                        td(style="width: 50px;"): a(href="/admin/utilizador/eliminar/" + ruser._id)
+                            span.fa.fa-remove
+                        td: a(href="/perfil/" + ruser._id)= ruser.username
+                        td(style="width: 50px;"): a(href="/admin/utilizador/editar/" + ruser._id)
+                            span.fa.fa-pencil
+                        td=ruser.name.title
+                        td= ruser.name.firstName + " " + ruser.name.lastName
+
+                        td: a(href="/admin/utilizador/editar/" + ruser._id)= ruser.role
+                        td= ruser.address.district
+                        td= ruser.id
+                        td= ruser.date.getDate() + "/" + getMonth + "/" + ruser.date.getUTCFullYear()

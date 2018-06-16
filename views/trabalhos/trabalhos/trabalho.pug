@@ -1,0 +1,13 @@
+extends ../../layout
+
+block content
+    .container.m-lg-4
+        .row.featurette
+            .col-md-7
+                h2.featurette-heading=job.body.cargo
+                p.lead= job.jobType + " no sector: " + job.jobSector + " como funçoes de : " + job.jobFunction + " na zona de: " + job.location
+                p.lead= " Vagas desponiveis: " + job.body.vagas
+                p.lead= "Beneficios que podera ganhar: " + job.body.beneficios
+                p.lead= "Requesitos necessarios: " + job.body.requisitos
+                p.lead= "Responsabilidades: " + job.body.responsabilidades
+                p.lead= "Criado por: " + job.ruser.name.firstName + " " + job.date.getDay() + "/" + job.date.getMonth() + "/" + job.date.getUTCFullYear()

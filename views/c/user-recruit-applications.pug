@@ -1,0 +1,60 @@
+extends ./layout
+block content
+    .content-wrapper
+        .content
+            .info-box
+                h4.text-black Ofertas de trabalho activas
+                p As suas ofertas de trabalho que ainda não expiraram.
+                .table-responsive
+                    table#example2.table.table-bordered.table-hover(data-name='cool-table')
+                        thead
+                            tr
+                                th(scope="col") Anúncio
+                                th Corpo
+                                th(scope="col") Candidato
+                        tbody
+                            each job in jobs
+                                each application in jobs
+                                    tr
+                                        td= job.jobFunction
+                                        td= application.body.application
+                                        td= application.ruser.name.firstName + " " + application.ruser.name.lastName
+                                        td= application.body.bdate.getMonth()
+    include ./foote
+    // ./wrapper
+    // jQuery 3
+    script(src='/jquery.min.js')
+    // v4.0.0-alpha.6
+    script(src='/js/bootstrap.min.js')
+    // template
+    script(src='dist/js/niche.js')
+    // DataTable
+    script(src='dist/plugins/datatables/jquery.dataTables.min.js')
+    script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+    script.
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    script(src='dist/plugins/table-expo/filesaver.min.js')
+    script(src='dist/plugins/table-expo/xls.core.min.js')
+    script(src='dist/plugins/table-expo/tableexport.js')
+    script.
+        $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
+    script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+    // Plugin Initialization
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $("#respMenu").aceResponsiveMenu({
+                resizeWidth: '768', // Set the same in Media query
+                animationSpeed: 'fast', //slow, medium, fast
+                accoridonExpAll: false //Expands all the accordion menu on click
+            });
+        });

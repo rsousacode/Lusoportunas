@@ -1,0 +1,96 @@
+extends ../../layout
+block content
+    .container-fluid
+        .row
+            .col-md-4
+                .row
+                    .card.profile-card-1
+                        -let userProfilePicture = "/"+user.profilePicture
+                        img.background(src='https://images.pexels.com/photos/946351/pexels-photo-946351.jpeg?w=500&h=650&auto=compress&cs=tinysrgb', alt='profile-sample1')
+                        if(user.profilePicture)
+                            if (user.profilePicture.length > 50)
+                                img.profile.img-circle(src=userProfilePicture, alt='profile-image')
+                        else
+                            img.profile.img-rounded-circle(src="http://cdn.onlinewebfonts.com/svg/img_570489.png", alt='profile-image')
+                        .card-content
+                            h2=user.name.firstName + " " + user.name.lastName
+                            small=ruser._id
+                        if(user.social)
+                            .icon-block
+                                a(href= user.social.facebook)
+                                    i.fa.fa-facebook
+                                a(href= user.social.twitter)
+                                    i.fa.fa-twitter
+                                a(href= user.social.linkedin)
+                                    i.fa.fa-linkedin
+
+                #sidebar.row-sm
+                    -let space=" "
+                    -let profile="/perfil/"+user._id+"/"
+                    .list-group.panel
+                        a.list-group-item.collapsed(href='#menu1', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                            i.fa.fa-dashboard
+                            span.hidden-sm-down=space + "Perfil"
+                        #menu1.collapse
+                            a.list-group-item(href=profile + "editar", data-parent='#menu1')=space + "Editar Perfil"
+                            a.list-group-item(href='#', data-parent='#menu1')=space + "Conta"
+
+                        a.list-group-item.collapsed(href='#menu3', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                            i.fa.fa-book
+                            span.hidden-sm-down=space + "Experiência"
+                        #menu3.collapse
+                            a.list-group-item(href='/perfil/' + user._id + '/adicionarExperiencia', data-parent='#menu3')=space + "Adicionar experiência"
+                        a.list-group-item.collapsed(href='#menup', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                            i.fa.fa-book
+                            span.hidden-sm-down=space + "Educação"
+                        #menup.collapse
+                            a.list-group-item(href=profile + "adicionarEducacao", data-parent='#menu3')=space + "Adicionar Educação"
+
+
+            .col-md
+                .row
+                    .col-md
+                        h5="Experiência"
+                        each experience in user.experience
+                            #accordion
+                                .card.my-3
+                                    .card-header
+                                        .mb-0
+                                            a
+                                                i.fa.fa-file-text-o
+                                                h3=experience.cargo
+                                                p=experience.location
+                                            .col
+                                                .row
+                                                    .form-group
+                                                        label Empresa
+                                                        h6=experience.company
+                                                .row
+                                                    .form-group
+                                                        label Descrição
+                                                        h6=experience.description
+
+
+
+            .col-md
+                .row
+                    .col-md
+                        h5="Educação"
+
+                        each education in user.education
+
+                            #accordion
+                                .card.my-3
+                                    .card-header
+                                        .mb-0
+                                            a
+                                                i.fa.fa-file-text-o
+                                                h3=education.formation + " | " + education.study_area
+                                        .row
+                                            .form-group
+                                                label Localização
+                                                h6=education.location
+                                        .row
+                                            .form-group
+                                                label Formação
+                                                h6=education.formation

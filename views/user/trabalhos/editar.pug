@@ -1,0 +1,176 @@
+extends ../../layout
+
+block content
+    .container.py-5
+        .row
+            .col-md-12
+                h2.text-center.mb-5
+                .row
+                    .col-md-9.mx-auto
+                        .card.border-secondary
+                            .card-header
+                                h3.mb-0.my-2 Editar Trabalho
+                            .card-body
+                                form.form(role='form', method="post")
+                                    .form-group
+                                        label(for='jobType') Tipo de Trabalho
+                                        select.combobox.input-large.form-control(name='jobType')
+                                            option(value=job.jobType, selected='selected')=job.jobType
+                                            option(value='Estágio') Estágio
+                                            option(value='Freelancer') Freelancer
+                                            option(value='Part-Time') Part-Time
+                                            option(value='Tempo Inteiro') Tempo Inteiro
+                                            option(value='Voluntariado') Voluntariado
+                                    .form-group
+                                        label(for='jobSector') Industria
+                                        select.combobox.input-large.form-control(name='jobSector')
+                                            option(value=job.jobSector, selected='selected')=job.jobSector
+                                            option(value='Telecomunicacoes') Telecomunicações
+                                            option(value='Contact Centers') Contact Centers
+                                            option(value='Outros Serviços') Outros Serviços
+                                            option(value='Tecnologias de Informação') Tecnologias de Informação
+                                            option(value='Transportes/Logítica') Transportes/Logistica
+                                            option(value='Hotelaria/Restauração') Hotelaria/Restauração
+                                            option(value='Retalho') Retalho
+                                            option(value='Industria') Industria
+                                            option(value='Automóvel') Automóvel
+                                            option(value='Publicidade') Publicidade
+                                            option(value='Software/Hardware') Software/Hardware
+                                            option(value='Energia') Energia
+                                            option(value='Imobiliario') Imobiliario
+                                            option(value='Construção Civil') Construção Civil
+                                            option(value='Hotelaria') Hotelaria
+                                            option(value='Banca') Banca
+                                            option(value='Internet') Internet
+                                            option(value='Seguranca') Seguranca
+                                            option(value='Turismo') Turismo
+                                            option(value='Grande Consumo') Grande Consumo
+                                            option(value='Agro-alimentar') Agro-alimentar
+                                            option(value='Desporto') Desporto
+                                            option(value='Engenharias') Engenharias
+                                            option(value='Multimédia') Multimédia
+                                            option(value='Multimédia') Multimédia
+                                            option(value='Moda') Moda
+                                            option(value='Imprensa') Imprensa
+                                            option(value='Seguros') Seguros
+                                            option(value='Serviços Sociais') Serviços Sociais
+                                            option(value='Farmaceutico') Farmaceutico
+                                            option(value='Materiais de Construção') Materiais de Construcão
+                                            option(value='Banca de Investimento') Banca de Investimento
+                                            option(value='Defesa') Defesa
+                                            option(value='Ambiente') Ambiente
+                                            option(value='Artes') Artes
+                                            option(value='Bebidas') Bebidas
+                                            option(value='Cultura') Cultura
+                                            option(value='Educação') Educação
+                                            option(value='Sector Público') Sector Público
+                                            option(value='Aviação / Aeroespacial') Aviação / Aeroespacial
+                                            option(value='Biotecnologia') Biotecnologia
+                                            option(value='Bebidas') Bebidas
+                                            option(value='Ciências Aplicadas') Ciências Aplicadas
+                                            option(value='Hospitalar') Hospitalar
+                                    .form-group
+                                        label(for='body.jobFunction') Função
+                                        select.combobox.input-large.form-control(name='jobFunction')
+                                            option(value=job.jobFunction, selected='selected')=job.jobFunction
+                                            option(value='Comercial / Vendas') Comercial / Vendas
+                                            option(value='Atendimento ao Cliente') Atendimento ao Cliente
+                                            option(value='Apoio ao Cliente') Apoio ao Cliente
+                                            option(value='Técnicos Especializados') Técnicos Especializados
+                                            option(value='Vendas') Vendas
+                                            option(value='Desenvolvimento Comercial') Desenvolvimento Comercial
+                                            option(value='Telemarketing') Telemarketing
+                                            option(value='Marketing') Marketing
+                                            option(value='Suporte IT') Suporte IT
+                                            option(value='Industrial / Fabrico') Industrial / Fabrico
+                                            option(value='Hotelaria') Hotelaria
+                                            option(value='Logistica') Logistica
+                                            option(value='Developer TI') Developer TI
+                                            option(value='Gestão') Gestão
+                                            option(value='Administrativo') Administrativo
+                                            option(value='Tradução / Linguas') Tradução / Linguas
+                                            option(value='Marketing Digital') Marketing Digital
+                                            option(value='Engenharia Informática') Engenharia Informática
+                                            option(value='Gestao de Equipas') Gestao de Equipas
+                                            option(value='Recursos Humanos') Recursos Humanos
+                                            option(value='Restauração') Restauração
+                                            option(value='Distribuição') Distribuição
+                                            option(value='Publicidade') Publicidade
+                                            option(value='Account') Account
+                                            option(value='Finanças') Finanças
+                                            option(value='Crédito') Crédito
+                                            option(value='Contabilidade') Contabilidade
+                                            option(value='Estratégia / Planeamento') Estratégia / Planeamento
+                                            option(value='Gestão de Projectos') Gestão de Projectos
+                                            option(value='Engenharia Civil') Engenharia Civil
+                                            option(value='Gestão de Produtos') Gestão de Produtos
+                                            option(value='Engenharia Mecânica') Engenharia Mecânica
+                                            option(value='Análise Financeira') Analise Financeira
+                                            option(value='Compras') Compras
+                                            option(value='Direito') Direito
+                                            option(value='Engenharias') Engenharias
+                                            option(value='Engenharia Electrotécnica') Engenharia Electrotécnica
+                                            option(value='Formação') Formação
+                                            option(value='Auditoria') Auditoria
+                                            option(value='Comunicação Social') Comunicação Social
+                                            option(value='Direcção') Direcção
+                                            option(value='Saúde/Medicina') Saúde/Medicina
+                                            option(value='Economia') Economia
+                                            option(value='Arquitectura') Arquitectura
+                                            option(value='CAD') CAD
+                                            option(value='Design') Design
+                                            option(value='Direito') Direito
+                                            option(value='Pesquisa/Research') Pesquisa/Research
+                                    .form-group
+                                        label(for='cargo') Cargo
+                                        input#inputName.form-control(type='text', name="cargo", placeholder='Titulo do Artigo', value=job.body.cargo)
+
+                                    .form-group
+                                        label(for='gender') Genero
+                                        select.combobox.input-large.form-control(name='jobType')
+                                            option(value='', selected='selected') Genero
+                                            option(value='M') M
+                                            option(value='F') F
+                                            option(value='Irrelevante') Irrelevante
+
+                                    .form-group
+                                        label(for='location') Localização do trabalho
+                                        input#input5Name.form-control(type='text', name="location", placeholder='Localização do Trabalho', value= job.location)
+                                    .form-group
+                                        label(for='body.responsabilidades') Responsabilidades
+                                        textarea#example4FormControlTextarea1.form-control(rows='3', name="responsabilidades", placeholder='Insira as responsabilidades')=job.body.responsabilidades
+
+                                    .form-group
+                                        label(for='body.requisitos') Requisitos
+                                        textarea#example3FormControlTextarea1.form-control(rows='3', name="requisitos", placeholder='Insira os requisitos')=job.body.requisitos
+                                    .form-group
+                                        label(for='body.beneficios') Benefícios
+                                        textarea#example2FormControlTextarea1.form-control(rows='3', name="beneficios", placeholder='Insira os benefícios')=job.body.beneficios
+                                        -var datex = job.expirationDate;
+                                        -var month = (datex.getMonth() + 1)
+                                        -var day = datex.getDate()
+                                        if(month < 10)
+                                            -month = "0" + month
+                                        if(day < 10)
+                                            -day = "0" + day
+                                        -var getExp = datex.getFullYear() + '-' + month + '-' + day
+                                    .form-group
+                                        label(for="expirationDate") Data de expiração
+                                        input#fordskate.form-control(name="expirationDate",  type='date' , value=getExp)
+
+
+                                    .form-group
+                                        label(for='vagas') Vagas
+                                        input#input3Name.form-control(type='text', name="vagas", placeholder='Vagas', value=job.body.vagas)
+                                    .form-group
+                                        label(for='body.oferta') Oferta
+                                        input#input2Name.form-control(type='text', name="oferta", placeholder='Oferta', value=job.body.oferta)
+
+
+                                    script(src='/js/bootstrap-combobox.js')
+                                    script.
+                                        $(document).ready(function () {
+                                            $('.combobox').combobox()
+                                        });
+                                    .form-group
+                                        button.btn.btn-success.btn-lg.float-right(type='submit') Editar anúncio

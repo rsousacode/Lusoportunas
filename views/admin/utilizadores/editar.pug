@@ -1,0 +1,91 @@
+extends ../../layout
+
+block content
+    .container.py-5
+        .row
+            .col-md-12
+                h2.text-center.mb-1
+                .row
+                    .col-md-9.mx-auto
+                        .card.border-secondary
+                            .card-header
+                                h3.mb-0.my-2 Editar Utilizador
+                            .card-body
+                                form.form(role='form', autocomplete='off', method="post", action="http://localhost:7217/perfil/"+ruser._id+"/editar", enctype='multipart/form-data')
+                                    .form-group
+                                        label(for='role') Tipo de utilizador
+                                        select.combobox.input-large.form-control(name='role')
+                                            option(value=user.role, selected='selected')=user.role
+                                            option(value='Recruta') Procura pessoas
+                                            option(value='Utilizador') Recruta emprego
+                                    .form-group
+                                        label(for='title') Título
+                                        select.combobox.input-large.form-control(name='name.title')
+                                            option(value='', selected='selected')=user.name.title
+                                            option(value='Sr.') Sr.
+                                            option(value='Sra.') Sra.
+                                            option(value='Dr.') Dr.
+                                            option(value='Drª') Drª.
+                                            option(value='Engº') Engº.
+                                            option(value='Engª') Engª.
+                                    .form-group
+                                        label(for='name.firstName') Primeiro Nome
+                                        input#inputName.form-control(type='text', name="firstName", value=user.name.firstName)
+                                    .form-group
+                                        label(for='name.lastName') Apelido(s)
+                                        input#linputlName.form-control(type='text', name="lastName", value=user.name.lastName)
+
+                                    .form-group
+                                        label(for='email') Email
+                                        input#inputEmail3.form-control(type='email',  value=user.username, required='', name="username")
+                                    .form-group
+                                        label(for='district') Distrito
+                                        select.combobox.input-large.form-control(name='address.district',)
+                                            option(value=user.address.district, selected='selected')=user.address.district
+                                            option(value='Aveiro') Aveiro
+                                            option(value='Beja') Beja
+                                            option(value='Braga') Braga
+                                            option(value='Bragança') Bragança
+                                            option(value='Castelo Branco') Castelo Branco
+                                            option(value='Coimbra') Coimbra
+                                            option(value='Évora') Évora
+                                            option(value='Faro') Faro
+                                            option(value='Guarda') Guarda
+                                            option(value='Leiria') Leiria
+                                            option(value='Lisboa') Lisboa
+                                            option(value='Portalegre') Portalegre
+                                            option(value='Porto') Porto
+                                            option(value='Santarém') Santarém
+                                            option(value='Setúbal') Setúbal
+                                            option(value='Viana do Castelo') Viana do Castelo
+                                            option(value='Vila Real') Vila Real
+                                            option(value='Viseu') Viseu
+                                            option(value='Angra do Heroísmo') Distrito de Angra do Heroísmo
+                                            option(value='Funchal') Distrito do Funchal
+                                            option(value='Horta(Açores)') Distrito da Horta
+                                            option(value='Lamego') Distrito de Lamego
+                                            option(value='Ponta Delgada') Distrito de Ponta Delgada
+                                        script(src='/js/bootstrap-combobox.js')
+                                        script.
+                                            $(document).ready(function () {
+                                                $('.combobox').combobox()
+                                            });
+                                    .form-group
+                                        label(for='email') Código Postal
+                                        input#inputPostalCode.form-control(type='text', name="address.postalcode",  value=user.address.postalcode, required='')
+                                    .form-group
+                                        label(for='facebook') Facebook
+                                        input#inputfacebook.form-control(type='text', name="social-facebook", value=user.social.facebook)
+                                    .form-group
+                                        label(for='twitter') Twitter
+                                        input#inputtwitter.form-control(type='text', name="social-twitter", value=user.social.twitter)
+                                    .form-group
+                                        label(for='linkedin') Linkedin
+                                        input#inputlinkedin.form-control(type='text', name="social-linkedin", value=user.social.linkedin)
+
+                                    .col-md-6
+                                            .form-group.files
+                                                label Upload Your File
+                                                input.form-control(type='file', multiple='', name="sampleFile", value="user.profilePicture")
+                                    .form-group
+                                        button.btn.btn-success.btn-lg.float-right(type='submit') Guardar

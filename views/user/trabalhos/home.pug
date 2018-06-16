@@ -1,0 +1,43 @@
+extends ../../layout
+
+block content
+    h1 Ofertas de trabalho
+    form(method="get")
+        .row
+            table.table.table-striped
+                thead
+                    tr
+                        th
+                        th Nome
+                        th
+                        th Oferta
+                tbody
+                    each job in jobs
+                        tr
+                          -let jobId = job._id;
+                          -let hrefDel="/user/jobs/delete/"+jobId;
+                          -let hrefEdit="/user/jobs/edit/"+jobId;
+                            td(style="width: 50px;"): a(href=hrefDel)
+                                span.glyphicon.glyphicon-remove
+                            td= job.name
+                            td(style="width: 50px;"): a(href=hrefEdit)
+                                span.glyphicon.glyphicon-pencil
+                            td= job.body
+                            td= job.company
+        .row
+
+
+        div.row
+            div.col-md-4
+                h3 Conversas especializadas
+                div#rooms.list-group
+            div.col-md-8
+                h3#roomName
+                textarea#messages.form-control(rows=15)
+                button.btn.btn-default#delete Delete All Messages
+                h3 Post A Message
+                textarea#message.form-control(rows=2)
+                button.btn.btn-primary#post Post
+
+        script(src="/jquery.min.js",type="text/javascript")
+        script(src="/chat.js",type="text/javascript")

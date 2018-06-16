@@ -1,0 +1,32 @@
+extends ../../layout
+
+block content
+    .container-fluid
+        .row
+            .col-md-4
+                .row
+                    .card.profile-card-1
+                        -let companylogo = "/"+user.company[0].logo
+                        img.background(src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUAAACnej3aAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=', alt='profile-sample1')
+                        if(user.company[0].logo)
+                            if (user.company[0].logo.length > 50)
+                                img.profile.img-circle(src=companylogo, alt='profile-image')
+                        else
+                            img.profile.img-circle(src="http://cdn.onlinewebfonts.com/svg/img_570489.png", alt='profile-image')
+                        .card-content
+                            h3=user.company[0].name
+                            h4=user.company[0].location
+
+            .col-md.py-3
+                .card.border
+                    .card-header
+                        Strong.label(hi="jsj") Descrição:
+                        h6.col-md-9.mx-auto= user.company[0].description
+                        hr
+                        Strong.label(jhs="jsj") Missão:
+                        h6.col-md-9.mx-auto= user.company[0].mission
+                        hr
+                        Strong.label(sk="jsj") Objetivos:
+                        h6.col-md-9.mx-auto= user.company[0].objectives
+
+        include ../../footer

@@ -1,0 +1,165 @@
+extends ./layout
+block content
+    .content-wrapper
+        // Content Header (Page header)
+        .content-header.sty-one
+            h1.text-black Detalhes da candidatura
+            ol.breadcrumb
+                li
+                    a(href='apps-mailbox-detail.html#') Home
+                li.sub-bread
+                    i.fa.fa-angle-right
+                    |  Apps
+                li
+                    i.fa.fa-angle-right
+                    |  Email details
+        .content
+            .row
+                .col-lg-3
+                    .box.box-solid
+                        .box-header.with-border
+                            h3.box-title
+                            .box-tools
+                                button.btn.btn-box-tool(type='button', data-widget='collapse')
+                                    i.fa.fa-minus
+                        .box-body.no-padding
+                            ul.nav.nav-pills.nav-stacked
+                                li.active
+                                    a(href='#')
+                                        i.fa.fa-inbox
+                                        |  Todas as candidaturas
+                                        span.label.label-primary.pull-right 12
+                    .box.box-solid
+                        .box-header.with-border
+                            h3.box-title Labels
+                            .box-tools
+                                button.btn.btn-box-tool(type='button', data-widget='collapse')
+                                    i.fa.fa-minus
+                        .box-body.no-padding
+                            ul.nav.nav-pills.nav-stacked
+                                li
+                                    a(href='apps-mailbox-detail.html#')
+                                        i.fa.fa-circle-o.text-red
+                                        |  Important
+                                li
+                                    a(href='apps-mailbox-detail.html#')
+                                        i.fa.fa-circle-o.text-yellow
+                                        |  Promotions
+                                li
+                                    a(href='apps-mailbox-detail.html#')
+                                        i.fa.fa-circle-o.text-light-blue
+                                        |  Social
+                .col-lg-9
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title="Em resposta à proposta de Trabalho: " + job.jobFunction
+                            .box-tools.pull-right
+                                a.btn.btn-box-tool(href='apps-mailbox-detail.html#', data-toggle='tooltip', title='Previous')
+                                    i.fa.fa-chevron-left
+                                a.btn.btn-box-tool(href='apps-mailbox-detail.html#', data-toggle='tooltip', title='Next')
+                                    i.fa.fa-chevron-right
+                        .box-body.no-padding
+                            .mailbox-read-info
+                                h5="Candidatura de:" + " " + job.application[0].ruser.name.firstName + " " + job.application[0].ruser.name.lastName
+                                span.mailbox-read-time.pull-right 15 Oct. 2017 11:50 PM
+                            .mailbox-controls.with-border.text-left
+                                .btn-group
+                                    button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', data-container='body', title='Delete')
+                                        i.fa.fa-trash-o
+                                    button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', data-container='body', title='Reply')
+                                        i.fa.fa-reply
+                                    button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', data-container='body', title='Forward')
+                                        i.fa.fa-share
+                                // /.btn-group
+                                button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', title='Print')
+                                    i.fa.fa-print
+                            // /.mailbox-controls
+                            .mailbox-read-message
+                                p=job.application[0].body.application
+                        .box-footer
+                            if(job.application[0].ruser.curriculum)
+                                ul.mailbox-attachments.clearfix
+                                    li
+                                        span.mailbox-attachment-icon
+                                            i.fa.fa-file-pdf-o
+                                        .mailbox-attachment-info
+                                            a.mailbox-attachment-name(href=job.application[0].ruser.curriculum)
+                                                i.fa.fa-paperclip=job.application[0].ruser.curriculum.replace("/"+job.application[0].ruser._id+'/curriculum/','')
+                                            span.mailbox-attachment-size
+                                                | 1,245 KB
+                                                a.btn.btn-default.btn-xs.pull-right(href=job.application[0].ruser.curriculum)
+                                                    i.fa.fa-cloud-download
+                        .box-footer.m-b-2
+                            .pull-right
+                                button.btn.btn-default(type='button')
+                                    i.fa.fa-reply
+                                    |  Responder
+    footer.main-footer
+        .pull-right.hidden-xs Version 1.2
+        |     Copyright © 2017 Yourdomian. All rights reserved.
+    script(src='/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/dist/js/niche.js')
+    script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/dist/plugins/datatables/dataTables.bootstrap.min.js')
+    script.
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    script(src='/dist/plugins/iCheck/icheck.min.js')
+    script.
+        $(function () {
+            $('.mailbox-messages input[type="checkbox"]').iCheck({
+                checkboxClass: 'icheckbox_flat-blue',
+                radioClass: 'iradio_flat-blue'
+            });
+            //Enable check and uncheck all functionality
+            $(".checkbox-toggle").click(function () {
+                var clicks = $(this).data('clicks');
+                if (clicks) {
+                    //Uncheck all checkboxes
+                    $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+                    $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+                } else {
+                    //Check all checkboxes
+                    $(".mailbox-messages input[type='checkbox']").iCheck("check");
+                    $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+                }
+                $(this).data("clicks", !clicks);
+            });
+            //Handle starring for glyphicon and font awesome
+            $(".mailbox-star").click(function (e) {
+                e.preventDefault();
+                //detect type
+                var $this = $(this).find("a > i");
+                var glyph = $this.hasClass("glyphicon");
+                var fa = $this.hasClass("fa");
+                //Switch states
+                if (glyph) {
+                    $this.toggleClass("glyphicon-star");
+                    $this.toggleClass("glyphicon-star-empty");
+                }
+                if (fa) {
+                    $this.toggleClass("fa-star");
+                    $this.toggleClass("fa-star-o");
+                }
+            });
+        });
+    script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+    // Plugin Initialization
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $("#respMenu").aceResponsiveMenu({
+                resizeWidth: '768', // Set the same in Media query
+                animationSpeed: 'fast', //slow, medium, fast
+                accoridonExpAll: false //Expands all the accordion menu on click
+            });
+        });

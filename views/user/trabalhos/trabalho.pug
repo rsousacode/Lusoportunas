@@ -1,0 +1,53 @@
+extends ../../layout
+
+block content
+    .container.py-5
+        .row
+            .col-md-9.mx-auto
+                .card.border-secondary
+                    .card-header
+                        h3.col-md-9= job.body.cargo
+                    form.form
+                        .container.py-3
+                           .form-group
+                                strong.label(for='jobtype') Tipo de trabalho:
+                                p=job.jobType
+
+                           .form-group
+                               strong.label(for='Sector') Sector:
+                               p=job.jobSector
+
+                           .form-group
+                               strong.label(for='Função') Função:
+                               p= job.jobFunction
+
+                           .form-group
+                               strong.label(for="Genero") Genero:
+                               p= job.gender
+
+                           .form-group
+                               strong.label(for='vahas') Vagas:
+                               p= job.body.vagas
+
+                           .form-group
+                               strong.label(for='jobSector') Benefícios:
+                               p= job.body.beneficios
+
+                           .form-group
+                               strong.label(for='body.jobFunction') Requisitos:
+                               p= job.body.requisitos
+
+                           .form-group
+                               strong.label(for='cargo') Responsabilidades:
+                               p= job.body.responsabilidades
+
+                           .form-group
+                               strong.label(for='location') Criado por:
+                               p= job.ruser.name.firstName + " " + "em" + " " + job.date.getDay() + "/" + job.date.getMonth() + "/" + job.date.getUTCFullYear()
+
+                           .form-group
+                               a(href="/trabalho/"+"concorrer"+"/"+job._id)="Contactar anunciante"
+
+        include ../../footer
+
+

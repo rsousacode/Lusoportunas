@@ -1,0 +1,21 @@
+extends ../../layout
+
+block content
+    h1 Chat
+    a.btn.btn-primary(href="/admin/rooms/add") Criar sala de chat
+    table.table.table-striped
+        thead
+            tr
+                th
+                th Nome
+                th
+                th Id
+        tbody
+            each room in rooms
+                tr
+                    td(style="width: 50px;"): a(href="/admin/salas/eliminar/#{room._id}")
+                        span.fa.fa-remove
+                    td= room.name
+                    td(style="width: 50px;"): a(href="/admin/salas/editar/#{room._id}")
+                        span.fa.fa-pencil
+                    td= room._id

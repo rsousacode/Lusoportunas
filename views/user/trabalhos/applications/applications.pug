@@ -1,0 +1,29 @@
+extends ../../../layout
+
+block content
+    .container.container-fluid
+        .container
+            .row
+                .col-md-9
+                    .row.m-lg-8
+                        h2 Aplicações ao Trabalho
+                        form(method="get")
+                            #custom-search-input
+                                .input-group.col-lg-12
+                                    input.form-control.input-lg(type='text', placeholder='Buscar', name="name")
+                                    span.input-group-btn
+                                        button.btn.btn-info.btn-lg(type='submit')
+                                            i.fa.fa-search
+
+        table.table.table-striped
+            thead
+                tr
+                    th(scope='col') Nome do Concorrente
+                    th(scope="col") Mensagem
+
+
+            tbody
+                each application in job.application
+                    tr
+                        td: a(href="/perfil/"+application.ruser._id)= application.ruser.name.firstName +" "+application.ruser.name.lastName
+                        td: a(href='/application/'+application._id)=application.body.application

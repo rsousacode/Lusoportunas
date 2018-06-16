@@ -1,0 +1,263 @@
+extends ./layout
+block content
+    .content-wrapper
+        // Content Header (Page header)
+        .content-header.sty-one
+            h1.text-black Form Wizard
+            ol.breadcrumb
+                li
+                    a(href=' #') Home
+                li.sub-bread
+                    i.fa.fa-angle-right
+                    |  Forms
+                li
+                    i.fa.fa-angle-right
+                    |  Form Wizard
+        // Main content
+        .content
+            hr.m-t-5.m-b-5
+            h4.text-black.m-b-3 Step Wizard with Validation
+            #demo1
+                .step-app
+                    ul.step-steps
+                        li
+                            a(href=' #tab1')
+                                span.number 1
+                                |  Personal Info
+                        li
+                            a(href=' #tab2')
+                                span.number 2
+                                |  Job Status
+                        li
+                            a(href=' #tab3')
+                                span.number 3
+                                |  Interview
+                        li
+                            a(href=' #tab4')
+                                span.number 4
+                                |  Remark
+                    .step-content
+                        #tab1.step-tab-panel
+                            form#frmRes(name='frmRes')
+                                .row.m-t-2
+                                    .col-md-6
+                                        .form-group
+                                            label(for='firstName1') First Name:
+                                            input.form-control(type='text', name='firstname', required='')
+                                    .col-md-6
+                                        .form-group
+                                            label(for='lastName1') Last Name:
+                                            input.form-control(type='text', name='lastname', required='')
+                                .row
+                                    .col-md-6
+                                        .form-group
+                                            label(for='firstName1') Email Address:
+                                            input.form-control(type='text', name='email', required='')
+                                    .col-md-6
+                                        .form-group
+                                            label(for='lastName1') Phone Number:
+                                            input.form-control(type='text', name='phoneno', required='')
+                                .row
+                                    .col-md-6
+                                        .form-group
+                                            label(for='location1') Select City :
+                                            select#location1.custom-select.form-control(name='location')
+                                                option(value='') Select City
+                                                option(value='Amsterdam') India
+                                                option(value='Berlin') USA
+                                                option(value='Frankfurt') Dubai
+                                    .col-md-6
+                                        .form-group
+                                            label(for='date1') Date of Birth :
+                                            input#date1.form-control(type='date')
+                        #tab2.step-tab-panel
+                            h3 Tab2
+                            form#frmInfo(name='frmInfo')
+                                .row.m-t-2
+                                    .col-md-6
+                                        .form-group
+                                            label(for='jobTitle1') Job Title :
+                                            input.form-control(name='jobtitle1', type='text', required='')
+                                    .col-md-6
+                                        .form-group
+                                            label(for='videoUrl1') Company Name :
+                                            input.form-control(name='videoUrl1', type='text', required='')
+                                    .col-md-12
+                                        .form-group
+                                            label(for='shortDescription1') Job Description :
+                                            textarea#shortDescription1.form-control(name='shortDescription', rows='6')
+                        #tab3.step-tab-panel
+                            h3 Tab3
+                            form#frmLogin(name='frmLogin')
+                                .row.m-t-2
+                                    .col-md-6
+                                        .form-group
+                                            label(for='int1') Interview For :
+                                            input.form-control(name='int1', type='text', required='')
+                                        .form-group
+                                            label(for='intType1') Interview Type :
+                                            select.custom-select.form-control(data-placeholder='Type to search cities', name='intType1', required='')
+                                                option(value='Banquet') Normal
+                                                option(value='Fund Raiser') Difficult
+                                                option(value='Dinner Party') Hard
+                                        .form-group
+                                            label(for='Location1') Location :
+                                            select#Location1.custom-select.form-control(name='location')
+                                                option(value='') Select City
+                                                option(value='India') India
+                                                option(value='USA') USA
+                                                option(value='Dubai') Dubai
+                                    .col-md-6
+                                        .form-group
+                                            label(for='jobTitle2') Interview Date :
+                                            input.form-control(name='jobTitle2', type='date', required='')
+                                        .form-group
+                                            label Requirements :
+                                            .c-inputs-stacked
+                                                label.inline.custom-control.custom-checkbox.block
+                                                    input.custom-control-input(type='checkbox')
+                                                    span.custom-control-indicator
+                                                    span.custom-control-description.ml-0 Employee
+                                                label.inline.custom-control.custom-checkbox.block
+                                                    input.custom-control-input(type='checkbox')
+                                                    span.custom-control-indicator
+                                                    span.custom-control-description.ml-0 Contract
+                        #tab4.step-tab-panel
+                            h3 Tab4
+                            form#frmMobile(name='frmMobile')
+                                .row.m-t-2
+                                    .col-md-6
+                                        .form-group
+                                            label(for='behName1') Behaviour :
+                                            input.form-control(name='behName1', type='text', required='')
+                                        .form-group
+                                            label(for='participants1') Confidance
+                                            input.form-control(name='participants1', type='text', required='')
+                                        .form-group
+                                            label(for='participants1') Result
+                                            select#participants1.custom-select.form-control(name='location')
+                                                option(value='') Select Result
+                                                option(value='Selected') Selected
+                                                option(value='Rejected') Rejected
+                                                option(value='Call Second-time') Call Second-time
+                                    .col-md-6
+                                        .form-group
+                                            label(for='decisions1') Comments
+                                            textarea#decisions1.form-control(name='decisions', rows='4')
+                                        .form-group
+                                            label Rate Interviwer :
+                                            .c-inputs-stacked
+                                                label.inline.custom-control.custom-checkbox.block
+                                                    input.custom-control-input(type='checkbox')
+                                                    span.custom-control-indicator
+                                                    span.custom-control-description.ml-0 1 star
+                                                label.inline.custom-control.custom-checkbox.block
+                                                    input.custom-control-input(type='checkbox')
+                                                    span.custom-control-indicator
+                                                    span.custom-control-description.ml-0 2 star
+                                                label.inline.custom-control.custom-checkbox.block
+                                                    input.custom-control-input(type='checkbox')
+                                                    span.custom-control-indicator
+                                                    span.custom-control-description.ml-0 3 star
+                                                label.inline.custom-control.custom-checkbox.block
+                                                    input.custom-control-input(type='checkbox')
+                                                    span.custom-control-indicator
+                                                    span.custom-control-description.ml-0 4 star
+                                                label.inline.custom-control.custom-checkbox.block
+                                                    input.custom-control-input(type='checkbox')
+                                                    span.custom-control-indicator
+                                                    span.custom-control-description.ml-0 5 star
+                    .step-footer
+                        button.btn.btn-light(data-direction='prev') Previous
+                        button.btn.btn-primary(data-direction='next') Next
+                        button.btn.btn-primary(data-direction='finish') Submit
+            // Main row
+        // /.content
+    // /.content-wrapper
+    footer.main-footer
+        .pull-right.hidden-xs Version 1.2
+        |     Copyright © 2017 Yourdomian. All rights reserved.
+    // ./wrapper
+    // jQuery 3
+    script(src='dist/js/jquery.min.js')
+    // v4.0.0-alpha.6
+    script(src='dist/bootstrap/js/bootstrap.min.js')
+    // template
+    script(src='dist/js/niche.js')
+    // form wizard
+    script(src='dist/plugins/formwizard/jquery-steps.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js')
+    script.
+        var frmRes = $('#frmRes');
+        var frmResValidator = frmRes.validate();
+        var frmInfo = $('#frmInfo');
+        var frmInfoValidator = frmInfo.validate();
+        var frmLogin = $('#frmLogin');
+        var frmLoginValidator = frmLogin.validate();
+        var frmMobile = $('#frmMobile');
+        var frmMobileValidator = frmMobile.validate();
+        $('#demo1').steps({
+            onChange: function (currentIndex, newIndex, stepDirection) {
+                console.log('onChange', currentIndex, newIndex, stepDirection);
+                // tab1
+                if (currentIndex === 0) {
+                    if (stepDirection === 'forward') {
+                        var valid = frmRes.valid();
+                        return valid;
+                    }
+                    if (stepDirection === 'backward') {
+                        frmResValidator.resetForm();
+                    }
+                }
+                // tab2
+                if (currentIndex === 1) {
+                    if (stepDirection === 'forward') {
+                        var valid = frmInfo.valid();
+                        return valid;
+                    }
+                    if (stepDirection === 'backward') {
+                        frmInfoValidator.resetForm();
+                    }
+                }
+                // tab3
+                if (currentIndex === 2) {
+                    if (stepDirection === 'forward') {
+                        var valid = frmLogin.valid();
+                        return valid;
+                    }
+                    if (stepDirection === 'backward') {
+                        frmLoginValidator.resetForm();
+                    }
+                }
+                // tab4
+                if (currentIndex === 3) {
+                    if (stepDirection === 'forward') {
+                        var valid = frmMobile.valid();
+                        return valid;
+                    }
+                    if (stepDirection === 'backward') {
+                        frmMobileValidator.resetForm();
+                    }
+                }
+                return true;
+            },
+            onFinish: function () {
+                alert('Wizard Completed');
+            }
+        });
+    script.
+        $('#demo').steps({
+            onFinish: function () {
+                alert('Wizard Completed');
+            }
+        });
+    script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+    // Plugin Initialization
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $("#respMenu").aceResponsiveMenu({
+                resizeWidth: '768', // Set the same in Media query
+                animationSpeed: 'fast', //slow, medium, fast
+                accoridonExpAll: false //Expands all the accordion menu on click
+            });
+        });

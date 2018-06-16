@@ -1,0 +1,51 @@
+extends ../../layout
+
+block content
+    .container.container-fluid
+        .container
+            .row
+                .col-md-9
+                    .row.m-lg-8
+                        h2 Suas ofertas
+                        form(method="get")
+                            #custom-search-input
+                                .input-group.col-lg-12
+                                    input.form-control.input-lg(type='text', placeholder='Buscar', name="name")
+                                    span.input-group-btn
+                                        button.btn.btn-info.btn-lg(type='submit')
+                                            i.fa.fa-search
+
+        table.table.table-striped
+            thead
+                tr
+                    th(scope="col")
+                    th(scope="col") Cargo
+                    th(scope="col")
+                    th(scope="col") Tipo de Trabalho
+                    th(scope="col") Industria
+                    th(scope="col") Função
+                    th(scope="col") Localidade
+                    th(scope="col") Criado em
+                    th(scope="col") Autor
+                    th(scope="col") Expira em
+                    th(scope="col") Aplicações
+
+
+            tbody
+                each job in jobs
+                    -let getMonth=job.expirationDate.getMonth()+1
+                    -let getDateMonth = job.date.getMonth()+1;
+                    tr
+                        td(style="width: 50px;"): a(href="/trabalho/eliminar/" + job._id)
+                            span.fa.fa-remove
+                        td: a(href="/trabalho/" + job._id)= job.body.cargo
+                        td(style="width: 50px;"): a(href="/trabalho/editar/" + job._id)
+                            span.fa.fa-pencil
+                        td= job.jobType
+                        td= job.jobSector
+                        td= job.jobFunction
+                        td= job.location
+                        td= job.date.getDate() + "/" + getDateMonth + "/" + job.date.getUTCFullYear()
+                        td= job.ruser.name.firstName
+                        td= job.expirationDate.getDate() + "/" + getMonth + "/" + job.expirationDate.getUTCFullYear()
+                        td: a(href="applications/" + job._id)= job.application.length

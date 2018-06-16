@@ -1,0 +1,98 @@
+extends ./layout
+block content
+    .content-wrapper
+        .heading
+            header.masthead.text-center.text-white.d-flex
+                .container.my-auto
+                    .row
+                        .col-lg-10.mx-auto
+                            .centerspace
+                                h1
+                                    .typing-text Faz-te à pista
+
+    main
+
+        .container
+            section.mt-5.wow.fadeIn
+                .row
+                    .col-md-6.mb-4
+                        img.img-fluid.z-depth-1-half(src='https://png.icons8.com/office/1600/find-matching-job.png', alt='')
+                    .col-md-6.mb-4
+                        h3.h3.mb-3 A tua plataforma de Empregos
+                        p
+                            | A plataforma Nacional que permite divulgar o seu currículo e arranjar emprego
+
+                        hr
+                        p
+                            |  A melhor plataforma para arranjar colaboradores de diversas áreas.
+                            |  . O perfil dos utilizadores tem em conta a sua experiência, educação e curriculo.
+                        a.btn.btn-indigo.btn-md(target='_blank', href='/registar')
+                            | Para quem procura emprego
+                            i.fa.fa-vcard.ml-1
+                        a.btn.btn-indigo.btn-md(target='_blank', href='/registar')
+                            | Para quem quer arranjar colaboradores
+                            i.fa.fa-image.ml-1
+
+            hr.my-5
+            section
+                h3.h3.text-center.mb-5 Uma ligação entre si e todos
+                .row.wow.fadeIn
+                    .col-sm
+                        .row
+                            .col-1.mr-3
+                                i.fa.fa-code.fa-2x.indigo-text
+                            .col-10
+                                h5.feature-title Perfil customizado
+                                p.grey-text Com o Lusoportunas poderá criar um perfil próprio com as informações que precisa para se empregar
+                        div(style='height:30px')
+                        .row
+                            .col-1.mr-3
+                                i.fa.fa-book.fa-2x.blue-text
+                            .col-10
+                                h5.feature-title Plataforma para recrutas
+                                p.grey-text
+                                    | Temos a solução ideal para optimizar o processo de recruta de colaboradores para a sua empresa. A sua empresa terá uma página no Lusoportunas o que permite definar a visão e missão da sua empresa connosco.
+                        div(style='height:30px')
+                        .row
+                            .col-1.mr-3
+                                i.fa.fa-graduation-cap.fa-2x.cyan-text
+                            .col-10
+                                h5.feature-title Divulgue a sua Empresa
+                                p.grey-text
+                                    | Connosco poderá ter um perfil para a sua Empresa ou Marca em que poderá divulgar a sua missão e objectivos
+                                    | no contexto dos utilizadores terem uma imagem clara da sua organização
+
+        include ./foote
+        script(src='/jquery.min.js')
+        script(src='/js/bootstrap.min.js')
+        script(src='dist/js/niche.js')
+        script(src='dist/plugins/datatables/jquery.dataTables.min.js')
+        script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+        script.
+            $(function () {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+        script(src='dist/plugins/table-expo/filesaver.min.js')
+        script(src='dist/plugins/table-expo/xls.core.min.js')
+        script(src='dist/plugins/table-expo/tableexport.js')
+        script.
+            $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
+        script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+        // Plugin Initialization
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $("#respMenu").aceResponsiveMenu({
+                    resizeWidth: '768', // Set the same in Media query
+                    animationSpeed: 'fast', //slow, medium, fast
+                    accoridonExpAll: false //Expands all the accordion menu on click
+                });
+            });
+

@@ -1,0 +1,42 @@
+[
+  {
+    "name" : "Procura-se programadores de JAVA\t",
+    "body" : "Procura-se programadores de JAVA\t",
+    "company" : "Universidade Europeia"
+  },
+
+  {
+    "name" : "Procura-se engenheiros ",
+    "body" : "Com licenciatura em Eng. Informática ",
+    "company" : "ISCTE"
+  },
+
+  {
+    "name" : "Procura-se bons persuadores",
+    "body" : "Uma excelente familia pronta a fazer dinheiro",
+    "company" : "REMAX"
+  },
+
+  {
+    "name" : "Procura-se pessoas para limpezas",
+    "body" : "Uma oferta de 1000EUR. por semana. Requisitos: Cabelo loiro, corpo decente",
+    "company" : "Prédio SA."
+  },
+
+  {
+    "name" : ".NET Core super-developer",
+    "body" : "Precisamos de gente com experiência na área para assumir-se como lider. ",
+    "company" : "Microsoft"
+  },
+
+  {
+    "name" : "Developer .NET Core, ASP,  Python - Playstation (PSN)",
+    "body" : "Precisamos de profissionais capazes",
+    "company" : "Sony Corporation"
+  },
+  {
+    "name" : ".NET Core, ASP, UX Designers",
+    "body" : "Precisamos de profissionais capazes de programar",
+    "company" : "Uber"
+  }
+]
