@@ -5,11 +5,17 @@ block content
             .row
                 .col-lg-4
                     div
-                        include recruit-panel
+                        if(ruser.role==="Recruit")
+                            include recruit-panel
+                        else
+                            include user-panel-usr
                 .col-lg-8
                     .card.border-secondary
                         .card-header
-                            h3.col-md-9= job.body.cargo + " (" + job.gender + ") "
+                            if(job.gender)
+                                h3.col-md-9= job.body.cargo + " (" + job.gender + ") "
+                            else
+                                h3.col-md-9= job.body.cargo
                         form.form
                             .container.py-3
                                 .row
@@ -55,7 +61,8 @@ block content
                                     p= job.ruser.name.firstName + " " + "em" + " " + job.date.getDay() + "/" + job.date.getMonth() + "/" + job.date.getUTCFullYear()
 
                                 .form-group
-                                    a(href="/trabalho/" + "concorrer" + "/" + job._id)="Contactar anunciante"
+                                    a.btn.btn-primary.bg-light-blue(href="/trabalho/" + "concorrer" + "/" + job._id, role='button') Candidatar-se a este Trabalho
+
 
             include  ./foote
         script(src='/jquery.min.js')

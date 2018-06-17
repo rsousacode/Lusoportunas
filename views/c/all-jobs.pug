@@ -14,16 +14,12 @@ block content
                                 th(scope="col") Industria
                                 th(scope="col") Função
                                 th(scope="col") Localidade
-                                th(scope="col") Criado em
-                                th(scope="col") Autor
                                 th(scope="col") Empresa
-                                th(scope="col") Expira em
 
 
                         tbody
                             each job in jobs
-                                -let getMonth=job.expirationDate.getMonth()+1
-                                -let getDateMonth = job.date.getMonth()+1;
+                                -let getNow = new Date()
                                     if(job.expirationDate > getNow)
                                         tr
                                             td: a(href="/trabalho/" + job._id)= job.body.cargo
@@ -31,10 +27,7 @@ block content
                                             td= job.jobSector
                                             td= job.jobFunction
                                             td= job.location
-                                            td= job.date.getDate() + "/" + getDateMonth + "/" + job.date.getUTCFullYear()
-                                            td= job.ruser.name.firstName
                                             td= job.company
-                                            td= job.expirationDate.getDate() + "/" + getMonth + "/" + job.expirationDate.getUTCFullYear()
     include foote
     script(src='/jquery.min.js')
     script(src='/js/bootstrap.min.js')

@@ -6,41 +6,17 @@ block content
                 .col-lg-3
                     .box.box-solid
                         .box-header.with-border
-                            h3.box-title Folders
+                            h3.box-title
                             .box-tools
                                 button.btn.btn-box-tool(type='button', data-widget='collapse')
                                     i.fa.fa-minus
                         .box-body.no-padding
                             ul.nav.nav-pills.nav-stacked
                                 li.active
-                                    a(href='apps-compose-mail.html#')
+                                    a(href='/minhasCandidaturas/'+ruser._id)
                                         i.fa.fa-inbox
                                         |  Candidaturas
-                                        span.label.label-primary.pull-right 12
-                        // /.box-body
-                    // /. box
-                    .box.box-solid
-                        .box-header.with-border
-                            h3.box-title Labels
-                            .box-tools
-                                button.btn.btn-box-tool(type='button', data-widget='collapse')
-                                    i.fa.fa-minus
-                        .box-body.no-padding
-                            ul.nav.nav-pills.nav-stacked
-                                li
-                                    a(href='apps-compose-mail.html#')
-                                        i.fa.fa-circle-o.text-red
-                                        |  Important
-                                li
-                                    a(href='apps-compose-mail.html#')
-                                        i.fa.fa-circle-o.text-yellow
-                                        |  Promotions
-                                li
-                                    a(href='apps-compose-mail.html#')
-                                        i.fa.fa-circle-o.text-light-blue
-                                        |  Social
-                        // /.box-body
-                    // /.box
+                                        //span.label.label-primary.pull-right 12
                 .col-lg-9
                     form.form(role='form', autocomplete='off', method="post")
                         .box.box-primary

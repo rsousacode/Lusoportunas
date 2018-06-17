@@ -1,19 +1,6 @@
 extends ./layout
 block content
     .content-wrapper
-        // Content Header (Page header)
-        .content-header.sty-one
-            h1.text-black Form Layouts
-            ol.breadcrumb
-                li
-                    a(href='form-layouts.html#') Home
-                li.sub-bread
-                    i.fa.fa-angle-right
-                    |  Forms
-                li
-                    i.fa.fa-angle-right
-                    |  Form Layouts
-        // Main content
         .content
             .row.m-t-3
                 .col-lg-12
@@ -51,7 +38,7 @@ block content
                                     .col-md-12
                                         .form-group.has-feedback
                                             label.control-label Biografia
-                                            textarea#placeTextarea.form-control(rows='3', placeholder='Bio', name='biography')
+                                            textarea#placeTextarea.form-control(rows='3', placeholder='Bio', name='biography', value=user.biography)
                                     .col-md-12
                                         button.btn.btn-success(type='submit') Guardar
 

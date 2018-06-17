@@ -13,12 +13,6 @@ block content
                             .card-body
                                 form.form(role='form', autocomplete='off', method="post", action="http://localhost:7217/perfil/" + ruser._id + "/editar", enctype='multipart/form-data')
                                     .form-group
-                                        label(for='role') Tipo de utilizador
-                                        select.combobox.input-large.form-control(name='role')
-                                            option(value=user.role, selected='selected')=user.role
-                                            option(value='Recruta') Procura pessoas
-                                            option(value='Utilizador') Recruta emprego
-                                    .form-group
                                         label(for='title') Título
                                         select.combobox.input-large.form-control(name='name.title')
                                             option(value='', selected='selected')=user.name.title
@@ -82,9 +76,10 @@ block content
                                     .form-group
                                         label(for='linkedin') Linkedin
                                         input#inputlinkedin.form-control(type='text', name="social-linkedin", value=user.social.linkedin)
-                                    .form-group
-                                        label(for='biography') Biografia
-                                        input#inputbiography.form-control(type='text', name="biography", value=user.biography)
+                                    .col-md-12
+                                        .form-group.has-feedback
+                                            label.control-label Biografia
+                                            textarea#placeTextarea.form-control(rows='3', placeholder=user.biography, name='biography', value=user.biography)
                                     .form-group
                                         .form-group.files
                                             label Inserir/Atualizar foto de perfil

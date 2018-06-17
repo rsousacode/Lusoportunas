@@ -5,7 +5,10 @@ block content
             .row
                 .col-lg-4
                     div
-                        include user-panel
+                        if(ruser.role === "Recruit")
+                            include recruit-panel
+                        else
+                            include user-panel-usr
                 .col-lg-8
                     .info-box
                         h4.text-black Candidaturas
