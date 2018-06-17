@@ -30,14 +30,9 @@ block content
                                             td= job.expirationDate.getDate() + "/" + getMonth + "/" + job.expirationDate.getUTCFullYear()
                                             td: a(href="applications/" + job._id)= job.application.length
     include ./foote
-    // ./wrapper
-    // jQuery 3
     script(src='dist/js/jquery.min.js')
-    // v4.0.0-alpha.6
     script(src='dist/bootstrap/js/bootstrap.min.js')
-    // template
-    script(src='dist/js/niche.js')
-    // DataTable
+    script(src='dist/js/luso.js')
     script(src='dist/plugins/datatables/jquery.dataTables.min.js')
     script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
     script.

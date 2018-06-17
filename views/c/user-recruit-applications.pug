@@ -9,23 +9,22 @@ block content
                     table#example2.table.table-bordered.table-hover(data-name='cool-table')
                         thead
                             tr
+                                th(scope="col") Candidatura
                                 th(scope="col") Anúncio
                                 th(scope="col") Candidato
+                                th(scope="col") Data
                         tbody
                             each job in jobs
-                                each application in jobs
+                                each application in job.application
                                     tr
+                                        td: a(href="/perfil/"+application.ruser._id)= "Abrir"
                                         td= job.jobFunction
-                                        td: a(href="/lperfil/"+application.ruser._id)= application.ruser.name.firstName + " " + application.ruser.name.lastName
+                                        td: a(href="/perfil/"+application.ruser._id)= application.ruser.name.firstName + " " + application.ruser.name.lastName
+                                        td= application.body.bdate.toLocaleDateString()
     include ./foote
-    // ./wrapper
-    // jQuery 3
     script(src='/jquery.min.js')
-    // v4.0.0-alpha.6
     script(src='/js/bootstrap.min.js')
-    // template
-    script(src='dist/js/niche.js')
-    // DataTable
+    script(src='dist/js/luso.js')
     script(src='dist/plugins/datatables/jquery.dataTables.min.js')
     script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
     script.

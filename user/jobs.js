@@ -271,11 +271,11 @@ router.route('/trabalho/concorrer/:id')
         applicationFromRequestBody(res.locals.job, req);
 
         res.locals.job.save()
-            .then(() => res.redirect(req.baseUrl + "/meusTrabalhos"))
+            .then(() => res.redirect(req.baseUrl + "/painel"))
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;
-                    res.render("user/perfil/atributos/education/adicionarEducacao");
+                    res.render("c/user-application-compose");
                     return;
                 }
                 next(error);

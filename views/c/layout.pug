@@ -223,9 +223,11 @@ html(lang='en')
                                 a(href='/trabalhos')
                                     i.fa.fa-briefcase
                                     span Ofertas de Trabalho
-                                ul
-                                    li
-                                        a.active(href='/trabalho/adicionar') Adicionar
+                                if(ruser)
+                                    if(ruser.role==="Recruta")
+                                        ul
+                                            li
+                                                a.active(href='/trabalho/adicionar') Adicionar
                             li
                                 a(href='/empresas')
                                     i.fa.fa-th
