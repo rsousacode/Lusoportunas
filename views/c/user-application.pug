@@ -60,7 +60,8 @@ block content
                                     i.fa.fa-chevron-right
                         .box-body.no-padding
                             .mailbox-read-info
-                                h5="Candidatura de:" + " " + job.application[0].ruser.name.firstName + " " + job.application[0].ruser.name.lastName
+                                a(href="/lperfil/"+job.application[0].ruser._id)
+                                     h5="Candidatura de:" + " " + job.application[0].ruser.name.firstName + " " + job.application[0].ruser.name.lastName
                                 span.mailbox-read-time.pull-right 15 Oct. 2017 11:50 PM
                             .mailbox-controls.with-border.text-left
                                 .btn-group
@@ -70,10 +71,8 @@ block content
                                         i.fa.fa-reply
                                     button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', data-container='body', title='Forward')
                                         i.fa.fa-share
-                                // /.btn-group
                                 button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', title='Print')
                                     i.fa.fa-print
-                            // /.mailbox-controls
                             .mailbox-read-message
                                 p=job.application[0].body.application
                         .box-footer

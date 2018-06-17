@@ -1,4 +1,4 @@
-extends ../../layout
+extends ./layout
 
 block content
     .container.py-5
@@ -9,27 +9,27 @@ block content
                     .col-md-9.mx-auto
                         .card.border-secondary
                             .card-header
-                                h3.mb-0.my-2 Adicionar Empresa
+                                h3.mb-0.my-2 Editar Empresa
                             .card-body
-                                form.form(role='form', autocomplete='off', action="http://localhost:7217/perfil/" +ruser._id+"/adicionarEmpresa", enctype='multipart/form-data', method="post")
+                                form.form(role='form', autocomplete='off', enctype='multipart/form-data', method="post")
                                     .form-group
                                         label(for='name') Nome da Empresa
-                                        input.form-control(type='text', name="name", value="")
+                                        input.form-control(type='text', name="name", value=user.company[0].name)
                                     .form-group
                                         label(for='location') Localização (Localidade/Distrito)
-                                        input.form-control(type='text', name="location", value="")
+                                        input.form-control(type='text', name="location", value=user.company[0].location)
                                     .form-group
                                         label(for='description') Descrição
-                                        input.form-control(type='text', name="description", value="")
+                                        input.form-control(type='text', name="description", value=user.company[0].description)
                                     .form-group
                                         label(for='location') Missão
-                                        input.form-control(type='text', name="mission", value="")
+                                        input.form-control(type='text', name="mission", value=user.company[0].mission)
                                     .form-group
                                         label(for='location') Objectivos
-                                        input.form-control(type='text', name="objectives", value="")
+                                        input.form-control(type='text', name="objectives", value=user.company[0].objectives)
                                     .form-group
                                         .form-group.files
-                                            label Inserir imagem da Empresa
+                                            label Inserir/Atualizar Logo de empresa
                                             input.form-control(type='file', multiple='', name="profilePicture", value="company.logo")
                                     .form-group
                                         button.btn.btn-success.btn-lg.float-right(type='submit') Guardar

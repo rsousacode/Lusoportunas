@@ -1,0 +1,162 @@
+extends ./layout
+block content
+    .content-wrapper
+        .content
+            .row
+                .col-lg-4
+                    .user-profile-box.m-b-3
+                        .box-profile.text-white
+                            if(user.profilePicture)
+                                img.profile-user-img.img-responsive.img-circle.m-b-2(src=user.profilePicture, alt='Fotografia de Perfil')
+                            else
+                                img.profile-user-img.img-responsive.img-circle.m-b-2(src='https://i07.fotocdn.net/s24/24/gallery_s/302/2608934167.jpg', alt='Fotografia de Perfil')
+
+                            h3.profile-username.text-center=user.name.firstName+ " "+user.name.lastName
+                    .info-box
+                        .box-body
+                            strong
+                                i.fa.fa-book.margin-r-5
+                                |  Education
+                            p.text-muted  B.S. in Computer Science from the University of Tennessee at Knoxville 
+                            hr
+                            strong
+                                i.fa.fa-map-marker.margin-r-5
+                                |  Localização
+                            p.text-muted=user.address.district
+                            hr
+                            strong
+                                i.fa.fa-envelope.margin-r-5
+                                |  Email address
+                            p.text-muted alexanderpierce@gmail.com
+                            hr
+                            strong
+                                i.fa.fa-phone.margin-r-5
+                                |  Phone
+                            p (123) 456-7890 
+                            hr
+                            strong
+                                i.fa.fa-map-marker.margin-r-5
+                                |  Address
+                            .embed-container.maps
+                                iframe.full-wid(src='https://maps.google.co.in/maps?sll=34.0204989,-118.4117325&sspn=0.8745562,1.4073488&cid=16298491244936825076&q=Los+Angeles,+CA,+USA&ie=UTF8&hq=&hnear=Los+Angeles,+Los+Angeles+County,+California,+United+States&t=m&ll=34.052234,-118.243685&spn=0.697085,0.848982&output=embed', style='pointer-events: none;')
+                            hr
+                            strong
+                                i.fa.fa-phone.margin-r-5
+                                |  Social Profile
+                            .text-left
+                                a.btn.btn-social-icon.btn-facebook
+                                    i.fa.fa-facebook
+                                a.btn.btn-social-icon.btn-google
+                                    i.fa.fa-google-plus
+                                a.btn.btn-social-icon.btn-linkedin
+                                    i.fa.fa-linkedin
+                                a.btn.btn-social-icon.btn-twitter
+                                    i.fa.fa-twitter
+                        // /.box-body
+                .col-lg-8
+                    .info-box
+                        .card.tab-style1
+                            // Nav tabs
+                            ul.nav.nav-tabs.profile-tab(role='tablist')
+                                li.nav-item
+                                    a.nav-link.active(data-toggle='tab', href='#profile', role='tab', aria-expanded='true') Profile
+                            // Tab panes
+                            .tab-content
+                                #profile.tab-pane.active(role='tabpanel', aria-expanded='true')
+                                    .card-body
+                                        .row
+                                            .col-lg-3.col-xs-6.b-r
+                                                strong Full Name
+                                                br
+                                                p.text-muted Florence Douglas
+                                            .col-lg-3.col-xs-6.b-r
+                                                strong Mobile
+                                                br
+                                                p.text-muted (123) 456 7890
+                                            .col-lg-3.col-xs-6.b-r
+                                                strong Email
+                                                br
+                                                p.text-muted florencedouglas@admin.com
+                                        hr
+                                        p
+                                            | Lorem Ipsum is simply dummy text of the printing vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+                                        p
+                                            | Suspen disse potenti. Sed lectus est, commodo eu pre tium eu, pulvinar porttitor feugiat. Aliquam efficitur feugiat accumsan. Nulla hendrerit cursus nisi nec mattis.
+                                        h4.font-medium.m-t-3 Skill Set
+                                        hr
+                                        div
+                                            h6.m-t-3
+                                                | Wordpress 
+                                                span.pull-right 80%
+                                            .progress
+                                                .progress-bar.bg-success(role='progressbar', aria-valuenow='80', aria-valuemin='0', aria-valuemax='100', style='width:80%; height:6px;')
+                                                    span.sr-only 50% Complete
+                                            h5.m-t-3
+                                                | HTML 5 
+                                                span.pull-right 90%
+                                            .progress
+                                                .progress-bar.bg-info(role='progressbar', aria-valuenow='90', aria-valuemin='0', aria-valuemax='100', style='width:90%; height:6px;')
+                                                    span.sr-only 50% Complete
+                                            h5.m-t-3
+                                                | jQuery 
+                                                span.pull-right 50%
+                                            .progress
+                                                .progress-bar.bg-danger(role='progressbar', aria-valuenow='50', aria-valuemin='0', aria-valuemax='100', style='width:50%; height:6px;')
+                                                    span.sr-only 50% Complete
+                                            h5.m-t-3
+                                                | Photoshop 
+                                                span.pull-right 70%
+                                            .progress
+                                                .progress-bar.bg-warning(role='progressbar', aria-valuenow='70', aria-valuemin='0', aria-valuemax='100', style='width:70%; height:6px;')
+                                                    span.sr-only 50% Complete
+                                #settings.tab-pane(role='tabpanel')
+                                    .card-body
+                                        form.form-horizontal.form-material
+                                            .form-group
+                                                label.col-md-12 Full Name
+                                                .col-md-12
+                                                    input.form-control.form-control-line(placeholder='Florence Douglas', type='text')
+                                            .form-group
+                                                label.col-md-12(for='example-email') Email
+                                                .col-md-12
+                                                    input#example-email.form-control.form-control-line(placeholder='florencedouglas@admin.com', name='example-email', type='email')
+                                            .form-group
+                                                label.col-md-12 Password
+                                                .col-md-12
+                                                    input.form-control.form-control-line(value='password', type='password')
+                                            .form-group
+                                                label.col-md-12 Phone No
+                                                .col-md-12
+                                                    input.form-control.form-control-line(placeholder='123 456 7890', type='text')
+                                            .form-group
+                                                label.col-md-12 Message
+                                                .col-md-12
+                                                    textarea.form-control.form-control-line(rows='5')
+                                            .form-group
+                                                label.col-sm-12 Select Country
+                                                .col-sm-12
+                                                    select.form-control.form-control-line
+                                                        option London
+                                                        option India
+                                                        option Usa
+                                                        option Canada
+                                                        option Thailand
+                                            .form-group
+                                                .col-sm-12
+                                                    button.btn.btn-success Update Profile
+
+    include foote
+
+    script(src='/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='dist/js/niche.js')
+    script(src='dist/plugins/jquery-ui/jquery-ui.min.js')
+    script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $("#respMenu").aceResponsiveMenu({
+                resizeWidth: '768', 
+                animationSpeed: 'fast', 
+                accoridonExpAll: false 
+            });
+        });

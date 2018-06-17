@@ -34,27 +34,27 @@ block content
                                 .row.m-t-2
                                     .col-md-6
                                         .form-group
-                                            label(for='firstName1') Primeiro Nome:
-                                            input.form-control(type='text', name='firstname', required='')
+                                            label(for='firstName') Primeiro Nome:
+                                            input.form-control(type='text', name='firstname', value=ruser.name.firstName)
                                     .col-md-6
                                         .form-group
-                                            label(for='lastName1') Último Nome:
-                                            input.form-control(type='text', name='lastname', required='')
+                                            label(for='lastName') Último Nome:
+                                            input.form-control(type='text', name='lastname', value=ruser.name.lastName)
                                 .row
                                     .col-md-6
                                         .form-group
-                                            label(for='firstName1') Email:
-                                            input.form-control(type='text', name='email', required='')
+                                            label(for='Email') Email:
+                                            input.form-control(type='text', name='email', value=ruser.username)
                                     .col-md-6
                                         .form-group
-                                            label(for='lastName1') Contacto telefónico:
-                                            input.form-control(type='text', name='phoneno', required='')
+                                            label(for='contact') Contacto telefónico:
+                                            input.form-control(type='text', name='phoneno', value=ruser.contact)
                                 .row
                                     .col-md-6
                                         .form-group
                                             label(for='district') Distrito
                                                 select.combobox.input-large.form-control(name='address.district')
-                                                    option(value='', selected='selected') Seleccione um Distrito
+                                                    option(value='', selected=ruser.address.district) Seleccione um Distrito
                                                     option(value='Aveiro') Aveiro
                                                     option(value='Beja') Beja
                                                     option(value='Braga') Braga
@@ -139,22 +139,14 @@ block content
                     .step-footer
                         button.btn.btn-light(data-direction='prev') Previous
                         button.btn.btn-primary(data-direction='next') Next
-                        button.btn.btn-primary(data-direction='finish') Submit
-            // Main row
-        // /.content
-    // /.content-wrapper
-    footer.main-footer
-        .pull-right.hidden-xs Version 1.2
-        |     Copyright © 2017 Yourdomian. All rights reserved.
-    // ./wrapper
-    // jQuery 3
+                        button.btn.btn-primary(data-direction='finish', type="submit") Submit
+
+    include foote
+
     script(src='/jquery.min.js')
-    // v4.0.0-alpha.6
     script(src='/js/bootstrap.min.js')
-    // template
-    script(src='dist/js/niche.js')
-    // form wizard
-    script(src='dist/plugins/formwizard/jquery-steps.js')
+    script(src='/dist/js/niche.js')
+    script(src='/dist/plugins/formwizard/jquery-steps.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js')
     script.
         var frmRes = $('#frmRes');
@@ -211,19 +203,13 @@ block content
                 return true;
             },
             onFinish: function () {
-                alert('Wizard Completed');
-            }
-        });
-    script.
-        $('#demo').steps({
-            onFinish: function () {
-                $.post("/form", $("#frmRes" && "#frmInfo").serialize(), function (data) {
+                $.post("/form", $("#frmRes").serialize(), function (data) {
 
                 });
             }
         });
-    script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
-    // Plugin Initialization
+
+    script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
     script(type='text/javascript').
         $(document).ready(function () {
             $("#respMenu").aceResponsiveMenu({

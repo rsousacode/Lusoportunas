@@ -138,39 +138,32 @@ html(lang='en')
                                 li.dropdown.user.user-menu.p-ph-res
                                     a.dropdown-toggle(href='index.html#', data-toggle='dropdown')
                                         if(ruser.profilePicture)
-                                            img.user-image(src=ruser.profilePicture, alt='User Image')
+                                            img.user-image(src=ruser.profilePicture, alt='Fotografia de Perfil')
                                         span.hidden-xs=ruser.name.firstName + " " + ruser.name.lastName
                                     ul.dropdown-menu
                                         li.user-header
                                             .pull-left.user-img
                                                 if(ruser.profilePicture)
-                                                    img.img-responsive(src=ruser.profilePicture, alt='User')
+                                                    img.img-responsive(src=ruser.profilePicture, alt='Utilizador')
+                                                else
+                                                    img.img-responsive(src="https://i07.fotocdn.net/s24/24/gallery_s/302/2608934167.jpg", alt='Utilizador')
+
                                             p.text-left=ruser.name.firstName + " " + ruser.name.lastName
                                             small=ruser.username
-                                            .view-link.text-left
-                                                a(href='/perfil') Abrir perfil
                                         li
-                                            a(href='index.html#')
+                                            a(href='/perfil')
                                                 i.icon-profile-male
-                                                |  My Profile
-                                        li
-                                            a(href='index.html#')
-                                                i.icon-wallet
-                                                |  My Balance
-                                        li
-                                            a(href='index.html#')
-                                                i.icon-envelope
-                                                |  Inbox
+                                                |  Meu Perfil
                                         li.divider(role='separator')
                                         li
-                                            a(href='index.html#')
+                                            a(href="/perfil/"+ruser._id+"/editar")
                                                 i.icon-gears
-                                                |  Account Setting
+                                                |  Opções de Conta
                                         li.divider(role='separator')
                                         li
-                                            a(href='index.html#')
+                                            a(href='/sair')
                                                 i.fa.fa-power-off
-                                                |  Logout
+                                                |  Sair
 
                             else
                                 li.dropdown.user.user-menu.p-ph-res
@@ -198,7 +191,7 @@ html(lang='en')
                                                 .form-group
                                                     .row
                                                         .text-center
-                                                            a.forgot-password(href='http://phpoll.com/recover', tabindex='5') Esqueceu-se da password?
+                                                            a.forgot-password(href='/recuperar', tabindex='5') Esqueceu-se da password?
             -let nav=true
             if(nav)
                 .main-nav

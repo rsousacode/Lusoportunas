@@ -1,0 +1,59 @@
+extends ./layout
+block content
+    .content-wrapper
+        .content
+            .row
+                .col-lg-4
+                    div
+                        include recruit-panel
+                .col-lg-8
+                    .info-box
+                        h4.text-black Minhas Empresas
+                        p Aqui poderá gerir o perfil das suas empresas
+                        .table-responsive
+                            table.table
+                                thead.bg-info.text-white
+                                    tr
+                                        th(scope="col")
+                                        th(scope="col")
+                                        th(scope="col") Empresa
+                                        th(scope="col") Area
+                                tbody
+                                    each company in user.company
+                                        tr
+                                            td(style="width: 50px;"): a(href="/empresa/apagar/" + company._id)
+                                                span.fa.fa-remove
+                                            td(style="width: 50px;"): a(href="/empresa/editar/" + company._id)
+                                                span.fa.fa-pencil
+                                            td: a(href="/empresa/" + company._id)= company.name
+                                            td= company.location
+            include  ./foote
+        script(src='/jquery.min.js')
+        script(src='/js/bootstrap.min.js')
+        script(src='dist/js/niche.js')
+        script(src='dist/plugins/datatables/jquery.dataTables.min.js')
+        script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+        script.
+            $(function () {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+
+        script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+        // Plugin Initialization
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $("#respMenu").aceResponsiveMenu({
+                    resizeWidth: '768', // Set the same in Media query
+                    animationSpeed: 'fast', //slow, medium, fast
+                    accoridonExpAll: false //Expands all the accordion menu on click
+                });
+            });
+

@@ -27,7 +27,7 @@ let schema = new Schema({
     admin: Boolean,
     role: String,
     contact: {
-        email: String
+        mobile: String
     },
     address: {
         lines: [String],
@@ -46,6 +46,13 @@ let schema = new Schema({
         type: Date,
         required: true
     },
+
+    biography: String,
+
+    birthday: Date,
+
+    website: String,
+
 
     experience: [{
         "cargo": String,
@@ -83,7 +90,6 @@ let schema = new Schema({
         "mission": String,
         "objectives": String,
         "description":String,
-        "attachment": String,
         "logo": String,
     }],
 

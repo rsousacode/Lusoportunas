@@ -7,14 +7,14 @@ const lusDB = require("../../data/lusDB");
 module.exports = router;
 
 
-// router.use(function (req, res, next) {
-//     if (req.isAuthenticated() && req.user.admin) {
-//         res.locals.user = req.user;
-//         next();
-//         return;
-//     }
-//     res.sendStatus(404);
-// });
+router.use(function (req, res, next) {
+    if (req.isAuthenticated() && req.user.admin) {
+        res.locals.user = req.user;
+        next();
+        return;
+    }
+    res.sendStatus(404);
+});
 
 router.get('/artigos', async function (req, res) {
     let name = req.query.name; //filter alias , SEARCH

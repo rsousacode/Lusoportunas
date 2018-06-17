@@ -49,9 +49,9 @@ block content
                             // /.box-header
                             .box-body.pad-10
                                 .form-group
-                                    input.form-control(placeholder=job.ruser.name.firstName + " " + job.ruser.name.lastName + " (" + job.company + ")")
+                                    input#disabledInput.form-control(disabled='', type='text', placeholder=job.ruser.name.firstName + " " + job.ruser.name.lastName + " (" + job.company + ")")
                                 .form-group
-                                    input.form-control(placeholder="Candidatura a " + job.jobFunction + " " + " | " + job.jobType)
+                                    input#disabledInput.form-control(disabled='', type='text', placeholder="Candidatura a " + job.jobFunction + " " + " | " + job.jobType)
                                 .form-group
                                     textarea#compose-textarea.form-control(style='height: 300px', name="message")
                                 h6

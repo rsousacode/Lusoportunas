@@ -3,6 +3,7 @@ const ObjectID = require("mongodb").ObjectId;
 const router = express.Router();
 const lusDB = require("../backend/data/lusDB");
 const uuid = require("uuid");
+const fs = require("fs");
 module.exports = router;
 
 router.use(function (req, res, next) {
@@ -13,6 +14,106 @@ router.use(function (req, res, next) {
     }
     res.redirect("/entrar");
 });
+
+router.route('/empresa/editar/:id')
+    .all(function (req, res, next) {
+        let companieId = req.params.id;
+
+        lusDB.connect
+            .then(db => db.collection("users").find({"company._id": new ObjectID(companieId)}, {
+                "company.$": 1,
+                "_id": new ObjectID(companieId)
+            }).next())
+            .then(user => {
+
+                if (!user) {
+                    res.sendStatus(404);
+                    return;
+                }
+                res.locals.user = user;
+                next();
+            })
+            .catch(next);
+    })
+    .get(function (req, res) {
+        res.render("c/user-recruit-company-edit",
+            {
+                title: "Lusoportunas - Editar Empresa",
+                ruser: req.user
+            }
+        );
+    })
+    .post(function (req, res, next) {
+
+        let profilePicture = req.files.profilePicture;
+
+        if (profilePicture) {
+
+            let fileType = "";
+            if (profilePicture.mimetype === "image/jpeg") {
+                fileType = ".jpg";
+
+            }
+            if (profilePicture.mimetype === "image/png") {
+                fileType = ".png";
+            }
+
+
+            var profilePath = './user/uploads/' + req.user._id + '' + '/companies';
+
+            if (!fs.existsSync(profilePath)) {
+                fs.mkdirSync(profilePath);
+            }
+
+            else {
+                let thisDir = __dirname;
+                let thisNewDir = thisDir.replace('/user', '');
+                let newfileName = uuid.v4() + fileType;
+                let cutPath = profilePath.replace('.', '');
+                var finalPath = cutPath + '/' + newfileName;
+
+                profilePicture.mv(thisNewDir + finalPath, function (err) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                })
+            }
+        }
+
+        let space = res.locals.user.company.length;
+
+        function companyFromRequestBody(user, request, profilepic) {
+            user.company[space] = {
+                if (profilePath) {
+                    logo : profilepic.replace('/user/uploads', '');
+                },
+                location: request.body.location,
+                name: request.body.name,
+                description: request.body.description,
+                mission: request.body.mission,
+                objectives: request.body.objectives,
+
+            };
+        }
+
+        companyFromRequestBody(res.locals.user, req, finalPath);
+
+        res.locals.user.save()
+            .then(() => res.redirect(req.baseUrl + "/minhasEmpresas"))
+            .catch(error => {
+                if (error.name === "Validation Error") {
+                    res.locals.error = error;
+                    res.render("user/empresas/adicionar", {
+                        ruser: req.user,
+                        title: "Lusoportunas - Adicionar Empresa"
+                    });
+                    return;
+                }
+                next(error);
+            });
+
+    });
+
 
 router.route('/empresa/:id')
     .all(function (req, res, next) {
@@ -37,7 +138,8 @@ router.route('/empresa/:id')
     .get(function (req, res) {
         res.render("user/empresas/empresa",
             {
-                ruser: req.user
+                ruser: req.user,
+                title: "Lusoportunas"+" - "+res.locals.user.company[0].name
             }
         );
     });
@@ -76,6 +178,21 @@ router.get('/minhasEmpresas', async function (req, res) {
         .catch(next);
 });
 
+router.get('/cminhasempresas', async function (req, res) {
+    let uname = req.user.username;
+    let query = {"ruser.username": uname};
+
+    lusDB.User.find(query).exec()
+        .then(function (company) {
+            res.render("c/user-recruit-companies", {
+                title: "Lusoportunas - Minhas Empresas",
+                ruser: req.user,
+                company: company
+            });
+        })
+        .catch(next);
+});
+
 
 router.route('/perfil/:id/adicionarEmpresa')
     .all(function (req, res, next) {
@@ -99,47 +216,55 @@ router.route('/perfil/:id/adicionarEmpresa')
     .get(function (req, res) {
         res.render("user/empresas/adicionar",
             {
+                title: "Lusoportunas - Adicionar Empresa",
                 ruser: req.user
             }
         );
     })
     .post(function (req, res, next) {
 
-        let sampleFile = req.files.sampleFile;
+        let profilePicture = req.files.profilePicture;
 
-        if (sampleFile) {
+        if (profilePicture) {
 
             let fileType = "";
-            if (req.files.sampleFile.mimetype === "image/jpeg") {
+            if (profilePicture.mimetype === "image/jpeg") {
                 fileType = ".jpg";
 
             }
-            if (req.files.sampleFile.mimetype === "image/png") {
+            if (profilePicture.mimetype === "image/png") {
                 fileType = ".png";
             }
 
-            if (sampleFile.mimeType) {
-                console.log(sampleFile.mimeType);
 
+            var profilePath = './user/uploads/' + req.user._id + '' + '/companies';
+
+            if (!fs.existsSync(profilePath)) {
+                fs.mkdirSync(profilePath);
             }
 
-            var rawUrl = 'uploads/users/profile/' + uuid.v4() + fileType;
+            else {
+                let thisDir = __dirname;
+                let thisNewDir = thisDir.replace('/user', '');
+                let newfileName = uuid.v4() + fileType;
+                let cutPath = profilePath.replace('.', '');
+                var finalPath = cutPath + '/' + newfileName;
 
-            sampleFile.mv(__dirname + '/public/' + rawUrl, function (err) {
-                if (err) {
-                    return res.status(500).send(err);
-                }
-            })
+                profilePicture.mv(thisNewDir + finalPath, function (err) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                })
+            }
         }
 
         let space = res.locals.user.company.length;
-        let imgUrl = "";
 
-        function companyFromRequestBody(user, request) {
-             imgUrl = rawUrl;
+        function companyFromRequestBody(user, request, profilepic) {
             user.company[space] = {
-
-                logo : imgUrl,
+                if (profilePath) {
+                    logo : profilepic.replace('/user/uploads', '');
+                },
                 location: request.body.location,
                 name: request.body.name,
                 description: request.body.description,
@@ -149,14 +274,16 @@ router.route('/perfil/:id/adicionarEmpresa')
             };
         }
 
-        companyFromRequestBody(res.locals.user, req, rawUrl);
+        companyFromRequestBody(res.locals.user, req, finalPath);
 
         res.locals.user.save()
             .then(() => res.redirect(req.baseUrl + "/minhasEmpresas"))
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;
-                    res.render("user/empresas/adicionar");
+                    res.render("user/empresas/adicionar",{
+                        title: "Lusoportunas - Adicionar Empresa (erro)"
+                    });
                     return;
                 }
                 next(error);
