@@ -28,6 +28,9 @@ block content
                                         label(for='location') Objectivos
                                         input.form-control(type='text', name="objectives", value=user.company[0].objectives)
                                     .form-group
+                                        label(for='website') Website
+                                        input.form-control(type='text', name="website", value=user.company[0].website)
+                                    .form-group
                                         .form-group.files
                                             label Inserir/Atualizar Logo de empresa
                                             input.form-control(type='file', multiple='', name="profilePicture", value="company.logo")

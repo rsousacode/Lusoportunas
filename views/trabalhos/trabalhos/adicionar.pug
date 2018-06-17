@@ -15,14 +15,14 @@ block content
                                     .form-group
                                         label(for='companyName') Empresa
                                         select.combobox.input-large.form-control(name='companyName')
-                                            each user in users
-                                                each company in user.company
-                                                   option(value='', selected='selected')
-                                                   option(value=company.name)=company.name
+                                            option(value='', selected='selected')
+                                                each user in users
+                                                    each company in user.company
+                                                       option(value=company._id)=company._id
                                     .form-group
                                         label(for='jobType') Tipo de Trabalho
                                         select.combobox.input-large.form-control(name='jobType')
-                                            option(value='', selected='selected') Tipo de Trabalho
+                                            option(value='', selected='selected') Tipo de Trabalhoss
                                             option(value='Estágio') Estágio
                                             option(value='Freelancer') Freelancer
                                             option(value='Part-Time') Part-Time

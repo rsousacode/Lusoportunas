@@ -4,15 +4,6 @@ block content
         // Content Header (Page header)
         .content-header.sty-one
             h1.text-black Detalhes da candidatura
-            ol.breadcrumb
-                li
-                    a(href='apps-mailbox-detail.html#') Home
-                li.sub-bread
-                    i.fa.fa-angle-right
-                    |  Apps
-                li
-                    i.fa.fa-angle-right
-                    |  Email details
         .content
             .row
                 .col-lg-3
@@ -28,27 +19,7 @@ block content
                                     a(href='#')
                                         i.fa.fa-inbox
                                         |  Todas as candidaturas
-                                        span.label.label-primary.pull-right 12
-                    .box.box-solid
-                        .box-header.with-border
-                            h3.box-title Labels
-                            .box-tools
-                                button.btn.btn-box-tool(type='button', data-widget='collapse')
-                                    i.fa.fa-minus
-                        .box-body.no-padding
-                            ul.nav.nav-pills.nav-stacked
-                                li
-                                    a(href='apps-mailbox-detail.html#')
-                                        i.fa.fa-circle-o.text-red
-                                        |  Important
-                                li
-                                    a(href='apps-mailbox-detail.html#')
-                                        i.fa.fa-circle-o.text-yellow
-                                        |  Promotions
-                                li
-                                    a(href='apps-mailbox-detail.html#')
-                                        i.fa.fa-circle-o.text-light-blue
-                                        |  Social
+                                        //span.label.label-primary.pull-right 12
                 .col-lg-9
                     .box.box-primary
                         .box-header.with-border
@@ -93,9 +64,7 @@ block content
                                 button.btn.btn-default(type='button')
                                     i.fa.fa-reply
                                     |  Responder
-    footer.main-footer
-        .pull-right.hidden-xs Version 1.2
-        |     Copyright © 2017 Yourdomian. All rights reserved.
+    include foote
     script(src='/jquery.min.js')
     script(src='/js/bootstrap.min.js')
     script(src='/dist/js/luso.js')
@@ -153,7 +122,6 @@ block content
             });
         });
     script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
-    // Plugin Initialization
     script(type='text/javascript').
         $(document).ready(function () {
             $("#respMenu").aceResponsiveMenu({

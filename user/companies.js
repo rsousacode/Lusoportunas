@@ -4,6 +4,7 @@ const router = express.Router();
 const lusDB = require("../backend/data/lusDB");
 const uuid = require("uuid");
 const fs = require("fs");
+
 module.exports = router;
 
 router.use(function (req, res, next) {
@@ -30,18 +31,18 @@ router.route('/empresa/editar/:id')
                     res.sendStatus(404);
                     return;
                 }
-                res.locals.user = user;
+                res.locals.ruser = user;
                 next();
             })
             .catch(next);
     })
-    .get(function (req, res) {
+    .get(function (req, res, next) {
         res.render("c/user-recruit-company-edit",
             {
                 title: "Lusoportunas - Editar Empresa",
                 ruser: req.user
             }
-        );
+        ).catch(next);
     })
     .post(function (req, res, next) {
 
@@ -80,7 +81,7 @@ router.route('/empresa/editar/:id')
             }
         }
 
-        let space = res.locals.user.company.length;
+        let space = res.locals.ruser.company.length;
 
         function companyFromRequestBody(user, request, profilepic) {
             user.company[space] = {
@@ -91,28 +92,28 @@ router.route('/empresa/editar/:id')
                 name: request.body.name,
                 description: request.body.description,
                 mission: request.body.mission,
-                objectives: request.body.objectives,
-
+                objectives: request.body.objectives
             };
         }
 
         companyFromRequestBody(res.locals.user, req, finalPath);
 
-        res.locals.user.save()
-            .then(() => res.redirect(req.baseUrl + "/minhasEmpresas"))
-            .catch(error => {
-                if (error.name === "Validation Error") {
-                    res.locals.error = error;
-                    res.render("user/empresas/adicionar", {
-                        ruser: req.user,
-                        title: "Lusoportunas - Adicionar Empresa"
-                    });
-                    return;
-                }
-                next(error);
-            });
+            res.locals.user.save()
+                .then(() => res.redirect(req.baseUrl + "/perfil"))
+                .catch(error => {
+                    if (error.name === "Validation Error") {
+                        res.locals.error = error;
+                        res.render("user/empresas/editar",{
+                            title: "Lusoportunas - Editar Empresa"
+                        });
+                        return;
+                    }
+                    next(error);
+                });
 
-    });
+        }
+    );
+
 
 
 router.route('/empresa/:id')
@@ -163,22 +164,22 @@ router.get('/empresas', async function (req, res) {
 
 });
 
-router.get('/minhasEmpresas', async function (req, res) {
-    let uname = req.user.username;
-    let query = {"ruser.username": uname};
+// router.get('/minhasEmpresas', async function (req, res) {
+//     let uname = req.user.username;
+//     let query = {"ruser.username": uname};
+//
+//     lusDB.User.find(query).exec()
+//         .then(function (company) {
+//             res.render("user/empresas/minhasEmpresas", {
+//                 title: "Lusoportunas - Minhas Empresas",
+//                 ruser: req.user,
+//                 company: company
+//             });
+//         })
+//         .catch(next);
+// });
 
-    lusDB.User.find(query).exec()
-        .then(function (company) {
-            res.render("user/empresas/minhasEmpresas", {
-                title: "Lusoportunas - Minhas Empresas",
-                ruser: req.user,
-                company: company
-            });
-        })
-        .catch(next);
-});
-
-router.get('/cminhasempresas', async function (req, res) {
+router.get('/minhasempresas', async function (req, res) {
     let uname = req.user.username;
     let query = {"ruser.username": uname};
 

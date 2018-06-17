@@ -60,15 +60,11 @@ router.post('/registar', function (req, res) {
             console.log(newUser);
 
             passport.authenticate('local')(req, res, function () {
-                res.redirect('/perfil');
+                res.redirect('/painel');
             });
         });
 });
 
-router.route("/form")
-    .get(function (req, res) {
-        res.render('c/form');
-    });
 
 router.route("/")
 

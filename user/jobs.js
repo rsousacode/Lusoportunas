@@ -80,13 +80,13 @@ router.get('/trabalhos', async function (req, res) {
     let name = req.query.name;
     let query = {};
     if (name) {
-        query.name = {$regex: name};
+        query.name = {$in: name};
     }
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
             res.render("user/trabalhos/lista", {
-                title: "Bem-vindos ao Lusoportunas",
+                title: " Lusoportunas - Trabalhos",
                 ruser: req.user,
                 jobs: jobs
             });
@@ -97,13 +97,8 @@ router.get('/trabalhos', async function (req, res) {
 
 router.route('/trabalho/adicionar')
     .get(function (req, res) {
-        let name = req.query.name;
-        let query = {};
-        if (name) {
-            query.name = {$regex: name};
-        }
 
-        lusDB.User.find(query).exec()
+        lusDB.User.find({}).exec()
             .then(function (users) {
                 res.render("user/trabalhos/adicionar", {
                     title: "Lusoportunas - Adicionar Trabalho",
@@ -140,7 +135,7 @@ router.route('/trabalho/adicionar')
 
                 lusDB.connect
                     .then(db => db.collection("jobs").insertOne(job))
-                    .then(result => res.redirect(req.baseUrl + "/trabalhos"));
+                    .then(result => res.redirect(req.baseUrl + "/painel"));
             });
     });
 
@@ -166,6 +161,7 @@ router.route('/trabalho/editar/:id')
     .get(function (req, res) {
         res.render("user/trabalhos/editar",
             {
+                title: "Lusoportunas - Editar Trabalho",
                 ruser: req.user
             });
     })
@@ -180,13 +176,12 @@ router.route('/trabalho/editar/:id')
                 company: req.body.company,
                 industry: req.body.industry,
                 jobFunction: req.body.jobFunction,
-                address: req.body.address,
-                date: req.body.date
+                address: req.body.address
             }
         };
         lusDB.connect
             .then(db => db.collection("jobs").updateOne(filter, update))
-            .then(result => res.redirect(req.baseUrl + "/trabalhos"))
+            .then(result => res.redirect(req.baseUrl + "/painel"))
             .catch(next);
     });
 
@@ -196,7 +191,7 @@ router.get('/trabalho/eliminar/:id', function (req, res, next) {
 
     lusDB.connect
         .then(db => db.collection("jobs").deleteOne(filter))
-        .then(result => res.redirect(req.baseUrl + "/trabalhos"))
+        .then(result => res.redirect(req.baseUrl + "/painel"))
         .catch(next);
 
 });
@@ -223,6 +218,7 @@ router.route('/trabalho/:id')
     .get(function (req, res) {
         res.render("user/trabalhos/trabalho",
             {
+                title: "Lusoportunas - "+res.locals.job.jobFunction,
                 ruser: req.user
             }
         );
@@ -247,7 +243,7 @@ router.route('/trabalho/concorrer/:id')
     })
     .get(function (req, res) {
         res.render("c/user-application-compose",
-            {
+            {   title: "Lusoportunas - Candidatar-se",
                 ruser: req.user
             }
         );
@@ -275,7 +271,9 @@ router.route('/trabalho/concorrer/:id')
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;
-                    res.render("c/user-application-compose");
+                    res.render("c/user-application-compose", {
+                        title: "Lusoportunas - Candidatar-se (erro)"
+                    });
                     return;
                 }
                 next(error);
@@ -354,6 +352,7 @@ router.route('/applications/:id')
     .get(function (req, res) {
         res.render("user/trabalhos/applications/applications",
             {
+                title: "Lusoportunas - Candidaturas",
                 ruser: req.user
             }
         );
@@ -412,6 +411,7 @@ router.route('/application/:id')
     .get(function (req, res) {
         res.render("c/user-application",
             {
+                title: "Lusoportunas - Candidatura a "+res.locals.job.jobFunction,
                 ruser: req.user
             }
         );

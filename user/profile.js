@@ -38,6 +38,7 @@ router.route('/perfil/:id')
     .get(function (req, res) {
         res.render("c/user-recruit-profile",
             {
+                title:"Lusoportunas - "+res.locals.user.firstName+" "+res.locals.user.lastName,
                 ruser: req.user
             }
         );
@@ -84,7 +85,7 @@ router.route('/perfil')
             lusDB.Job.find(query).exec()
                 .then(function (jobs) {
                     res.render("user/perfil/recruta", {
-                        title: "Bem-vindos ao Lusoportunas",
+                        title: "Lusoportunas - Perfil",
                         ruser: req.user,
                         jobs: jobs
                     });
@@ -93,6 +94,7 @@ router.route('/perfil')
 
             res.render("user/perfil/utilizador",
                 {
+
                     ruser: req.user
                 });
         }
@@ -108,7 +110,7 @@ router.route('/painel')
             lusDB.Job.find(query).exec()
                 .then(function (jobs) {
                     res.render("c/user-recruit-panel", {
-                        title: "Bem-vindos ao Lusoportunas",
+                        title: "Lusoportunas - Painel",
                         ruser: req.user,
                         jobs: jobs
                     });
@@ -119,7 +121,7 @@ router.route('/painel')
             lusDB.Job.find(query).exec()
                 .then(function (jobs) {
                     res.render("c/user-user-panel", {
-                        title: "Bem-vindos ao Lusoportunas",
+                        title: "Lusoportunas - Painel",
                         ruser: req.user,
                         jobs: jobs
                     });
@@ -150,6 +152,7 @@ router.route('/perfil/:id/editar')
     .get(function (req, res) {
         res.render("user/perfil/editar",
             {
+                title: "Lusoportunas - Editar Perfil",
                 ruser: req.user
             }
         );
@@ -255,7 +258,9 @@ router.route('/perfil/:id/editar')
                 .catch(error => {
                     if (error.name === "Validation Error") {
                         res.locals.error = error;
-                        res.render("user/perfil/editar");
+                        res.render("user/perfil/editar",{
+                            title: "Lusoportunas - Editar Perfil"
+                        });
                         return;
                     }
                     next(error);

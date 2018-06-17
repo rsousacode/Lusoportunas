@@ -91,6 +91,7 @@ let schema = new Schema({
         "objectives": String,
         "description":String,
         "logo": String,
+        "website": String
     }],
 
     curriculum: String,
