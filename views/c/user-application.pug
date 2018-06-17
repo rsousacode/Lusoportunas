@@ -16,7 +16,7 @@ block content
                         .box-body.no-padding
                             ul.nav.nav-pills.nav-stacked
                                 li.active
-                                    a(href='#')
+                                    a(href='/minhasCandidaturas/'+ruser._id)
                                         i.fa.fa-inbox
                                         |  Todas as candidaturas
                                         //span.label.label-primary.pull-right 12
@@ -31,19 +31,9 @@ block content
                                     i.fa.fa-chevron-right
                         .box-body.no-padding
                             .mailbox-read-info
-                                a(href="/lperfil/"+job.application[0].ruser._id)
+                                a(href="/perfil/"+job.application[0].ruser._id)
                                      h5="Candidatura de:" + " " + job.application[0].ruser.name.firstName + " " + job.application[0].ruser.name.lastName
                                 span.mailbox-read-time.pull-right 15 Oct. 2017 11:50 PM
-                            .mailbox-controls.with-border.text-left
-                                .btn-group
-                                    button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', data-container='body', title='Delete')
-                                        i.fa.fa-trash-o
-                                    button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', data-container='body', title='Reply')
-                                        i.fa.fa-reply
-                                    button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', data-container='body', title='Forward')
-                                        i.fa.fa-share
-                                button.btn.btn-default.btn-sm(type='button', data-toggle='tooltip', title='Print')
-                                    i.fa.fa-print
                             .mailbox-read-message
                                 p=job.application[0].body.application
                         .box-footer
@@ -59,11 +49,6 @@ block content
                                                 | 1,245 KB
                                                 a.btn.btn-default.btn-xs.pull-right(href=job.application[0].ruser.curriculum)
                                                     i.fa.fa-cloud-download
-                        .box-footer.m-b-2
-                            .pull-right
-                                button.btn.btn-default(type='button')
-                                    i.fa.fa-reply
-                                    |  Responder
     include foote
     script(src='/jquery.min.js')
     script(src='/js/bootstrap.min.js')

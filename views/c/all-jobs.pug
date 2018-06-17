@@ -3,38 +3,44 @@ block content
     .content-wrapper
         .content
             .info-box
-                h4.text-black Trabalhos expirados
-                p Os trabalhos que expiraram a data limite
+                h4.text-black Ofertas de Trabalho
+                p Ofertas de trabalho activas
                 .table-responsive
-                    table#example2.table.table-bordered.table-hover(data-name='cool-table')
+                    table#example1.table.table-bordered.table-striped
                         thead
                             tr
-                                th(scope="col")
-                                    th(scope="col") Cargo
-                                    th(scope="col") Tipo de Trabalho
-                                    th(scope="col") Localidade
-                                    th(scope="col") Expirou
-                                    th(scope="col") Candidaturas
+                                th(scope="col") Cargo
+                                th(scope="col") Tipo de Trabalho
+                                th(scope="col") Industria
+                                th(scope="col") Função
+                                th(scope="col") Localidade
+                                th(scope="col") Criado em
+                                th(scope="col") Autor
+                                th(scope="col") Empresa
+                                th(scope="col") Expira em
+
+
                         tbody
                             each job in jobs
-                                -let getNow = new Date()
                                 -let getMonth=job.expirationDate.getMonth()+1
                                 -let getDateMonth = job.date.getMonth()+1;
-                                    if(job.expirationDate < getNow)
+                                    if(job.expirationDate > getNow)
                                         tr
-                                            td(style="width: 50px;"): a(href="/trabalho/eliminar/" + job._id)
-                                                span.fa.fa-remove
                                             td: a(href="/trabalho/" + job._id)= job.body.cargo
                                             td= job.jobType
+                                            td= job.jobSector
+                                            td= job.jobFunction
                                             td= job.location
+                                            td= job.date.getDate() + "/" + getDateMonth + "/" + job.date.getUTCFullYear()
+                                            td= job.ruser.name.firstName
+                                            td= job.company
                                             td= job.expirationDate.getDate() + "/" + getMonth + "/" + job.expirationDate.getUTCFullYear()
-                                            td: a(href="applications/" + job._id)= job.application.length
-    include ./foote
-    script(src='dist/js/jquery.min.js')
-    script(src='dist/bootstrap/js/bootstrap.min.js')
-    script(src='dist/js/luso.js')
-    script(src='dist/plugins/datatables/jquery.dataTables.min.js')
-    script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+    include foote
+    script(src='/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/dist/js/niche.js')
+    script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/dist/plugins/datatables/dataTables.bootstrap.min.js')
     script.
         $(function () {
             $('#example1').DataTable()
@@ -47,9 +53,9 @@ block content
                 'autoWidth': false
             })
         })
-    script(src='dist/plugins/table-expo/filesaver.min.js')
-    script(src='dist/plugins/table-expo/xls.core.min.js')
-    script(src='dist/plugins/table-expo/tableexport.js')
+    script(src='/dist/plugins/table-expo/filesaver.min.js')
+    script(src='/dist/plugins/table-expo/xls.core.min.js')
+    script(src='/dist/plugins/table-expo/tableexport.js')
     script.
         $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
     script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')

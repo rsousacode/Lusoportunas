@@ -47,13 +47,12 @@ block content
         script.
             $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
         script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
-        // Plugin Initialization
         script(type='text/javascript').
             $(document).ready(function () {
                 $("#respMenu").aceResponsiveMenu({
-                    resizeWidth: '768', // Set the same in Media query
-                    animationSpeed: 'fast', //slow, medium, fast
-                    accoridonExpAll: false //Expands all the accordion menu on click
+                    resizeWidth: '768',
+                    animationSpeed: 'fast',
+                    accoridonExpAll: false
                 });
             });
 

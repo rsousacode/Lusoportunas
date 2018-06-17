@@ -85,7 +85,7 @@ router.get('/trabalhos', async function (req, res) {
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
-            res.render("user/trabalhos/lista", {
+            res.render("c/all-jobs", {
                 title: " Lusoportunas - Trabalhos",
                 ruser: req.user,
                 jobs: jobs
@@ -216,7 +216,7 @@ router.route('/trabalho/:id')
             .catch(next);
     })
     .get(function (req, res) {
-        res.render("user/trabalhos/trabalho",
+        res.render("c/single-job",
             {
                 title: "Lusoportunas - "+res.locals.job.jobFunction,
                 ruser: req.user

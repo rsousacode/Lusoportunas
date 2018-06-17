@@ -154,7 +154,7 @@ router.get('/empresas', async function (req, res) {
 
     lusDB.User.find(query).exec()
         .then(function (users) {
-            res.render("user/empresas/todasEmpresas", {
+            res.render("c/all-companies", {
                 title: "Lusoportunas - Empresas",
                 ruser: req.user,
                 users: users

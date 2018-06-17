@@ -3,29 +3,29 @@ block content
     .content-wrapper
         .content
             .info-box
-                h4.text-black As suas candidaturas
+                h4.text-black Empresas
+                p Empresas com perfil no Lusoportunas
                 .table-responsive
-                    table#example2.table.table-bordered.table-hover(data-name='cool-table')
+                    table#example1.table.table-bordered.table-striped
                         thead
                             tr
-                                th(scope="col") Candidatura
-                                th(scope="col") Anúncio
                                 th(scope="col") Empresa
-                                th(scope="col") Data
+                                th(scope="col") Localização
+
+
+
                         tbody
-                            each job in jobs
-                                each application in job.application
+                            each user in users
+                                each company in user.company
                                     tr
-                                        td: a(href="/application/" + application._id)= "Abrir"
-                                        td= job.jobFunction
-                                        td=job.company
-                                        td= application.body.bdate.toLocaleDateString()
-    include ./foote
+                                        td: a(href="/empresa/" + company._id)= company.name
+                                        td= company.location
+    include foote
     script(src='/jquery.min.js')
     script(src='/js/bootstrap.min.js')
-    script(src='dist/js/luso.js')
-    script(src='dist/plugins/datatables/jquery.dataTables.min.js')
-    script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+    script(src='/dist/js/niche.js')
+    script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/dist/plugins/datatables/dataTables.bootstrap.min.js')
     script.
         $(function () {
             $('#example1').DataTable()
@@ -38,13 +38,12 @@ block content
                 'autoWidth': false
             })
         })
-    script(src='dist/plugins/table-expo/filesaver.min.js')
-    script(src='dist/plugins/table-expo/xls.core.min.js')
-    script(src='dist/plugins/table-expo/tableexport.js')
+    script(src='/dist/plugins/table-expo/filesaver.min.js')
+    script(src='/dist/plugins/table-expo/xls.core.min.js')
+    script(src='/dist/plugins/table-expo/tableexport.js')
     script.
         $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
     script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
-    // Plugin Initialization
     script(type='text/javascript').
         $(document).ready(function () {
             $("#respMenu").aceResponsiveMenu({
