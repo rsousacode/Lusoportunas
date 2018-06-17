@@ -1,0 +1,75 @@
+extends ./layout
+block content
+    .content-wrapper
+        .content
+            .row
+                .col-lg-4
+                    div
+                        include recruit-panel
+                .col-lg-8
+                    .info-box
+                        h4.text-black Painel
+                        p Gestor de ofertas de trabalho
+                        .table-responsive
+                            table#example1.table
+                                thead
+                                    tr
+                                        th(scope="col")
+                                            th(scope="col")
+                                            th(scope="col") Cargo
+                                            th(scope="col") Função
+                                            th(scope="col") Local
+                                            th(scope="col") Criado em
+                                            th(scope="col") Expira em
+                                            th(scope="col") Candidatos
+                                tbody
+                                    each job in jobs
+                                        -let getNow = new Date()
+                                        -let getMonth=job.expirationDate.getMonth()+1
+                                        -let getDateMonth = job.date.getMonth()+1;
+                                            if(job.expirationDate > getNow)
+                                                tr
+                                                    td(style="width: 50px;"): a(href="/trabalho/eliminar/" + job._id)
+                                                        span.fa.fa-remove
+                                                    td(style="width: 50px;"): a(href="/trabalho/editar/" + job._id)
+                                                        span.fa.fa-pencil
+                                                    td: a(href="/trabalho/" + job._id)= job.body.cargo
+                                                    td= job.jobFunction
+                                                    td= job.location
+                                                    td= job.date.getDate() + "/" + getDateMonth + "/" + job.date.getUTCFullYear()
+                                                    td= job.expirationDate.getDate() + "/" + getMonth + "/" + job.expirationDate.getUTCFullYear()
+                                                    td: a(href="applications/" + job._id)= job.application.length
+            include  ./foote
+        script(src='/jquery.min.js')
+        script(src='/js/bootstrap.min.js')
+        script(src='dist/js/niche.js')
+        script(src='dist/plugins/datatables/jquery.dataTables.min.js')
+        script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+        script.
+            $(function () {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+        script(src='dist/plugins/table-expo/filesaver.min.js')
+        script(src='dist/plugins/table-expo/xls.core.min.js')
+        script(src='dist/plugins/table-expo/tableexport.js')
+        script.
+            $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
+        script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+        // Plugin Initialization
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $("#respMenu").aceResponsiveMenu({
+                    resizeWidth: '768', // Set the same in Media query
+                    animationSpeed: 'fast', //slow, medium, fast
+                    accoridonExpAll: false //Expands all the accordion menu on click
+                });
+            });
+

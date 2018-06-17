@@ -1,75 +1,48 @@
-extends ./layout
-block content
-    .content-wrapper
-        .content
-            .row
-                .col-lg-4
-                    div
-                        include recruit-panel
-                .col-lg-8
-                    .info-box
-                        h4.text-black Painel
-                        p Gestor de ofertas de trabalho
-                        .table-responsive
-                            table#example1.table
-                                thead
-                                    tr
-                                        th(scope="col")
-                                            th(scope="col")
-                                            th(scope="col") Cargo
-                                            th(scope="col") Função
-                                            th(scope="col") Local
-                                            th(scope="col") Criado em
-                                            th(scope="col") Expira em
-                                            th(scope="col") Candidatos
-                                tbody
-                                    each job in jobs
-                                        -let getNow = new Date()
-                                        -let getMonth=job.expirationDate.getMonth()+1
-                                        -let getDateMonth = job.date.getMonth()+1;
-                                            if(job.expirationDate > getNow)
-                                                tr
-                                                    td(style="width: 50px;"): a(href="/trabalho/eliminar/" + job._id)
-                                                        span.fa.fa-remove
-                                                    td(style="width: 50px;"): a(href="/trabalho/editar/" + job._id)
-                                                        span.fa.fa-pencil
-                                                    td: a(href="/trabalho/" + job._id)= job.body.cargo
-                                                    td= job.jobFunction
-                                                    td= job.location
-                                                    td= job.date.getDate() + "/" + getDateMonth + "/" + job.date.getUTCFullYear()
-                                                    td= job.expirationDate.getDate() + "/" + getMonth + "/" + job.expirationDate.getUTCFullYear()
-                                                    td: a(href="applications/" + job._id)= job.application.length
-            include  ./foote
-        script(src='/jquery.min.js')
-        script(src='/js/bootstrap.min.js')
-        script(src='dist/js/niche.js')
-        script(src='dist/plugins/datatables/jquery.dataTables.min.js')
-        script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
-        script.
-            $(function () {
-                $('#example1').DataTable()
-                $('#example2').DataTable({
-                    'paging': true,
-                    'lengthChange': false,
-                    'searching': false,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': false
-                })
-            })
-        script(src='dist/plugins/table-expo/filesaver.min.js')
-        script(src='dist/plugins/table-expo/xls.core.min.js')
-        script(src='dist/plugins/table-expo/tableexport.js')
-        script.
-            $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
-        script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
-        // Plugin Initialization
-        script(type='text/javascript').
-            $(document).ready(function () {
-                $("#respMenu").aceResponsiveMenu({
-                    resizeWidth: '768', // Set the same in Media query
-                    animationSpeed: 'fast', //slow, medium, fast
-                    accoridonExpAll: false //Expands all the accordion menu on click
-                });
-            });
+.box.box-widget.widget-user-2
+    .widget-user-header.bg-light-blue-gradient
+        .widget-user-image
+            if(ruser.profilePicture)
+                img.img-circle(src=ruser.profilePicture, alt='Foto de Perfil')
+            else
+                img.img-circle(src="https://i07.fotocdn.net/s24/24/gallery_s/302/2608934167.jpg", alt='Foto de Perfil')
+        h3.widget-user-username=ruser.name.firstName + " " + ruser.name.lastName
+        h5.widget-user-desc=ruser.role
+    .box-footer.no-padding
+        ul.nav.nav-stacked
+            li
+                -let getNow=new Date()
+                -let count=0
+                if(jobs)
+                    each i in jobs
+                        if(i.expirationDate > getNow)
+                            -count++
+                        a.list-group-item.collapsed(href='#menu2', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                            i.fa.fa-dashboard
+                                span.hidden-sm-down= " Ofertas de Trabalho"
+                        #menu2.collapse
+                            a.list-group-item(href='/meusTrabalhos')= " Ofertas de Trabalhos activas"
+                            if(jobs)
+                                span.pull-right.badge.bg-aqua=count
+                            a.list-group-item(href='trabalhosExpirados', data-parent='#menu2')= " Ofertas de Trabalhos expiradas"
+                            if(jobs)
+                                span.pull-right.badge.bg-aqua=jobs.length - count
+                else
+                    a.list-group-item.collapsed(href='#menu2', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                        i.fa.fa-dashboard
+                            span.hidden-sm-down= " Ofertas de Trabalho"
+                    #menu2.collapse
+                        a.list-group-item(href='/meusTrabalhos')= " Ofertas de Trabalhos activas"
+                        a.list-group-item(href='trabalhosExpirados', data-parent='#menu2')= " Ofertas de Trabalhos expiradas"
 
+                li
+                    a.list-group-item.collapsed(href='#menu3', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                        i.fa.fa-dashboard
+                            span.hidden-sm-down= " Empresas"
+                    #menu3.collapse
+                        a.list-group-item(href="/perfil/" + ruser.id + '/adicionarEmpresa' , data-parent='#menu3')= " Adicionar Empresa"
+                        a.list-group-item(href='/cminhasempresas', data-parent='#menu3')= " Minhas Empresas"
+                        span.pull-right.badge.bg-aqua=ruser.company.length
+                li
+                    a.list-group-item(href='/candidaturas', data-parent='#menu3')
+                        i.fa.fa-dashboard
+                            span.hidden-sm-down= " Candidaturas"

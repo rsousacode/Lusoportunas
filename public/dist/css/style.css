@@ -4,8 +4,6 @@ html, body {
 }
 
 
-
-
 .layout-boxed html, .layout-boxed body {
     height: 100%
 }
@@ -2199,7 +2197,7 @@ input[type="file"] {
 }
 
 .small-box > .small-box-footer:hover {
-    color: #fff;
+    color: #429c43;
     background: rgba(0, 0, 0, 0.15)
 }
 
@@ -2241,7 +2239,7 @@ input[type="file"] {
 
 .small-box:hover {
     text-decoration: none;
-    color: #f9f9f9
+    color: #509f3c
 }
 
 /*image hovers */
@@ -3552,7 +3550,7 @@ small.text-muted {
 }
 
 .btn-default:hover, .btn-default:active, .btn-default.hover {
-    background-color: #e7e7e7
+    background-color: #757575
 }
 
 .btn-primary {
@@ -3568,7 +3566,7 @@ caption button.btn-default {
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary.hover, caption button.btn-default:hover {
-    background-color: #ABABA8
+    background-color: #54ab73
 }
 
 .btn-success {

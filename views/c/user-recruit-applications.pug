@@ -3,23 +3,20 @@ block content
     .content-wrapper
         .content
             .info-box
-                h4.text-black Ofertas de trabalho activas
-                p As suas ofertas de trabalho que ainda não expiraram.
+                h4.text-black Candidaturas
+                p As candidaturas que recebeu nos anúncios de trabalho
                 .table-responsive
                     table#example2.table.table-bordered.table-hover(data-name='cool-table')
                         thead
                             tr
                                 th(scope="col") Anúncio
-                                th Corpo
                                 th(scope="col") Candidato
                         tbody
                             each job in jobs
                                 each application in jobs
                                     tr
                                         td= job.jobFunction
-                                        td= application.body.application
-                                        td= application.ruser.name.firstName + " " + application.ruser.name.lastName
-                                        td= application.body.bdate.getMonth()
+                                        td: a(href="/lperfil/"+application.ruser._id)= application.ruser.name.firstName + " " + application.ruser.name.lastName
     include ./foote
     // ./wrapper
     // jQuery 3

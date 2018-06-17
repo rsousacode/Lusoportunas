@@ -9,7 +9,7 @@ let shortid = require('shortid');
 
 
 router.use(function (req, res, next) {
-    if (req.isAuthenticated() && req.user.admin) {
+    if (req.isAuthenticated()) {
         res.locals.user = req.user;
         next();
         return;
@@ -19,7 +19,7 @@ router.use(function (req, res, next) {
 
 /* PERFIL PUBLICO */
 
-router.route('/lperfil/:id')
+router.route('/perfil/:id')
     .all(function (req, res, next) {
         const userId = req.params.id;
 
@@ -30,9 +30,6 @@ router.route('/lperfil/:id')
                     return;
                 }
                 res.locals.user = user;
-                res.locals.userHasRole = function (role) { //check roles
-                    return (user.roles || []).indexOf(role) > -1
-                };
                 next();
 
             }).catch(next);
@@ -48,34 +45,34 @@ router.route('/lperfil/:id')
 
 /* PERFIL PUBLICO */
 
-
-router.route('/perfil/:id')
-    .all(function (req, res, next) {
-        const userId = req.params.id;
-
-        lusDB.User.findById(userId).exec()   //find a doccument by Id
-            .then(user => {
-                if (!user) {
-                    res.sendStatus(404);
-                    return;
-                }
-                res.locals.user = user;
-                res.locals.userHasRole = function (role) { //check roles
-                    return (user.roles || []).indexOf(role) > -1
-                };
-                next();
-
-            }).catch(next);
-
-    })
-    .get(function (req, res) {
-        res.render("user/perfil/perfilPublico",
-            {
-                ruser: req.user
-            }
-        );
-    });
-
+//
+// router.route('/perfil/:id')
+//     .all(function (req, res, next) {
+//         const userId = req.params.id;
+//
+//         lusDB.User.findById(userId).exec()   //find a doccument by Id
+//             .then(user => {
+//                 if (!user) {
+//                     res.sendStatus(404);
+//                     return;
+//                 }
+//                 res.locals.user = user;
+//                 res.locals.userHasRole = function (role) { //check roles
+//                     return (user.roles || []).indexOf(role) > -1
+//                 };
+//                 next();
+//
+//             }).catch(next);
+//
+//     })
+//     .get(function (req, res) {
+//         res.render("user/perfil/perfilPublico",
+//             {
+//                 ruser: req.user
+//             }
+//         );
+//     });
+//
 
 router.route('/perfil')
     .get(function (req, res) {
@@ -110,18 +107,24 @@ router.route('/painel')
 
             lusDB.Job.find(query).exec()
                 .then(function (jobs) {
-                    res.render("c/user-panel", {
+                    res.render("c/user-recruit-panel", {
                         title: "Bem-vindos ao Lusoportunas",
                         ruser: req.user,
                         jobs: jobs
                     });
                 });
         } else {
+            let query = {};
 
-            res.render("user/perfil/utilizador",
-                {
-                    ruser: req.user
+            lusDB.Job.find(query).exec()
+                .then(function (jobs) {
+                    res.render("c/user-user-panel", {
+                        title: "Bem-vindos ao Lusoportunas",
+                        ruser: req.user,
+                        jobs: jobs
+                    });
                 });
+
         }
     });
 
@@ -227,6 +230,7 @@ router.route('/perfil/:id/editar')
                     user.curriculum = curriculum.replace('/user/uploads', '');
                 }
                 user.username = request.body.username;
+                user.biography= request.body.biography;
                 user.name.firstName = request.body.firstName;
                 user.name.lastName = request.body.lastName;
                 user.role = request.body.role;
@@ -492,7 +496,6 @@ router.route('/perfil/:id/adicionarEducacao')
                 location: request.body["location"],
                 study_area: request.body["study_area"],
                 qualification: request.body["qualification"],
-                attachment: request.body["attachment"]
 
             };
         }

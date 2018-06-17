@@ -12,7 +12,7 @@ router.get('/meustrabalhos', async function (req, res) {
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
-            res.render("c/user-jobs", {
+            res.render("c/user-jobs-active", {
                 title: "Lusoportunas - Ofertas de emprego publicadas",
                 ruser: req.user,
                 jobs: jobs
@@ -48,7 +48,7 @@ router.get('/trabalhosExpirados', async function (req, res) {
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
-            res.render("c/user-jobs-exp", {
+            res.render("c/user-jobs-expired", {
                 title: "Lusoportunas - Ofertas de emprego publicadas",
                 ruser: req.user,
                 jobs: jobs

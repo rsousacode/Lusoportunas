@@ -89,7 +89,7 @@ router.route("/")
 
     .get(function (req, res) {
 
-        if (req.app.get("env") === "development") {
+        if (req.app.get("env") === "production") {
 
 
             req.logIn(res.locals.user, function (err) {

@@ -151,7 +151,7 @@ html(lang='en')
                                             p.text-left=ruser.name.firstName + " " + ruser.name.lastName
                                             small=ruser.username
                                         li
-                                            a(href='/perfil')
+                                            a(href='/perfil/'+ruser._id)
                                                 i.icon-profile-male
                                                 |  Meu Perfil
                                         li.divider(role='separator')
@@ -227,61 +227,10 @@ html(lang='en')
                                     li
                                         a.active(href='/trabalho/adicionar') Adicionar
                             li
-                                a(href='index.html#')
+                                a(href='/empresas')
                                     i.fa.fa-th
-                                    span Emprego
-                                ul
-                                    li
-                                        a(href='index.html#') Widgets
-                                        ul
-                                            li
-                                                a(href='widget-data.html') Data Widgets
-                                            li
-                                                a(href='widget-apps.html') Apps Widgets
-                                    li
-                                        a(href='index.html#') Charts
-                                        ul
-                                            li
-                                                a(href='chart-morris.html') Morris Chart
-                                            li
-                                                a(href='chart-chartist.html') Chartis Chart
-                                            li
-                                                a(href='chart-knob.html') Knob Chart
-                                            li
-                                                a(href='chart-chart-js.html') Chartjs
-                                            li
-                                                a(href='chart-peity.html') Peity Chart
-                                    li
-                                        a(href='index.html#') Maps
-                                        ul
-                                            li
-                                                a(href='map-google.html') Google Maps
-                                            li
-                                                a.active(href='map-vector.html') Vector Maps
-                                    li
-                                        a(href='index.html#') Icons
-                                        ul
-                                            li
-                                                a(href='icon-fontawesome.html') Fontawesome Icons
-                                            li
-                                                a(href='icon-themify.html') Themify Icons
-                                            li
-                                                a(href='icon-linea.html') Linea Icons
-                                            li
-                                                a(href='icon-weather.html') Weather Icons
-                                            li
-                                                a(href='icon-simple-lineicon.html') Simple Lineicons
-                                            li
-                                                a(href='icon-flag.html') Flag Icons
-                                    li
-                                        a(href='index.html#') Inbox
-                                        ul
-                                            li
-                                                a(href='apps-mailbox.html') Mailbox
-                                            li
-                                                a(href='apps-mailbox-detail.html') Mailbox Detail
-                                            li
-                                                a(href='apps-compose-mail.html') Compose Mail
+                                    span Empresas
+
                             li
                                 a(href='index.html#')
                                     i.fa.fa-files-o

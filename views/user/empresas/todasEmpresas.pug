@@ -1,4 +1,4 @@
-extends ../../layout
+extends ../../c/layout
 
 block content
     .container.container-fluid
@@ -29,3 +29,4 @@ block content
                         tr
                             td: a(href="/empresa/" + company._id)= company.name
                             td= company.location
+        include ../../c/foote

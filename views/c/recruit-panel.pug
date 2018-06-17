@@ -6,34 +6,43 @@
             else
                 img.img-circle(src="https://i07.fotocdn.net/s24/24/gallery_s/302/2608934167.jpg", alt='Foto de Perfil')
         h3.widget-user-username=ruser.name.firstName + " " + ruser.name.lastName
-        h5.widget-user-desc Lead Developer
+        h5.widget-user-desc=ruser.role
     .box-footer.no-padding
         ul.nav.nav-stacked
             li
+                -let getNow=new Date()
+                -let count=0
                 if(jobs)
-                    -let getNow=new Date()
-                    -let count=0
                     each i in jobs
                         if(i.expirationDate > getNow)
                             -count++
-            li
-                a.list-group-item.collapsed(href='#menu2', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
-                    i.fa.fa-dashboard
-                        span.hidden-sm-down= " Ofertas de Trabalho"
-                #menu2.collapse
-                    a.list-group-item(href='/meusTrabalhos')= " Ofertas de Trabalhos activas"
-                        if(jobs)
-                            span.pull-right.badge.bg-aqua=count
-                    a.list-group-item(href='trabalhosExpirados', data-parent='#menu2')= " Ofertas de Trabalhos expiradas"
-                        if(jobs)
-                            span.pull-right.badge.bg-aqua=jobs.length - count
+                        a.list-group-item.collapsed(href='#menu2', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                            i.fa.fa-dashboard
+                                span.hidden-sm-down= " Ofertas de Trabalho"
+                        #menu2.collapse
+                            a.list-group-item(href='/meusTrabalhos')= " Ofertas de Trabalhos activas"
+                            if(jobs)
+                                span.pull-right.badge.bg-aqua=count
+                            a.list-group-item(href='trabalhosExpirados', data-parent='#menu2')= " Ofertas de Trabalhos expiradas"
+                            if(jobs)
+                                span.pull-right.badge.bg-aqua=jobs.length - count
+                else
+                    a.list-group-item.collapsed(href='#menu2', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                        i.fa.fa-dashboard
+                            span.hidden-sm-down= " Ofertas de Trabalho"
+                    #menu2.collapse
+                        a.list-group-item(href='/meusTrabalhos')= " Ofertas de Trabalhos activas"
+                        a.list-group-item(href='trabalhosExpirados', data-parent='#menu2')= " Ofertas de Trabalhos expiradas"
 
-
-            li
-                a.list-group-item.collapsed(href='#menu3', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
-                    i.fa.fa-dashboard
-                        span.hidden-sm-down= " Empresas"
-                #menu3.collapse
-                    a.list-group-item(href="/perfil/"+ruser.id+'/adicionarEmpresa' , data-parent='#menu3')= " Adicionar Empresa"
-                    a.list-group-item(href='/cminhasempresas', data-parent='#menu3')= " Minhas Empresas"
+                li
+                    a.list-group-item.collapsed(href='#menu3', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                        i.fa.fa-dashboard
+                            span.hidden-sm-down= " Empresas"
+                    #menu3.collapse
+                        a.list-group-item(href="/perfil/" + ruser.id + '/adicionarEmpresa' , data-parent='#menu3')= " Adicionar Empresa"
+                        a.list-group-item(href='/cminhasempresas', data-parent='#menu3')= " Minhas Empresas"
                         span.pull-right.badge.bg-aqua=ruser.company.length
+                li
+                    a.list-group-item(href='/candidaturas', data-parent='#menu3')
+                        i.fa.fa-dashboard
+                            span.hidden-sm-down= " Candidaturas"

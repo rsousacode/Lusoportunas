@@ -69,7 +69,7 @@ let schema = new Schema({
     }],
 
     education: [{
-        "school ": String,
+        "school": String,
         "formation": String,
         "location": String,
         "study_area": String,

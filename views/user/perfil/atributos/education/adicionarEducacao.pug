@@ -1,4 +1,4 @@
-extends ../../../../layout
+extends ../../../../c/layout
 
 block content
     .container.py-5
@@ -13,7 +13,7 @@ block content
                             .card-body
                                 form.form(role='form', autocomplete='off', method="post")
                                     .form-group
-                                        label(for='cargo') Instituição
+                                        label(for='school') Instituição
                                         input#inputName.form-control(type='text', name="school", value="")
                                     .form-group
                                         label(for='location') Formação
@@ -22,10 +22,10 @@ block content
                                         label(for='location') Localização
                                         input#2inpu3tName.form-control(type='text', name="location", value="")
                                     .form-group
-                                        label(for='description') Área de Estudo
-                                        input#2in2pu3tName.form-control(type='text', name="study_area", value="")
+                                        label(for='study_area') Área de Estudo
+                                        input#2in2opu3tName.form-control(type='text', name="study_area", value="")
                                     .form-group
-                                        label(for='description') Qualificação
+                                        label(for='qualification') Qualificação
                                         input#2in2pu3tName.form-control(type='text', name="qualification", value="")
                                     .form-group
                                         button.btn.btn-success.btn-lg.float-right(type='submit') Guardar
