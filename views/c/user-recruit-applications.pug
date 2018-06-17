@@ -17,7 +17,7 @@ block content
                             each job in jobs
                                 each application in job.application
                                     tr
-                                        td: a(href="/perfil/"+application.ruser._id)= "Abrir"
+                                        td: a(href="http://localhost:7217/application/5b25978c9c813552fc21352d"+job.ruser._id)= "Abrir"
                                         td= job.jobFunction
                                         td: a(href="/perfil/"+application.ruser._id)= application.ruser.name.firstName + " " + application.ruser.name.lastName
                                         td= application.body.bdate.toLocaleDateString()

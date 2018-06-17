@@ -2,7 +2,6 @@
 body {
 }
 
-/* General sizing */
 ul.dropdown-lr {
     width: 300px;
 }
@@ -342,7 +341,7 @@ footer a {
 }
 
 .typing-text {
-    animation: typing-text 1.5s steps(15), blink 0.44s infinite alternate;
+    animation: typing-text 1.5s steps(25), blink 0.44s infinite alternate;
     overflow: hidden;
     white-space: nowrap;
     border-right-width: 1px;
@@ -356,7 +355,7 @@ footer a {
         width: 0;
     }
     to {
-        width: 315px;
+        width: 620px;
     }
 
 }
@@ -459,7 +458,7 @@ SUPER BLANK SPACE
 
 
 */
-
+.brightness { filter: brightness(0.25); }
 /*Tablets */
 @media (min-width: 550px) {
 

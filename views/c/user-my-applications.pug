@@ -3,28 +3,23 @@ block content
     .content-wrapper
         .content
             .info-box
-                h4.text-black Ofertas de trabalho activas
-                p As suas ofertas de trabalho que ainda não expiraram.
+                h4.text-black As suas candidaturas
                 .table-responsive
                     table#example2.table.table-bordered.table-hover(data-name='cool-table')
                         thead
                             tr
-                                th(scope="col")
-                                    th(scope="col")
-                                    th(scope="col") Cargo
+                                th(scope="col") Candidatura
+                                th(scope="col") Anúncio
+                                th(scope="col") Empresa
+                                th(scope="col") Data
                         tbody
                             each job in jobs
                                 each application in job.application
-                                    -let getNow = new Date()
-                                    -let getMonth=application.mdate.getMonth()+1
-                                    -let getDateMonth = job.date.getMonth()+1;
-                                        if(job.expirationDate > getNow)
-                                            tr
-                                                td(style="width: 50px;"): a(href="/trabalho/eliminar/" + job._id)
-                                                    span.fa.fa-remove
-                                                td(style="width: 50px;"): a(href="/trabalho/editar/" + job._id)
-                                                    span.fa.fa-pencil
-                                                td: a(href="/trabalho/" + job._id)= job.body.cargo
+                                    tr
+                                        td: a(href="/application/" + application._id)= "Abrir"
+                                        td= job.jobFunction
+                                        td=job.company
+                                        td= application.body.bdate.toLocaleDateString()
     include ./foote
     // ./wrapper
     // jQuery 3

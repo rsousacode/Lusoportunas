@@ -5,30 +5,24 @@ block content
             .row
                 .col-lg-4
                     div
-                        include user-panel-usr
+                        include user-panel
                 .col-lg-8
                     .info-box
-                        h4.text-black Ofertas de Trabalho disponíveis
-                        p Neste painel poderá ver as últimas ofertas de trabalho assim como gerir as suas candidaturas e o seu perfil.
+                        h4.text-black Candidaturas
+                        p="Ao trabalho: "+job.jobFunction+" | "+job.company
                         .table-responsive
-                            table#example1.table
+                            table.table.table-striped
                                 thead
                                     tr
-                                            th(scope="col") Cargo
-                                            th(scope="col") Função
-                                            th(scope="col") Local
-                                            th(scope="col") Expira em
+                                        th(scope='col') Nome do Concorrente
+                                        th(scope="col") Mensagem
+
+
                                 tbody
-                                    each job in jobs
-                                        -let getNow = new Date()
-                                        -let getMonth=job.expirationDate.getMonth()+1
-                                        -let getDateMonth = job.date.getMonth()+1;
-                                        if(job.expirationDate > getNow)
-                                            tr
-                                                td: a(href="/trabalho/" + job._id)= job.body.cargo
-                                                td= job.jobFunction
-                                                td= job.location
-                                                td= job.expirationDate.getDate() + "/" + getMonth + "/" + job.expirationDate.getUTCFullYear()
+                                    each application in job.application
+                                        tr
+                                            td: a(href="/perfil/" + application.ruser._id)= application.ruser.name.firstName + " " + application.ruser.name.lastName
+                                            td: a(href='/application/' + application._id)=application.body.application
             include  ./foote
         script(src='/jquery.min.js')
         script(src='/js/bootstrap.min.js')

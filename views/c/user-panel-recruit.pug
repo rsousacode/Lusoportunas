@@ -5,30 +5,7 @@ block content
             .row
                 .col-lg-4
                     div
-                        .box.box-widget.widget-user-2
-                            .widget-user-header.bg-light-blue-gradient
-                                .widget-user-image
-                                    img.img-circle(src=ruser.profilePicture, alt='Foto de Perfil')
-                                h3.widget-user-username=ruser.name.firstName + " " + ruser.name.lastName
-                                h5.widget-user-desc Lead Developer
-                            .box-footer.no-padding
-                                ul.nav.nav-stacked
-                                    li
-                                        -let getNow=new Date()
-                                        -let count=0
-                                            each i in jobs
-                                                if(i.expirationDate > getNow)
-                                                    -count++
-                                        a(href='/meusTrabalhos')="Ofertas de Trabalhos activas"
-                                            span.pull-right.badge.bg-blue=count
-                                    li
-                                        a(href='/trabalhosExpirados')
-                                            | Ofertas de Trabalhos expiradas
-                                            span.pull-right.badge.bg-blue=jobs.length-count
-                                    li
-                                        a(href='/minhasEmpresas')
-                                            | Empresas
-                                            span.pull-right.badge.bg-aqua=ruser.company.length
+                        include user-panel
                 .col-lg-8
                     .info-box
                         h4.text-black Painel

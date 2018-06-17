@@ -1,0 +1,26 @@
+.box.box-widget.widget-user-2
+    .widget-user-header.bg-light-blue-gradient
+        .widget-user-image
+            if(ruser.profilePicture)
+                img.img-circle(src=ruser.profilePicture, alt='Foto de Perfil')
+            else
+                img.img-circle(src="https://i07.fotocdn.net/s24/24/gallery_s/302/2608934167.jpg", alt='Foto de Perfil')
+        h3.widget-user-username=ruser.name.firstName + " " + ruser.name.lastName
+        h5.widget-user-desc=ruser.role
+    .box-footer.no-padding
+        ul.nav.nav-stacked
+            li
+
+                a.list-group-item.collapsed(href='#menu2', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                    i.fa.fa-dashboard
+                        span.hidden-sm-down= " Perfil"
+                #menu2.collapse
+                    a.list-group-item(href='/perfil/'+ruser.id+'/editar')= " Completar perfil"
+                    a.list-group-item(href='/perfil/'+ruser.id, data-parent='#menu2')= " Ver perfil"
+            li
+                a.list-group-item.collapsed(href='#menu3', data-toggle='collapse', data-parent='#sidebar', aria-expanded='false')
+                    i.fa.fa-dashboard
+                        span.hidden-sm-down= " Candidaturas"
+                #menu3.collapse
+                    a.list-group-item(href='/minhasCandidaturas/' + ruser.id)=" As minhas Candidaturas"
+

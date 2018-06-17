@@ -333,6 +333,22 @@ router.route('/trabalho/concorrer/:id')
 //
 //     });
 
+router.route('/minhasCandidaturas/:id')
+    .get(function (req, res, next) {
+        const userId = req.params.id;
+        let query= {"application.ruser._id": new ObjectID(userId)};
+
+        lusDB.Job.find(query).exec()
+            .then(function (jobs) {
+                res.render("c/user-my-applications", {
+                    title: " Lusoportunas - Minhas Candidaturas",
+                    ruser: req.user,
+                    jobs: jobs
+                });
+            })
+            .catch(next);
+    });
+
 router.route('/applications/:id')
     .all(function (req, res, next) {
         const jobId = req.params.id;
@@ -350,7 +366,7 @@ router.route('/applications/:id')
 
     })
     .get(function (req, res) {
-        res.render("user/trabalhos/applications/applications",
+        res.render("c/user-job-applications",
             {
                 title: "Lusoportunas - Candidaturas",
                 ruser: req.user

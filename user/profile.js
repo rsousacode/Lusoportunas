@@ -254,7 +254,7 @@ router.route('/perfil/:id/editar')
             userFromRequestBody(res.locals.user, req, finalPath, finalPathThis);
 
             res.locals.user.save()
-                .then(() => res.redirect(req.baseUrl + "/perfil"))
+                .then(() => res.redirect(req.baseUrl + "/painel"))
                 .catch(error => {
                     if (error.name === "Validation Error") {
                         res.locals.error = error;
@@ -452,7 +452,7 @@ router.route('/perfil/:id/adicionarExperiencia')
         experienceFromRequestBody(res.locals.user, req);
 
         res.locals.user.save()
-            .then(() => res.redirect(req.baseUrl + "/perfil"))
+            .then(() => res.redirect(req.baseUrl + "/perfil/"+res.locals.user.id))
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;
@@ -508,7 +508,7 @@ router.route('/perfil/:id/adicionarEducacao')
         educationFromRequestBody(res.locals.user, req);
 
         res.locals.user.save()
-            .then(() => res.redirect(req.baseUrl + "/perfil"))
+            .then(() => res.redirect(req.baseUrl + "/perfil/"+res.locals.user.id))
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;
