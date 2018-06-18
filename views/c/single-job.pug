@@ -39,12 +39,17 @@ block content
                                             .form-group
                                                 strong.label(for='Função') Função:
                                                 p= job.jobFunction
+                                    if(job.company)
+                                        .col
+                                            .form-group
+                                                strong.label(for='Empresa') Empresa:
+                                                p= job.company
 
                                 if(job.body.vagas)
                                     .form-group
                                         strong.label(for='vahas') Vagas:
                                         p= job.body.vagas
-                                if(job.jobSector)
+                                if(job.body.beneficios)
                                     .form-group
                                         strong.label(for='jobSector') Benefícios:
                                         p= job.body.beneficios
@@ -73,9 +78,9 @@ block content
             include  ./foote
         script(src='/jquery.min.js')
         script(src='/js/bootstrap.min.js')
-        script(src='dist/js/luso.js')
-        script(src='dist/plugins/datatables/jquery.dataTables.min.js')
-        script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+        script(src='/dist/js/luso.js')
+        script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
+        script(src='/dist/plugins/datatables/dataTables.bootstrap.min.js')
         script.
             $(function () {
                 $('#example1').DataTable()
@@ -88,12 +93,12 @@ block content
                     'autoWidth': false
                 })
             })
-        script(src='dist/plugins/table-expo/filesaver.min.js')
-        script(src='dist/plugins/table-expo/xls.core.min.js')
-        script(src='dist/plugins/table-expo/tableexport.js')
+        script(src='/dist/plugins/table-expo/filesaver.min.js')
+        script(src='/dist/plugins/table-expo/xls.core.min.js')
+        script(src='/dist/plugins/table-expo/tableexport.js')
         script.
             $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
-        script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+        script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
         // Plugin Initialization
         script(type='text/javascript').
             $(document).ready(function () {

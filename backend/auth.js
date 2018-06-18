@@ -68,20 +68,20 @@ router.post('/registar', function (req, res) {
 
 router.route("/")
 
-    .all(function (req, res, next) {
-
-        lusDB.User.findById("5b0731f2d8e9f333624b8257").exec()   //find a doccument by Id
-            .then(user => {
-                if (!user) {
-                    res.sendStatus(404);
-                    return;
-                }
-                res.locals.user = user;
-                next();
-
-            }).catch(next)
-
-    })
+    // .all(function (req, res, next) {
+    //
+    //     lusDB.User.findById("5b0731f2d8e9f333624b8257").exec()   //find a doccument by Id
+    //         .then(user => {
+    //             if (!user) {
+    //                 res.sendStatus(404);
+    //                 return;
+    //             }
+    //             res.locals.user = user;
+    //             next();
+    //
+    //         }).catch(next)
+    //
+    // })
 
     .get(function (req, res) {
 

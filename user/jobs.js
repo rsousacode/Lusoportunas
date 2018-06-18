@@ -184,7 +184,7 @@ router.route('/trabalho/adicionar')
                         "oferta": req.body.oferta
                     },
                     location: req.body.location,
-                    company: req.body.companyName,
+                    company: req.body.company,
                     jobType: req.body.jobType,
                     jobSector: req.body.jobSector,
                     jobFunction: req.body.jobFunction,
@@ -219,24 +219,38 @@ router.route('/trabalho/editar/:id')
             .catch(next);
     })
     .get(function (req, res) {
-        res.render("user/trabalhos/editar",
-            {
-                title: "Lusoportunas - Editar Trabalho",
-                ruser: req.user
-            });
+        lusDB.User.find({}).exec()
+            .then(function (users) {
+                res.render("user/trabalhos/editar", {
+                    title: "Lusoportunas - Editar Trabalho",
+                    ruser: req.user,
+                    users: users
+                });
+            })
     })
     .post(function (req, res, next) {
 
         let jobId = req.params.id;
         let filter = {_id: new ObjectID(jobId)};
+        let expDate = new Date(req.body.expirationDate);
         let update = {
             $set: {
-                name: req.body.name,
-                body: req.body.body,
+
+                body: {
+                    "cargo": req.body.cargo,
+                    "requisitos": req.body.requisitos,
+                    "beneficios": req.body.beneficios,
+                    "responsabilidades": req.body.responsabilidades,
+                    "vagas": req.body.vagas,
+                    "oferta": req.body.oferta
+                },
+                location: req.body.location,
                 company: req.body.company,
-                industry: req.body.industry,
+                jobType: req.body.jobType,
+                jobSector: req.body.jobSector,
                 jobFunction: req.body.jobFunction,
-                address: req.body.address
+                expirationDate: expDate,
+                gender: req.body.gender
             }
         };
         lusDB.connect
@@ -311,13 +325,42 @@ router.route('/trabalho/concorrer/:id')
     })
     .post(function (req, res, next) {
 
+        if (curriculumFile) {
+
+            let fileType2 = "";
+            if (curriculumFile.mimetype === "application/pdf") {
+                fileType2 = ".pdf";
+            }
+            var curriculumPath = './user/uploads/' + req.user._id;
+
+            if (!fs.existsSync(curriculumPath)) {
+                fs.mkdirSync(curriculumPath);
+            }
+
+            else {
+                let thisDir2 = __dirname;
+                let thisNewDir2 = thisDir2.replace('/user', '');
+                let newfileName2 = "curriculo-" + shortid.generate() + fileType2;
+                let cutPath2 = curriculumPath.replace('.', '');
+                var finalPathThis = cutPath2 + '/' + newfileName2;
+
+                curriculumFile.mv(thisNewDir2 + finalPathThis, function (err) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                })
+            }
+        }
+
+
         let space = res.locals.job.application.length;
         let setDate = new Date();
 
         function applicationFromRequestBody(job, request) {
 
             job.application[space] = {
-                ruser: req.user,
+                ruser: { _id: req.user._id
+                } ,
                 body: {
                     bdate: setDate,
                     application: request.body["message"],

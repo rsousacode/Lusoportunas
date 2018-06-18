@@ -40,20 +40,24 @@ block content
                                 i.fa.fa-map-marker.margin-r-5
                                 |  Localização
                             p.text-muted=user.address.district
-                            if(ruser.social.facebook)
                                 hr
                                 strong
                                     i.fa.fa-phone.margin-r-5
                                     |  Perfis Sociais
                                 .text-left
-                                    a(href=ruser.social.facebook).btn.btn-social-icon.btn-facebook
-                                        i.fa.fa-facebook
-                                if(ruser.social.linkedin)
-                                    a(href=ruser.social.linkedin).btn.btn-social-icon.btn-linkedin
-                                        i.fa.fa-linkedin
-                                if(ruser.social.twitter)
-                                    a(href=ruser.social.twitter).btn.btn-social-icon.btn-twitter
-                                        i.fa.fa-twitter
+                                    .row
+                                        if(ruser.social.facebook)
+                                            .col-md-2
+                                                a(href=ruser.social.facebook).btn.btn-social-icon.btn-facebook
+                                                    i.fa.fa-facebook
+                                        if(ruser.social.linkedin)
+                                            .col-md-2
+                                                a(href=ruser.social.linkedin).btn.btn-social-icon.btn-linkedin
+                                                    i.fa.fa-linkedin
+                                        if(ruser.social.twitter)
+                                            .col-md-2
+                                                a(href=ruser.social.twitter).btn.btn-social-icon.btn-twitter
+                                                    i.fa.fa-twitter
                         // /.box-body
                 .col-lg-8
                     .info-box
@@ -81,9 +85,9 @@ block content
 
     script(src='/jquery.min.js')
     script(src='/js/bootstrap.min.js')
-    script(src='dist/js/luso.js')
-    script(src='dist/plugins/jquery-ui/jquery-ui.min.js')
-    script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+    script(src='/dist/js/luso.js')
+    script(src='/dist/plugins/jquery-ui/jquery-ui.min.js')
+    script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
     script(type='text/javascript').
         $(document).ready(function () {
             $("#respMenu").aceResponsiveMenu({

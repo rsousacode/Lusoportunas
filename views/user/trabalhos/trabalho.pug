@@ -13,38 +13,43 @@ block content
                                 if(job.jobType)
                                     .col
                                         .form-group
-                                            strong.label(for='jobtype') Tipo de trabalho:
+                                            strong.label Tipo de trabalho:
                                             p=job.jobType
                                 if(job.jobSector)
                                     .col
                                         .form-group
-                                            strong.label(for='Sector') Sector:
+                                            strong.label Sector:
                                             p=job.jobSector
                                 if(job.jobFunction)
                                     .col
                                         .form-group
-                                            strong.label(for='Função') Função:
+                                            strong.label Função:
                                             p= job.jobFunction
+                                if(job.company)
+                                    .col
+                                        .form-group
+                                            strong.label Empresa:
+                                            p= job.company
 
                             if(job.body.vagas)
                                 .form-group
-                                    strong.label(for='vahas') Vagas:
+                                    strong.label Vagas:
                                     p= job.body.vagas
-                            if(job.jobSector)
+                            if(job.body.beneficios.length>10)
                                 .form-group
-                                    strong.label(for='jobSector') Benefícios:
+                                    strong.label Beneficios:
                                     p= job.body.beneficios
                             if(job.body.requisitos)
                                 .form-group
-                                    strong.label(for='body.jobFunction') Requisitos:
+                                    strong.label Requisitos:
                                     p= job.body.requisitos
                             if(job.body.responsabilidades)
                                 .form-group
-                                    strong.label(for='cargo') Responsabilidades:
+                                    strong.label Responsabilidades:
                                     p= job.body.responsabilidades
                             if(job.salary)
                                 .form-group
-                                    strong.label(for='cargo') Responsabilidades:
+                                    strong.label Oferta Salarial:
                                     p= job.salary
 
                             .form-group

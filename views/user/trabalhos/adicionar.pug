@@ -14,8 +14,8 @@ block content
                                 .card-body
                                     form.form(role='form', autocomplete='off', method="post", action="/trabalho/adicionar")
                                         .form-group
-                                            label(for='companyName') Empresa
-                                            select.combobox.input-large.form-control(name='companyName')
+                                            label(for='company') Empresa
+                                            select.combobox.input-large.form-control(name='company')
                                                 option(value='', selected='selected')
                                                     each user in users
                                                             each company in user.company
@@ -160,7 +160,7 @@ block content
                                             label(for='vagas') Vagas
                                             input#inputName.form-control(type='text', name="vagas", placeholder='Vagas')
                                         .form-group
-                                            label(for='body.vagas') Oferta
+                                            label(for='body.vagas') Oferta Salarial
                                             input#inputName.form-control(type='text', name="oferta", placeholder='Oferta')
                                         .form-group
                                             label(for='expirationDate') Data de expiração
@@ -174,7 +174,6 @@ block content
                                             button.btn.btn-success.btn-lg.float-right(type='submit') Criar anúncio
 
         include ../../c/foote
-        script(src='/jquery.min.js')
         script(src='/js/bootstrap.min.js')
         script(src='/dist/js/luso.js')
         script(src='/dist/plugins/datatables/jquery.dataTables.min.js')

@@ -38,7 +38,7 @@ router.route('/perfil/:id')
     .get(function (req, res) {
         res.render("c/user-recruit-profile",
             {
-                title:"Lusoportunas - "+res.locals.user.firstName+" "+res.locals.user.lastName,
+                title: "Lusoportunas - " + res.locals.user.firstName + " " + res.locals.user.lastName,
                 ruser: req.user
             }
         );
@@ -102,7 +102,7 @@ router.route('/perfil')
 
 router.route('/painel')
     .get(function (req, res) {
-         if(req.user.role!=="Recruta") {
+        if (req.user.role !== "Recruta") {
 
             lusDB.Job.find({}).exec()
                 .then(function (jobs) {
@@ -196,13 +196,13 @@ router.route('/perfil/:id/editar')
             }
 
 
-            else if (curriculumFile) {
+            if (curriculumFile) {
 
                 let fileType2 = "";
                 if (curriculumFile.mimetype === "application/pdf") {
                     fileType2 = ".pdf";
                 }
-                var curriculumPath = './user/uploads/' + req.user._id ;
+                var curriculumPath = './user/uploads/' + req.user._id;
 
                 if (!fs.existsSync(curriculumPath)) {
                     fs.mkdirSync(curriculumPath);
@@ -211,7 +211,7 @@ router.route('/perfil/:id/editar')
                 else {
                     let thisDir2 = __dirname;
                     let thisNewDir2 = thisDir2.replace('/user', '');
-                    let newfileName2 = "curriculo-"+shortid.generate() + fileType2;
+                    let newfileName2 = "curriculo-" + shortid.generate() + fileType2;
                     let cutPath2 = curriculumPath.replace('.', '');
                     var finalPathThis = cutPath2 + '/' + newfileName2;
 
@@ -225,15 +225,16 @@ router.route('/perfil/:id/editar')
 
             function userFromRequestBody(user, request, profilepic, curriculum) {
 
-
                 if (profilePath) {
-                    user.profilePicture = profilepic.replace('/user/uploads', '');
+                    if (profilepic) {
+                        user.profilePicture = profilepic.replace('/user/uploads', '');
+                    }
                 }
                 if (curriculumPath) {
                     user.curriculum = curriculum.replace('/user/uploads', '');
                 }
                 user.username = request.body.username;
-                user.biography= request.body.biography;
+                user.biography = request.body.biography;
                 user.name.firstName = request.body.firstName;
                 user.name.lastName = request.body.lastName;
                 user.address = {
@@ -257,7 +258,7 @@ router.route('/perfil/:id/editar')
                 .catch(error => {
                     if (error.name === "Validation Error") {
                         res.locals.error = error;
-                        res.render("user/perfil/editar",{
+                        res.render("user/perfil/editar", {
                             title: "Lusoportunas - Editar Perfil"
                         });
                         return;
@@ -349,7 +350,7 @@ router.route('/editar/perfil/:id')
                 else {
                     let thisDir2 = __dirname;
                     let thisNewDir2 = thisDir2.replace('/user', '');
-                    let newfileName2 = "curriculo-"+shortid.generate() + fileType2;
+                    let newfileName2 = "curriculo-" + shortid.generate() + fileType2;
                     let cutPath2 = curriculumPath.replace('.', '');
                     var finalPathThis = cutPath2 + '/' + newfileName2;
 
@@ -451,7 +452,7 @@ router.route('/perfil/:id/adicionarExperiencia')
         experienceFromRequestBody(res.locals.user, req);
 
         res.locals.user.save()
-            .then(() => res.redirect(req.baseUrl + "/perfil/"+res.locals.user.id))
+            .then(() => res.redirect(req.baseUrl + "/perfil/" + res.locals.user.id))
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;
@@ -507,7 +508,7 @@ router.route('/perfil/:id/adicionarEducacao')
         educationFromRequestBody(res.locals.user, req);
 
         res.locals.user.save()
-            .then(() => res.redirect(req.baseUrl + "/perfil/"+res.locals.user.id))
+            .then(() => res.redirect(req.baseUrl + "/perfil/" + res.locals.user.id))
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;

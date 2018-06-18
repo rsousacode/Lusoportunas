@@ -13,9 +13,18 @@ block content
                             .card-body
                                 form.form(role='form', method="post")
                                     .form-group
+                                        label(for='company') Empresa
+                                        select.combobox.input-large.form-control(name='company')
+                                            option(value='', selected='selected')=job.company
+                                                each user in users
+                                                    each company in user.company
+                                                        option(value=company.name)=company.name
+                                        i Não encontra a empresa?
+                                            a(href='/perfil/' + ruser._id + '/' + 'adicionarEmpresa')=" adicione a sua"
+                                    .form-group
                                         label(for='jobType') Tipo de Trabalho
                                         select.combobox.input-large.form-control(name='jobType')
-                                            option(value=job.jobType, selected='selected')=job.jobType
+                                            option(value='', selected='selected')=job.jobType
                                             option(value='Estágio') Estágio
                                             option(value='Freelancer') Freelancer
                                             option(value='Part-Time') Part-Time
@@ -127,8 +136,8 @@ block content
 
                                     .form-group
                                         label(for='gender') Genero
-                                        select.combobox.input-large.form-control(name='jobType')
-                                            option(value='', selected='selected') Genero
+                                        select.combobox.input-large.form-control(name='gender')
+                                            option(value='', selected=job.gender) Genero
                                             option(value='M') M
                                             option(value='F') F
                                             option(value='Irrelevante') Irrelevante
@@ -163,7 +172,7 @@ block content
                                         label(for='vagas') Vagas
                                         input#input3Name.form-control(type='text', name="vagas", placeholder='Vagas', value=job.body.vagas)
                                     .form-group
-                                        label(for='body.oferta') Oferta
+                                        label(for='body.oferta') Oferta Salarial
                                         input#input2Name.form-control(type='text', name="oferta", placeholder='Oferta', value=job.body.oferta)
 
 
@@ -174,7 +183,6 @@ block content
                                         });
                                     .form-group
                                         button.btn.btn-success.btn-lg.float-right(type='submit') Editar anúncio
-        script(src='/jquery.min.js')
         script(src='/js/bootstrap.min.js')
         script(src='/dist/js/luso.js')
         script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
