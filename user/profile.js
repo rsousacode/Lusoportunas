@@ -102,7 +102,19 @@ router.route('/perfil')
 
 router.route('/painel')
     .get(function (req, res) {
-        if (req.user.role === "Recruta") {
+         if(req.user.role!=="Recruta") {
+
+            lusDB.Job.find({}).exec()
+                .then(function (jobs) {
+                    res.render("c/user-user-panel", {
+                        title: "Lusoportunas - Painel",
+                        ruser: req.user,
+                        jobs: jobs
+                    });
+                });
+
+        }
+        else {
 
             let uname = req.user.username;
             let query = {"ruser.username": uname};
@@ -115,18 +127,6 @@ router.route('/painel')
                         jobs: jobs
                     });
                 });
-        } else {
-            let query = {};
-
-            lusDB.Job.find(query).exec()
-                .then(function (jobs) {
-                    res.render("c/user-user-panel", {
-                        title: "Lusoportunas - Painel",
-                        ruser: req.user,
-                        jobs: jobs
-                    });
-                });
-
         }
     });
 
@@ -174,7 +174,7 @@ router.route('/perfil/:id/editar')
                 }
 
 
-                var profilePath = './user/uploads/' + req.user._id + '' + '/profile';
+                var profilePath = './user/uploads/' + req.user._id;
 
                 if (!fs.existsSync(profilePath)) {
                     fs.mkdirSync(profilePath);
@@ -202,7 +202,7 @@ router.route('/perfil/:id/editar')
                 if (curriculumFile.mimetype === "application/pdf") {
                     fileType2 = ".pdf";
                 }
-                var curriculumPath = './user/uploads/' + req.user._id + '' + '/curriculum';
+                var curriculumPath = './user/uploads/' + req.user._id ;
 
                 if (!fs.existsSync(curriculumPath)) {
                     fs.mkdirSync(curriculumPath);
@@ -236,7 +236,6 @@ router.route('/perfil/:id/editar')
                 user.biography= request.body.biography;
                 user.name.firstName = request.body.firstName;
                 user.name.lastName = request.body.lastName;
-                user.role = request.body.role;
                 user.address = {
                     city: request.body["address.city"],
                     district: request.body["address.district"],

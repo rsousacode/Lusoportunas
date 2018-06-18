@@ -77,6 +77,7 @@ let schema = new mongoose.Schema({
                 "mdate": Date
             }
         }],
+        status: Boolean,
 
         "stats": {
             "read": Boolean,

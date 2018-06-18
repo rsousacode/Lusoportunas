@@ -39,6 +39,51 @@ router.get('/candidaturas', async function (req, res) {
         .catch(next);
 });
 
+router.route('/candidatura/arquivar/:id')
+
+    .all(function (req, res, next) {
+
+        const applicationId = req.params.id;
+
+        lusDB.Job.find({"application._id": new ObjectID(applicationId)}, {
+            "application.$": 1,
+            "_id": new ObjectID(applicationId)
+        }).exec()
+            .then(job => {
+                if (!job) {
+                    res.sendStatus(404);
+                    return;
+                }
+                res.locals.job = job;
+
+            }).catch(next);
+
+    })
+    .get(function (req, res, next) {
+
+        function archive(job) {
+
+            job.application[0] = {
+                "status": false
+
+            };
+        }
+
+        archive(res.locals.job, req);
+
+        res.locals.job.save()
+            .then(() => res.redirect(req.baseUrl + "/perfil/"))
+            .catch(error => {
+                if (error.name === "Validation Error") {
+                    res.locals.error = error;
+                    res.render("user/perfil/atributos/education/adicionarEducacao");
+                    return;
+                }
+                next(error);
+            });
+
+    });
+
 /* Trabalhos 2 END */
 
 /* Trabalhos 3 */
@@ -94,6 +139,21 @@ router.get('/trabalhos', async function (req, res) {
         .catch(next);
 
 });
+
+router.route('/empresa/apagar/:id')
+    .get(function (req, res) {
+        let companyId = req.params.id;
+        lusDB.User
+            .findByIdAndUpdate(req.user._id, {
+                $pull: {
+                    company: {
+                        _id: companyId
+                    }
+                }
+            }, function (err) {
+            });
+        res.redirect(req.baseUrl + "/minhasEmpresas")
+    });
 
 router.route('/trabalho/adicionar')
     .get(function (req, res) {
@@ -218,7 +278,7 @@ router.route('/trabalho/:id')
     .get(function (req, res) {
         res.render("c/single-job",
             {
-                title: "Lusoportunas - "+res.locals.job.jobFunction,
+                title: "Lusoportunas - " + res.locals.job.jobFunction,
                 ruser: req.user
             }
         );
@@ -243,7 +303,8 @@ router.route('/trabalho/concorrer/:id')
     })
     .get(function (req, res) {
         res.render("c/user-application-compose",
-            {   title: "Lusoportunas - Candidatar-se",
+            {
+                title: "Lusoportunas - Candidatar-se",
                 ruser: req.user
             }
         );
@@ -251,7 +312,8 @@ router.route('/trabalho/concorrer/:id')
     .post(function (req, res, next) {
 
         let space = res.locals.job.application.length;
-        let setDate= new Date();
+        let setDate = new Date();
+
         function applicationFromRequestBody(job, request) {
 
             job.application[space] = {
@@ -336,7 +398,7 @@ router.route('/trabalho/concorrer/:id')
 router.route('/minhasCandidaturas/:id')
     .get(function (req, res, next) {
         const userId = req.params.id;
-        let query= {"application.ruser._id": new ObjectID(userId)};
+        let query = {"application.ruser._id": new ObjectID(userId)};
 
         lusDB.Job.find(query).exec()
             .then(function (jobs) {
@@ -405,13 +467,16 @@ router.route('/applications/:id')
 /* APPLICATION 2 */
 router.route('/application/:id')
     .all(function (req, res, next) {
-        let applicationId = req.params.id;
+        let appId = "";
+        appId = req.params.id;
+
+        let query = {"application._id": new ObjectID(appId)};
 
         lusDB.connect
-            .then(db => db.collection("jobs").find({"application._id": new ObjectID(applicationId)}, {
-                "jobFunction":1,
+            .then(db => db.collection("jobs").find(query, {
+                "jobFunction": 1,
                 "application.$": 1,
-                "_id": new ObjectID(applicationId)
+                "_id": new ObjectID(appId)
             }).next())
             .then(job => {
 
@@ -427,10 +492,8 @@ router.route('/application/:id')
     .get(function (req, res) {
         res.render("c/user-application",
             {
-                title: "Lusoportunas - Candidatura a "+res.locals.job.jobFunction,
+                title: "Lusoportunas - Candidatura a " + res.locals.job.jobFunction,
                 ruser: req.user
             }
         );
     });
-/* APPLICATION 2 */
-

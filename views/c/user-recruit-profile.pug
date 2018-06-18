@@ -9,11 +9,11 @@ block content
                             .col-md-6
                                 .box-body
                                     strong
-                                        i.fa.fa-edit: a(href="/perfil/"+ruser._id+"/adicionarEducacao")="Adicionar Educação"
+                                        i.fa.fa-edit: a(href="/perfil/" + ruser._id + "/adicionarEducacao")="Adicionar Educação"
                             .col-md-6
                                 .box-body
                                     strong
-                                        i.fa.fa-edit: a(href="/perfil/"+ruser._id+"/adicionarExperiencia")="Adicionar Experiência"
+                                        i.fa.fa-edit: a(href="/perfil/" + ruser._id + "/adicionarExperiencia")="Adicionar Experiência"
                     .user-profile-box.m-b-3
                         .box-profile.text-white
                             if(user.profilePicture)
@@ -26,27 +26,34 @@ block content
                         .box-body
                             if(user.education[0])
                                 strong
-                                    i.fa.fa-book.margin-r-5="Educação"
-                                    each education in user.education
-                                        p.text-muted=education.formation + " em " + education.school
+                                    i.fa.fa-book.margin-r-5="  Educação"
+                                each education in user.education
+                                    p.text-muted=education.formation + " em " + education.school
+                            if(user.experience[0])
+                                hr
+                                strong
+                                    i.fa.fa-book.margin-r-5="  Experiência"
+                                each experience in user.experience
+                                    p.text-muted=experience.cargo + " em " + experience.company
                             hr
                             strong
                                 i.fa.fa-map-marker.margin-r-5
                                 |  Localização
                             p.text-muted=user.address.district
-                            hr
-                            strong
-                                i.fa.fa-phone.margin-r-5
-                                |  Perfil Social
-                            .text-left
-                                a.btn.btn-social-icon.btn-facebook
-                                    i.fa.fa-facebook
-                                a.btn.btn-social-icon.btn-google
-                                    i.fa.fa-google-plus
-                                a.btn.btn-social-icon.btn-linkedin
-                                    i.fa.fa-linkedin
-                                a.btn.btn-social-icon.btn-twitter
-                                    i.fa.fa-twitter
+                            if(ruser.social.facebook)
+                                hr
+                                strong
+                                    i.fa.fa-phone.margin-r-5
+                                    |  Perfis Sociais
+                                .text-left
+                                    a(href=ruser.social.facebook).btn.btn-social-icon.btn-facebook
+                                        i.fa.fa-facebook
+                                if(ruser.social.linkedin)
+                                    a(href=ruser.social.linkedin).btn.btn-social-icon.btn-linkedin
+                                        i.fa.fa-linkedin
+                                if(ruser.social.twitter)
+                                    a(href=ruser.social.twitter).btn.btn-social-icon.btn-twitter
+                                        i.fa.fa-twitter
                         // /.box-body
                 .col-lg-8
                     .info-box
@@ -63,7 +70,7 @@ block content
                                             .col-lg-3.col-xs-6.b-r
                                                 strong Nome
                                                 br
-                                                p.text-muted=user.name.firstName+" "+user.name.lastName
+                                                p.text-muted=user.name.firstName + " " + user.name.lastName
                                             .col-lg-3.col-xs-6.b-r
                                                 strong Registado em
                                                 br

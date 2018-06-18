@@ -9,6 +9,7 @@ block content
                     table#example2.table.table-bordered.table-hover(data-name='cool-table')
                         thead
                             tr
+                                th(scope="col")
                                 th(scope="col") Candidatura
                                 th(scope="col") Anúncio
                                 th(scope="col") Candidato
@@ -16,17 +17,20 @@ block content
                         tbody
                             each job in jobs
                                 each application in job.application
-                                    tr
-                                        td: a(href="http://localhost:7217/application/5b25978c9c813552fc21352d"+job.ruser._id)= "Abrir"
-                                        td= job.jobFunction
-                                        td: a(href="/perfil/"+application.ruser._id)= application.ruser.name.firstName + " " + application.ruser.name.lastName
-                                        td= application.body.bdate.toLocaleDateString()
+                                    if (application.stats.status!=="Archived")
+                                        tr
+                                            td(style="width: 50px;"): a(href="/candidatura/arquivar/" + application._id)
+                                                span.fa.fa-remove
+                                            td: a(href="/application/"+application._id)= "Abrir"
+                                            td= job.jobFunction
+                                            td: a(href="/perfil/"+application.ruser._id)= application.ruser.name.firstName + " " + application.ruser.name.lastName
+                                            td= application.body.bdate.toLocaleDateString()
     include ./foote
     script(src='/jquery.min.js')
     script(src='/js/bootstrap.min.js')
-    script(src='dist/js/luso.js')
-    script(src='dist/plugins/datatables/jquery.dataTables.min.js')
-    script(src='dist/plugins/datatables/dataTables.bootstrap.min.js')
+    script(src='/dist/js/luso.js')
+    script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
+    script(src='/dist/plugins/datatables/dataTables.bootstrap.min.js')
     script.
         $(function () {
             $('#example1').DataTable()
@@ -39,12 +43,12 @@ block content
                 'autoWidth': false
             })
         })
-    script(src='dist/plugins/table-expo/filesaver.min.js')
-    script(src='dist/plugins/table-expo/xls.core.min.js')
-    script(src='dist/plugins/table-expo/tableexport.js')
+    script(src='/dist/plugins/table-expo/filesaver.min.js')
+    script(src='/dist/plugins/table-expo/xls.core.min.js')
+    script(src='/dist/plugins/table-expo/tableexport.js')
     script.
         $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
-    script(src='dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+    script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
     script(type='text/javascript').
         $(document).ready(function () {
             $("#respMenu").aceResponsiveMenu({

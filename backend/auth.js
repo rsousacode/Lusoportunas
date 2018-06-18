@@ -22,7 +22,7 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.get('/registar', function (req, res) {
-    res.render('register', {});
+    res.render('c/user-register', {});
 });
 
 router.post('/registar', function (req, res) {

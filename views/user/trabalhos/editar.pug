@@ -1,4 +1,4 @@
-extends ../../layout
+extends ../../c/layout
 
 block content
     .container.py-5
@@ -174,3 +174,34 @@ block content
                                         });
                                     .form-group
                                         button.btn.btn-success.btn-lg.float-right(type='submit') Editar anúncio
+        script(src='/jquery.min.js')
+        script(src='/js/bootstrap.min.js')
+        script(src='/dist/js/luso.js')
+        script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
+        script(src='/dist/plugins/datatables/dataTables.bootstrap.min.js')
+        script.
+            $(function () {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+        script(src='/dist/plugins/table-expo/filesaver.min.js')
+        script(src='/dist/plugins/table-expo/xls.core.min.js')
+        script(src='/dist/plugins/table-expo/tableexport.js')
+        script.
+            $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
+        script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $("#respMenu").aceResponsiveMenu({
+                    resizeWidth: '768',
+                    animationSpeed: 'fast',
+                    accoridonExpAll: false
+                });
+            });

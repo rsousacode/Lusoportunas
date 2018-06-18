@@ -46,34 +46,34 @@ router.route('/empresa/editar/:id')
     })
     .post(function (req, res, next) {
 
-        let profilePicture = req.files.profilePicture;
+        let logo = req.files.logo;
 
-        if (profilePicture) {
+        if (logo) {
 
             let fileType = "";
-            if (profilePicture.mimetype === "image/jpeg") {
+            if (logo.mimetype === "image/jpeg") {
                 fileType = ".jpg";
 
             }
-            if (profilePicture.mimetype === "image/png") {
+            if (logo.mimetype === "image/png") {
                 fileType = ".png";
             }
 
 
-            var profilePath = './user/uploads/' + req.user._id + '' + '/companies';
+            var profilePath3 = './user/uploads/' + req.user._id ;
 
-            if (!fs.existsSync(profilePath)) {
-                fs.mkdirSync(profilePath);
+            if (!fs.existsSync(profilePath3)) {
+                fs.mkdirSync(profilePath3);
             }
 
             else {
-                let thisDir = __dirname;
-                let thisNewDir = thisDir.replace('/user', '');
-                let newfileName = uuid.v4() + fileType;
-                let cutPath = profilePath.replace('.', '');
-                var finalPath = cutPath + '/' + newfileName;
+                let thisDir3 = __dirname;
+                let thisNewDir3 = thisDir3.replace('/user', '');
+                let newfileName3 = uuid.v4() + fileType;
+                let cutPath3 = profilePath3.replace('.', '');
+                var finalPath3 = cutPath3 + '/' + newfileName3;
 
-                profilePicture.mv(thisNewDir + finalPath, function (err) {
+                logo.mv(thisNewDir3 + finalPath3, function (err) {
                     if (err) {
                         return res.status(500).send(err);
                     }
@@ -81,25 +81,24 @@ router.route('/empresa/editar/:id')
             }
         }
 
-        let space = res.locals.ruser.company.length;
 
-        function companyFromRequestBody(user, request, profilepic) {
-            user.company[space] = {
-                if (profilePath) {
-                    logo : profilepic.replace('/user/uploads', '');
-                },
+        function companyFromRequestBody(user, request) {
+            user.company[0] = {
+
                 location: request.body.location,
                 name: request.body.name,
                 description: request.body.description,
                 mission: request.body.mission,
-                objectives: request.body.objectives
+                objectives: request.body.objectives,
+                if(finalPath3){logo : finalPath3.replace('/user/uploads', '')}
+
             };
         }
 
-        companyFromRequestBody(res.locals.user, req, finalPath);
+        companyFromRequestBody(res.locals.user, req);
 
             res.locals.user.save()
-                .then(() => res.redirect(req.baseUrl + "/perfil"))
+                .then(() => res.redirect(req.baseUrl + "/minhasempresas"))
                 .catch(error => {
                     if (error.name === "Validation Error") {
                         res.locals.error = error;
@@ -238,7 +237,7 @@ router.route('/perfil/:id/adicionarEmpresa')
             }
 
 
-            var profilePath = './user/uploads/' + req.user._id + '' + '/companies';
+            var profilePath = './user/uploads/' + req.user._id ;
 
             if (!fs.existsSync(profilePath)) {
                 fs.mkdirSync(profilePath);
@@ -263,9 +262,9 @@ router.route('/perfil/:id/adicionarEmpresa')
 
         function companyFromRequestBody(user, request, profilepic) {
             user.company[space] = {
-                if (profilePath) {
-                    logo : profilepic.replace('/user/uploads', '');
-                },
+                    logo : profilepic.replace('/user/uploads', ''),
+
+
                 location: request.body.location,
                 name: request.body.name,
                 description: request.body.description,
@@ -275,7 +274,7 @@ router.route('/perfil/:id/adicionarEmpresa')
             };
         }
 
-        companyFromRequestBody(res.locals.user, req, finalPath);
+        companyFromRequestBody(res.locals.user, req, finalPath, profilePath);
 
         res.locals.user.save()
             .then(() => res.redirect(req.baseUrl + "/minhasEmpresas"))

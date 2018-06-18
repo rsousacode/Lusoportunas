@@ -5,17 +5,22 @@ block content
             .row
                 .col-lg-4
                     div
-                        if(ruser.role==="Recruit")
+                        if(ruser.role === "Recruit")
                             include recruit-panel
                         else
                             include user-panel-usr
                 .col-lg-8
                     .card.border-secondary
                         .card-header
-                            if(job.gender)
-                                h3.col-md-9= job.body.cargo + " (" + job.gender + ") "
-                            else
-                                h3.col-md-9= job.body.cargo
+                            .col
+                                if(job.gender)
+                                    h3.col-md-9= job.body.cargo + " (" + job.gender + ") "
+                                else
+                                    h3.col-md-9= job.body.cargo
+                            if(ruser.username === job.ruser.username)
+                                .col
+                                    i: a(href='/trabalho/editar/' + job._id).fa.fa-edit
+
                         form.form
                             .container.py-3
                                 .row
@@ -57,8 +62,9 @@ block content
                                         p= job.salary
 
                                 .form-group
+                                    -let month = job.date.getMonth()+1
                                     strong.label(for='location') Criado por:
-                                    p= job.ruser.name.firstName + " " + "em" + " " + job.date.getDay() + "/" + job.date.getMonth() + "/" + job.date.getUTCFullYear()
+                                    p= job.ruser.name.firstName + " " + "em" + " " + job.date.getDate() + "/" + month + "/" + job.date.getUTCFullYear()
 
                                 .form-group
                                     a.btn.btn-primary.bg-light-blue(href="/trabalho/" + "concorrer" + "/" + job._id, role='button') Candidatar-se a este Trabalho

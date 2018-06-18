@@ -9,7 +9,7 @@ block content
                     .col-md-9.mx-auto
                         .card.border-secondary
                             .card-header
-                                h3.mb-0.my-2 Editar Utilizador
+                                h3.mb-0.my-2 Opções de Conta e Perfil
                             .card-body
                                 form.form(role='form', autocomplete='off', method="post", action="http://localhost:7217/perfil/" + ruser._id + "/editar", enctype='multipart/form-data')
                                     .form-group
@@ -92,4 +92,35 @@ block content
                                         button.btn.btn-success.btn-lg.float-right(type='submit') Guardar
 
         include  ../../c/foote
+        script(src='/js/bootstrap.min.js')
+        script(src='/dist/js/luso.js')
+        script(src='/dist/plugins/datatables/jquery.dataTables.min.js')
+        script(src='/dist/plugins/datatables/dataTables.bootstrap.min.js')
+        script.
+            $(function () {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+        script(src='/dist/plugins/table-expo/filesaver.min.js')
+        script(src='/dist/plugins/table-expo/xls.core.min.js')
+        script(src='/dist/plugins/table-expo/tableexport.js')
+        script.
+            $("table").tableExport({formats: ["xlsx", "xls", "csv", "txt"],});
+        script(src='/dist/plugins/hmenu/ace-responsive-menu.js', type='text/javascript')
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $("#respMenu").aceResponsiveMenu({
+                    resizeWidth: '768',
+                    animationSpeed: 'fast',
+                    accoridonExpAll: false
+                });
+            });
+
 

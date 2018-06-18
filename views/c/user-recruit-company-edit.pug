@@ -11,7 +11,7 @@ block content
                             .card-header
                                 h3.mb-0.my-2 Editar Empresa
                             .card-body
-                                form.form(role='form', autocomplete='off', enctype='multipart/form-data', method="post")
+                                form.form(role='form', autocomplete='off', method="post", action="http://localhost:7217/empresa/editar/" + user.company[0]._id, enctype='multipart/form-data')
                                     .form-group
                                         label(for='name') Nome da Empresa
                                         input.form-control(type='text', name="name", value=user.company[0].name)
@@ -33,6 +33,6 @@ block content
                                     .form-group
                                         .form-group.files
                                             label Inserir/Atualizar Logo de empresa
-                                            input.form-control(type='file', multiple='', name="profilePicture", value="company.logo")
+                                            input.form-control(type='file', multiple='', name="logo",)
                                     .form-group
                                         button.btn.btn-success.btn-lg.float-right(type='submit') Guardar
