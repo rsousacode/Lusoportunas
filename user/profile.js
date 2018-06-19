@@ -8,16 +8,6 @@ let fs = require('fs');
 let shortid = require('shortid');
 
 
-router.use(function (req, res, next) {
-    if (req.isAuthenticated()) {
-        res.locals.user = req.user;
-        next();
-        return;
-    }
-    res.sendStatus(404);
-});
-
-/* PERFIL PUBLICO */
 
 router.route('/perfil/:id')
     .all(function (req, res, next) {
@@ -44,36 +34,6 @@ router.route('/perfil/:id')
         );
     });
 
-/* PERFIL PUBLICO */
-
-//
-// router.route('/perfil/:id')
-//     .all(function (req, res, next) {
-//         const userId = req.params.id;
-//
-//         lusDB.User.findById(userId).exec()   //find a doccument by Id
-//             .then(user => {
-//                 if (!user) {
-//                     res.sendStatus(404);
-//                     return;
-//                 }
-//                 res.locals.user = user;
-//                 res.locals.userHasRole = function (role) { //check roles
-//                     return (user.roles || []).indexOf(role) > -1
-//                 };
-//                 next();
-//
-//             }).catch(next);
-//
-//     })
-//     .get(function (req, res) {
-//         res.render("user/perfil/perfilPublico",
-//             {
-//                 ruser: req.user
-//             }
-//         );
-//     });
-//
 
 router.route('/perfil')
     .get(function (req, res) {

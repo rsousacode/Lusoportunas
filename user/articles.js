@@ -5,15 +5,6 @@ const lusDB = require("../backend/data/lusDB");
 const uuid = require("uuid");
 module.exports = router;
 
-router.use(function (req, res, next) {
-    if (req.isAuthenticated()) {
-        res.locals.user = req.user;
-        next();
-        return;
-    }
-    res.redirect("/entrar");
-});
-
 
 router.get('/artigos/:id', async function (req, res) {
     let uname = req.user.username;

@@ -7,14 +7,6 @@ const fs = require("fs");
 
 module.exports = router;
 
-router.use(function (req, res, next) {
-    if (req.isAuthenticated()) {
-        res.locals.user = req.user;
-        next();
-        return;
-    }
-    res.redirect("/entrar");
-});
 
 router.route('/empresa/editar/:id')
     .all(function (req, res, next) {
@@ -162,21 +154,6 @@ router.get('/empresas', async function (req, res) {
         .catch(next);
 
 });
-
-// router.get('/minhasEmpresas', async function (req, res) {
-//     let uname = req.user.username;
-//     let query = {"ruser.username": uname};
-//
-//     lusDB.User.find(query).exec()
-//         .then(function (company) {
-//             res.render("user/empresas/minhasEmpresas", {
-//                 title: "Lusoportunas - Minhas Empresas",
-//                 ruser: req.user,
-//                 company: company
-//             });
-//         })
-//         .catch(next);
-// });
 
 router.get('/minhasempresas', async function (req, res) {
     let uname = req.user.username;

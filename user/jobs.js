@@ -484,35 +484,8 @@ router.route('/applications/:id')
         );
     });
 
-// router.route('/application/:id')
-//     .all(function (req, res, next) {
-//         let applicationId = req.params.id;
-//
-//         lusDB.connect
-//             .then(db => db.collection("jobs").find({"application._id": new ObjectID(applicationId)}, {
-//                 "application.$": 1,
-//                 "_id": new ObjectID(applicationId)
-//             }).next())
-//             .then(job => {
-//
-//                 if (!job) {
-//                     res.sendStatus(404);
-//                     return;
-//                 }
-//                 res.locals.job = job;
-//                 next();
-//             })
-//             .catch(next);
-//     })
-//     .get(function (req, res) {
-//         res.render("user/trabalhos/applications/application",
-//             {
-//                 ruser: req.user
-//             }
-//         );
-//     });
 
-/* APPLICATION 2 */
+
 router.route('/application/:id')
     .all(function (req, res, next) {
         let appId = "";

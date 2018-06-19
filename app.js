@@ -32,18 +32,17 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//         res.locals.user = req.user;
-//         next();
-//         return;
-//     }
-//     res.redirect("/entrar");
-// });
-
-
 let authRouter = require("./backend/auth");
 app.use(authRouter);
+
+app.use(function (req, res, next) {
+    if (req.isAuthenticated()) {
+        res.locals.user = req.user;
+        next();
+        return;
+    }
+    res.redirect("/entrar");
+});
 
 let generalRouter = require("./user/handler");
 app.use("/", generalRouter);
