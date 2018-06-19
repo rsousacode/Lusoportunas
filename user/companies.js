@@ -262,7 +262,13 @@ router.route('/perfil/:id/adicionarEmpresa')
 
         function companyFromRequestBody(user, request, profilepic) {
             user.company[space] = {
-                    logo : profilepic.replace('/user/uploads', ''),
+                    if(profilePath){
+                        if(profilepic){
+                            logo : profilepic.replace('/user/uploads', '')
+
+                        }
+
+                    },
 
 
                 location: request.body.location,

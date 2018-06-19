@@ -14,12 +14,14 @@ block content
                                 th(scope="col") Data
                         tbody
                             each job in jobs
+                                -let userid = ruser._id
                                 each application in job.application
-                                    tr
-                                        td: a(href="/application/" + application._id)= "Abrir"
-                                        td= job.jobFunction
-                                        td=job.company
-                                        td= application.body.bdate.toLocaleDateString()
+                                    if(application.ruser._id.toLocaleString() === userid.toLocaleString())
+                                        tr
+                                            td: a(href="/application/" + application._id)= "Abrir"
+                                            td= application.body.application
+                                            td=application.company
+                                            td= application.body.bdate.toLocaleDateString()
     include ./foote
     script(src='/jquery.min.js')
     script(src='/js/bootstrap.min.js')

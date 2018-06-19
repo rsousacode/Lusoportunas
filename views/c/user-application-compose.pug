@@ -18,7 +18,7 @@ block content
                                         |  Candidaturas
                                         //span.label.label-primary.pull-right 12
                 .col-lg-9
-                    form.form(role='form', autocomplete='off', method="post")
+                    form.form(role='form', autocomplete='off', method="post", action="http://localhost:7217/trabalho/concorrer/" + job._id , enctype='multipart/form-data')
                         .box.box-primary
                             .box-header.with-border
                                 h3.box-title Candidatar-se a emprego

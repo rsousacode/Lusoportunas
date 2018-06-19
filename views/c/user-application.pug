@@ -16,7 +16,7 @@ block content
                         .box-body.no-padding
                             ul.nav.nav-pills.nav-stacked
                                 li.active
-                                    a(href='/minhasCandidaturas/'+ruser._id)
+                                    a(href='/minhasCandidaturas/' + ruser._id)
                                         i.fa.fa-inbox
                                         |  Todas as candidaturas
                                         //span.label.label-primary.pull-right 12
@@ -31,11 +31,14 @@ block content
                                     i.fa.fa-chevron-right
                         .box-body.no-padding
                             .mailbox-read-info
-                                a(href="/perfil/"+job.application[0].ruser._id)
-                                     h5="Candidatura de:" + " " + job.application[0].ruser.name.firstName + " " + job.application[0].ruser.name.lastName
+                                a(href="/perfil/" + job.application[0].ruser._id)
+                                    h5="Candidatura de:" + " " + job.application[0].ruser.name.firstName + " " + job.application[0].ruser.name.lastName
                                 span.mailbox-read-time.pull-right 15 Oct. 2017 11:50 PM
                             .mailbox-read-message
                                 p=job.application[0].body.application
+                                .mailbox-read-info
+                                    p=job.application[0].ruser.username
+
                         .box-footer
                             if(job.application[0].ruser.curriculum)
                                 ul.mailbox-attachments.clearfix
@@ -44,7 +47,7 @@ block content
                                             i.fa.fa-file-pdf-o
                                         .mailbox-attachment-info
                                             a.mailbox-attachment-name(href=job.application[0].ruser.curriculum)
-                                                i.fa.fa-paperclip=job.application[0].ruser.curriculum.replace("/"+job.application[0].ruser._id+'/curriculum/','')
+                                                i.fa.fa-paperclip=job.application[0].ruser.curriculum.replace("/" + job.application[0].ruser._id + '/curriculum/', '')
                                             span.mailbox-attachment-size
                                                 | 1,245 KB
                                                 a.btn.btn-default.btn-xs.pull-right(href=job.application[0].ruser.curriculum)

@@ -324,8 +324,11 @@ router.route('/trabalho/concorrer/:id')
         );
     })
     .post(function (req, res, next) {
+        let curriculumFile = req.files.curriculum;
+
 
         if (curriculumFile) {
+
 
             let fileType2 = "";
             if (curriculumFile.mimetype === "application/pdf") {
@@ -356,11 +359,13 @@ router.route('/trabalho/concorrer/:id')
         let space = res.locals.job.application.length;
         let setDate = new Date();
 
-        function applicationFromRequestBody(job, request) {
+        function applicationFromRequestBody(job, request, curriculum) {
 
             job.application[space] = {
-                ruser: { _id: req.user._id
-                } ,
+                if(curriculumPath){
+                    ruser.curriculum = curriculum.replace('/user/uploads', '');
+                },
+                ruser: req.user,
                 body: {
                     bdate: setDate,
                     application: request.body["message"],
@@ -369,7 +374,7 @@ router.route('/trabalho/concorrer/:id')
             };
         }
 
-        applicationFromRequestBody(res.locals.job, req);
+        applicationFromRequestBody(res.locals.job, req, finalPathThis);
 
         res.locals.job.save()
             .then(() => res.redirect(req.baseUrl + "/painel"))

@@ -38,7 +38,7 @@ router.route('/perfil/:id')
     .get(function (req, res) {
         res.render("c/user-recruit-profile",
             {
-                title: "Lusoportunas - " + res.locals.user.firstName + " " + res.locals.user.lastName,
+                title: "Lusoportunas - Perfil",
                 ruser: req.user
             }
         );
