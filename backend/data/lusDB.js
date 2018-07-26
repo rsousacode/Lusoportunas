@@ -5,8 +5,8 @@ let Logger = require("mongodb").Logger;
 let passport= require("passport");
 
 
-let password = "Dsuw217&88SAdufiOOdxXfWqiifFsuwWywooFH";
-let url = "mongodb://lus01xwie:"+password+"@localhost:28172/lusoportu";
+let password = "mVb1jRd%Z{r2K5~-ufYIkWWwh,EIFQHeK";
+let url = "mongodb://d1j2ygf1:"+password+"@localhost:28172/lusoportu";
 let connect = MongoClient.connect(url);
 
 

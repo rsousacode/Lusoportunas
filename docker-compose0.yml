@@ -1,0 +1,26 @@
+version: "2"
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+    -  "7217:7217"
+    links:
+    - mongo
+  mongo:
+     image: mongo
+     volumes_from:
+     - data
+     ports:
+     -   "127.0.0.1:7217:7217"
+     container_name: "db_mongodb"
+
+
+  data:
+    image: mongo
+    volumes:
+      - /var/lib/mongo
+      - ./dc-mongo-setup:/setup
+    command: "true"
+    container_name: "db_mongodb_data"
