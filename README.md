@@ -29,3 +29,16 @@
 - Ofertas de trabalho por indústria, cargo, empresa.
 - Perfil de utilizador (brevemente)
 
+
+### Screenshots
+
+![Página Inicial](https://bigmonte.com/wp-content/uploads/2020/09/luso1.jpg)
+
+![Empresas](https://bigmonte.com/wp-content/uploads/2020/09/luso4.jpg)
+
+![Página Inicial](https://bigmonte.com/wp-content/uploads/2020/09/luso1.jpg)
+
+![Adicionar Empresas](https://bigmonte.com/wp-content/uploads/2020/09/luso6.jpg)
+
+![Perfil](https://bigmonte.com/wp-content/uploads/2020/09/luso9.jpg)
+
