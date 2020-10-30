@@ -11,6 +11,7 @@ it is a website carried out within the framework of [Games & Apps Development](h
 
 * [MongoDB](https://mongodb.com) - NoSQL Database
 * [MongoDB Driver](https://www.npmjs.com/package/mongodb) - A mongoDB Nodejs driver
+* [Pug](https://www.npmjs.com/package/pug) - Hgigh performance template engine
 * [Mongoose - MongoDB](https://mongoosejs.com) Object Modeling for NodeJs
 * [Passport](https://passportjs.org) - OAuth Nodejs Middleware
 * [Express File Upload](https://expressjs.com) - Express middleware for uploading files.
