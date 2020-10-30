@@ -1,9 +1,0 @@
-extends ../../layout
-
-block content
-    .container.m-lg-4
-        .row.featurette
-            .col-md-7
-                h2.featurette-heading=article.name
-                p.lead=article.body
-                p="Publicado em:" +" " + article.date.getDay()+"/"+ article.date.getMonth()+"/"+ article.date.getUTCFullYear()

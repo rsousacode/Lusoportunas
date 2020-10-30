@@ -12,7 +12,7 @@ router.get('/meustrabalhos', async function (req, res) {
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
-            res.render("c/user-jobs-active", {
+            res.render("user-jobs-active", {
                 title: "Lusoportunas - Ofertas de emprego publicadas",
                 ruser: req.user,
                 jobs: jobs
@@ -30,7 +30,7 @@ router.get('/candidaturas', async function (req, res) {
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
-            res.render("c/user-recruit-applications", {
+            res.render("user-recruit-applications", {
                 title: "Lusoportunas - Ofertas de emprego publicadas",
                 ruser: req.user,
                 jobs: jobs
@@ -93,7 +93,7 @@ router.get('/trabalhosExpirados', async function (req, res) {
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
-            res.render("c/user-jobs-expired", {
+            res.render("user-jobs-expired", {
                 title: "Lusoportunas - Ofertas de emprego publicadas",
                 ruser: req.user,
                 jobs: jobs
@@ -130,7 +130,7 @@ router.get('/trabalhos', async function (req, res) {
 
     lusDB.Job.find(query).exec()
         .then(function (jobs) {
-            res.render("c/all-jobs", {
+            res.render("all-jobs", {
                 title: " Lusoportunas - Trabalhos",
                 ruser: req.user,
                 jobs: jobs
@@ -290,7 +290,7 @@ router.route('/trabalho/:id')
             .catch(next);
     })
     .get(function (req, res) {
-        res.render("c/single-job",
+        res.render("single-job",
             {
                 title: "Lusoportunas - " + res.locals.job.jobFunction,
                 ruser: req.user
@@ -316,7 +316,7 @@ router.route('/trabalho/concorrer/:id')
 
     })
     .get(function (req, res) {
-        res.render("c/user-application-compose",
+        res.render("user-application-compose",
             {
                 title: "Lusoportunas - Candidatar-se",
                 ruser: req.user
@@ -381,7 +381,7 @@ router.route('/trabalho/concorrer/:id')
             .catch(error => {
                 if (error.name === "Validation Error") {
                     res.locals.error = error;
-                    res.render("c/user-application-compose", {
+                    res.render("user-application-compose", {
                         title: "Lusoportunas - Candidatar-se (erro)"
                     });
                     return;
@@ -450,7 +450,7 @@ router.route('/minhasCandidaturas/:id')
 
         lusDB.Job.find(query).exec()
             .then(function (jobs) {
-                res.render("c/user-my-applications", {
+                res.render("user-my-applications", {
                     title: " Lusoportunas - Minhas Candidaturas",
                     ruser: req.user,
                     jobs: jobs
@@ -476,7 +476,7 @@ router.route('/applications/:id')
 
     })
     .get(function (req, res) {
-        res.render("c/user-job-applications",
+        res.render("user-job-applications",
             {
                 title: "Lusoportunas - Candidaturas",
                 ruser: req.user
@@ -511,7 +511,7 @@ router.route('/application/:id')
             .catch(next);
     })
     .get(function (req, res) {
-        res.render("c/user-application",
+        res.render("user-application",
             {
                 title: "Lusoportunas - Candidatura a " + res.locals.job.jobFunction,
                 ruser: req.user

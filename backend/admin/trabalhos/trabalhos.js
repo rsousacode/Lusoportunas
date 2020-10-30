@@ -144,7 +144,7 @@ router.route('/trabalho/:id')
             .catch(next);
     })
     .get(function (req, res) {
-        res.render("c/trabalhos/trabalho",
+        res.render("trabalhos/trabalho",
             {
                 user: req.user
             }

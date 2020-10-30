@@ -22,7 +22,7 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.get('/registar', function (req, res) {
-    res.render('c/user-register', {});
+    res.render('user-register', {});
 });
 
 router.post('/registar', function (req, res) {
@@ -97,7 +97,7 @@ router.route("/")
             return;
         }
 
-        res.render("c/index", {
+        res.render("index", {
             title: "Lusoportunas - Conecta-te com o teu sucesso! ",
             ruser : req.user
 
@@ -137,7 +137,7 @@ router.route("/entrar")
             return;
         }
 
-        res.render("c/user-login", {}
+        res.render("user-login", {}
         );
 
 

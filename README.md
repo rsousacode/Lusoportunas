@@ -1,44 +1,18 @@
 # Lusoportunas
-- Ofertas de trabalho por indústria, cargo, empresa.
-- Uma plataforma que coloca em contacto recrutas e interessados em ofertas de emprego.
+By Rui Sousa and Pedro Sabrosa
 
 
-## Como compilar e executar o servidor
+## What is Lusoportunas
 
-##### Configuração de base de dados e execução em modo de desenvolvimento
-- Criar uma base de dados usando o MongoDB
-- Modificar a String the conexão em data/lusDB.js
-- `$ npm install` para instalar módulos.
-- Importar base de dados atual com os seguintes comandos: `$ node data/import.users.js`, etc.
-- `$ npm start` (criar instância de servidor usando porto)
-- Fazer login usando "filipe@gmail.com" pwd: "filipe"
-
-##### Executar servidor em modo de produção (sem o login automático
-
-- `$npm start --production`
-
-## Desenvolvimento
-
-##### Desenvolvimento de conteúdo em português:
-- [x] Atenção erros ortográficos.
-- [x] Sem conteúdo estático.
-
-#### Funcionalidades
-
-- Artigos com informação pertinente para utilizadores e empresas.
-- Ofertas de trabalho por indústria, cargo, empresa.
-- Perfil de utilizador (brevemente)
+it is a website carried out within the framework of [Games & Apps Development](https://www.iade.europeia.pt/en/courses/undergraduate/global-bachelor/games-and-apps-development) bachelor degree at IADE. It streamlines the job finding process and has a comprehensive dashboard for recruiters and job seekers with a communication platform that allows both to connect easily.
 
 
-### Screenshots
+## Resources
 
-![Página Inicial](https://bigmonte.com/wp-content/uploads/2020/09/luso1.jpg)
-
-![Empresas](https://bigmonte.com/wp-content/uploads/2020/09/luso4.jpg)
-
-![Página Inicial](https://bigmonte.com/wp-content/uploads/2020/09/luso1.jpg)
-
-![Adicionar Empresas](https://bigmonte.com/wp-content/uploads/2020/09/luso6.jpg)
-
-![Perfil](https://bigmonte.com/wp-content/uploads/2020/09/luso9.jpg)
+[MongoDB](https://mongodb.com) - NoSQL Database
+[MongoDB Driver](https://www.npmjs.com/package/mongodb) - A mongoDB Nodejs driver
+[Mongoose - MongoDB](https://mongoosejs.com) Object Modeling for NodeJs
+[Passport](https://passportjs.org) - OAuth Nodejs Middleware
+[Express File Upload](https://expressjs.com) - Express middleware for uploading files.
+[Express](https://expressjs.com) - Node.Js Web application framework
 

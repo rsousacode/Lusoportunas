@@ -26,7 +26,7 @@ router.route('/perfil/:id')
 
     })
     .get(function (req, res) {
-        res.render("c/user-recruit-profile",
+        res.render("user-recruit-profile",
             {
                 title: "Lusoportunas - Perfil",
                 ruser: req.user
@@ -66,7 +66,7 @@ router.route('/painel')
 
             lusDB.Job.find({}).exec()
                 .then(function (jobs) {
-                    res.render("c/user-user-panel", {
+                    res.render("user-user-panel", {
                         title: "Lusoportunas - Painel",
                         ruser: req.user,
                         jobs: jobs
@@ -81,7 +81,7 @@ router.route('/painel')
 
             lusDB.Job.find(query).exec()
                 .then(function (jobs) {
-                    res.render("c/user-recruit-panel", {
+                    res.render("user-recruit-panel", {
                         title: "Lusoportunas - Painel",
                         ruser: req.user,
                         jobs: jobs
@@ -249,7 +249,7 @@ router.route('/editar/perfil/:id')
 
     })
     .get(function (req, res) {
-        res.render("c/user-account",
+        res.render("user-account",
             {
                 title: "Lusoportunas - Editar Perfil",
                 ruser: req.user

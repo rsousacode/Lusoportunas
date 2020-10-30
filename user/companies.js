@@ -29,7 +29,7 @@ router.route('/empresa/editar/:id')
             .catch(next);
     })
     .get(function (req, res, next) {
-        res.render("c/user-recruit-company-edit",
+        res.render("user-recruit-company-edit",
             {
                 title: "Lusoportunas - Editar Empresa",
                 ruser: req.user
@@ -145,7 +145,7 @@ router.get('/empresas', async function (req, res) {
 
     lusDB.User.find(query).exec()
         .then(function (users) {
-            res.render("c/all-companies", {
+            res.render("all-companies", {
                 title: "Lusoportunas - Empresas",
                 ruser: req.user,
                 users: users
@@ -161,7 +161,7 @@ router.get('/minhasempresas', async function (req, res) {
 
     lusDB.User.find(query).exec()
         .then(function (company) {
-            res.render("c/user-recruit-companies", {
+            res.render("user-recruit-companies", {
                 title: "Lusoportunas - Minhas Empresas",
                 ruser: req.user,
                 company: company
