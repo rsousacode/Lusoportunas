@@ -9,10 +9,11 @@ it is a website carried out within the framework of [Games & Apps Development](h
 
 ## Resources
 
-[MongoDB](https://mongodb.com) - NoSQL Database
-[MongoDB Driver](https://www.npmjs.com/package/mongodb) - A mongoDB Nodejs driver
-[Mongoose - MongoDB](https://mongoosejs.com) Object Modeling for NodeJs
-[Passport](https://passportjs.org) - OAuth Nodejs Middleware
-[Express File Upload](https://expressjs.com) - Express middleware for uploading files.
-[Express](https://expressjs.com) - Node.Js Web application framework
+* [MongoDB](https://mongodb.com) - NoSQL Database
+* [MongoDB Driver](https://www.npmjs.com/package/mongodb) - A mongoDB Nodejs driver
+* [Mongoose - MongoDB](https://mongoosejs.com) Object Modeling for NodeJs
+* [Passport](https://passportjs.org) - OAuth Nodejs Middleware
+* [Express File Upload](https://expressjs.com) - Express middleware for uploading files.
+* [Express](https://expressjs.com) - Node.Js Web application framework
+* [Docker](https://docker.com) - Docker containers
 
